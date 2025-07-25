@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/* index.css */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    /* Regular por defecto */
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Títulos */
+h1,
+h2 {
+    font-weight: 700;
+    /* Poppins Bold */
+}
+
+/* Subtítulos */
+h3,
+h4 {
+    font-weight: 600;
+    /* Poppins Semibold */
+}
+
+/* Descripciones */
+p,
+span,
+li,
+label {
+    font-weight: 400;
+    /* Poppins Regular */
+}
+
+/* O puedes usar Medium así si lo prefieres */
+.descripcion {
+    font-weight: 500;
+    /* Poppins Medium */
+}
+
+/* Botones */
+button {
+    font-weight: 700;
+    /* Poppins Bold */
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+}
