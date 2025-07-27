@@ -13,7 +13,7 @@ function Navbar() {
     return (
         <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
             }`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center py-4">
                     <div className="flex items-center space-x-2">
                         <img
@@ -46,7 +46,7 @@ function Navbar() {
 
                 {isOpen && (
                     <div className="md:hidden bg-white/95 backdrop-blur-md rounded-lg mt-2 p-4">
-                        {['tours', 'services', 'gallery', 'testimonials', 'contact'].map((item) => (
+                        {['Inicio', 'Nosotros', 'Servicios'].map((item) => (
                             <button
                                 key={item}
                                 // onClick={() => }
