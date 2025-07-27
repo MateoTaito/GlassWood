@@ -2,7 +2,12 @@
 
 /* index.css */
 @theme {
-    --color-other: #0F4CBA
+    --color-blue: #0F4CBA;
+    --color-skyblue: #cee2f5;
+    --color-orange: #FFA500;
+    --color-coral: #FF6B6B;
+    --color-accentorange: #F59E0B;
+    --color-positivegreen: #10B981;
 }
 
 body {
@@ -25,7 +30,7 @@ h2 {
 /* Subtítulos */
 h3,
 h4 {
-    font-weight: 600;
+    font-weight: 500;
     /* Poppins Semibold */
 }
 
@@ -46,7 +51,7 @@ label {
 
 /* Botones */
 button {
-    font-weight: 700;
+    font-weight: 500;
     /* Poppins Bold */
     font-family: 'Poppins', sans-serif;
     cursor: pointer;

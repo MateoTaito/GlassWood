@@ -1,6 +1,19 @@
 header {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("./header.png");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("./header.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Versión móvil: hasta 640px */
+@media (max-width: 640px) {
+  header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("./header_mobile.jpg");
+    background-position: 60% center;
+    /* desplaza la imagen hacia la izquierda */
+    height: 100vh;
+    width: 100%;
+  }
 }

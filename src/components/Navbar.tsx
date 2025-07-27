@@ -13,23 +13,21 @@ function Navbar() {
     return (
         <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
             }`}>
-            <h1 className="text-red">Hola mundo</h1>
-
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center py-4">
                     <div className="flex items-center space-x-2">
-                        <img src="nube_blanca.png" className="h-24 w-auto" alt="logo" />
-                        <span className={`text-xl font-bold transition-colors ${isScrolled ? 'text-gray-900' : 'text-primary'
-                            }`}>
-                        </span>
+                        <img
+                            src={isScrolled ? "nube_negra.png" : "nube_blanca.png"}
+                            className="h-18 sm:h-24 w-auto "
+                            alt="logo"
+                        />
                     </div>
-
                     <nav className="hidden md:flex items-center space-x-8">
                         {['Inicio', 'Nosotros', 'Servicios'].map((item) => (
                             <button
                                 key={item}
                                 // onClick={() => }
-                                className={`text-xl transition-colors hover:text-orange-500 ${isScrolled ? 'text-gray-700' : 'text-other'
+                                className={`text-2xl transition-colors hover:text-positivegreen ${isScrolled ? 'text-gray-700' : 'text-white'
                                     }`}
                             >
                                 {item}
@@ -42,7 +40,7 @@ function Navbar() {
                         className={`md:hidden transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'
                             }`}
                     >
-                        {isOpen ? <X size={24} /> : <Menu size={24} />}
+                        {isOpen ? <X size={30} /> : <Menu size={30} />}
                     </button>
                 </div>
 
@@ -54,7 +52,7 @@ function Navbar() {
                                 // onClick={() => }
                                 className="block w-full text-left py-2 text-gray-700 hover:text-orange-500"
                             >
-                                hola
+                                {item}
                             </button>
                         ))}
                     </div>
