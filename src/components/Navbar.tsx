@@ -18,16 +18,16 @@ function Navbar() {
                     <div className="flex items-center space-x-2">
                         <img
                             src={isScrolled ? "nube_negra.png" : "nube_blanca.png"}
-                            className="h-18 sm:h-24 w-auto "
+                            className="h-18 sm:h-18 w-auto "
                             alt="logo"
                         />
                     </div>
-                    <nav className="hidden md:flex items-center space-x-8">
+                    <nav className="hidden md:flex items-center space-x-8 px">
                         {['Inicio', 'Nosotros', 'Servicios'].map((item) => (
                             <button
                                 key={item}
                                 // onClick={() => }
-                                className={`text-2xl transition-colors hover:text-positivegreen ${isScrolled ? 'text-gray-700' : 'text-white'
+                                className={`text-xl transition-colors hover:text-positivegreen ${isScrolled ? 'text-gray-700' : 'text-white'
                                     }`}
                             >
                                 {item}

@@ -1,25 +1,26 @@
 const elements = [
-    {
-        id:1,
-        title: "Seguridad integrada desde el diseño",
-        img: "https://cdn-icons-png.flaticon.com/512/190/190411.png",
-    },
-    {
-        id:2,
-        title: "Acompañamiento claro y cercano",
-        img: "https://cdn-icons-png.flaticon.com/512/190/190411.png",
-    },
-    {
-        id:3,
-        title: "Automatización y eficiencia",
-        img: "https://cdn-icons-png.flaticon.com/512/190/190411.png",
-    },
-    {
-        id:4,
-        title: "Agilidad y adaptabilidad",
-        img: "https://cdn-icons-png.flaticon.com/512/190/190411.png",
-    },
-]
+  {
+    id: 1,
+    title: "Seguridad integrada desde el diseño",
+    icon: "fa-solid fa-shield-halved",
+  },
+  {
+    id: 2,
+    title: "Acompañamiento claro y cercano",
+    icon: "fa-solid fa-handshake",
+  },
+  {
+    id: 3,
+    title: "Automatización y eficiencia",
+    icon: "fa-solid fa-gears",
+  },
+  {
+    id: 4,
+    title: "Agilidad y adaptabilidad",
+    icon: "fa-solid fa-bolt",
+  },
+];
+
 
 function WhyUs() {
   return (
@@ -28,11 +29,11 @@ function WhyUs() {
         Nuestro compromiso
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 px-8 mx-5">
+      <div className="grid grid-flow-col grid-rows-4 lg:grid-rows-2 gap-5 lg:gap-10 mx-5 w-auto justify-center">
         {elements.map((item) => (
-          <div key={item.id} className="flex items-center gap-6">
-            <div className="bg-white rounded-full shadow-md flex justify-center items-center w-40 h-40">
-              <img src={item.img} alt={item.title} className="h-32 w-32 object-contain" />
+          <div key={item.id} className="flex items-center md:gap-6">
+            <div className="bg-white rounded-full shadow-md flex justify-center items-center w-[10rem] h-[10rem]">
+              <i className={`${item.icon} text-positivegreen text-[5rem]`}></i>
             </div>
             <p className="text-blue font-semibold text-3xl">{item.title}</p>
           </div>
