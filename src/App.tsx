@@ -1,5 +1,6 @@
 import './App.css'
 import AboutUs from './components/AboutUs'
+import Clients from './components/Clients'
 import CourseSection from './components/CourseSection'
 import Footer from './components/Footer'
 import Header from './components/Header'
@@ -13,6 +14,7 @@ function App() {
       <AboutUs />
       <WhyUs />
       <CourseSection />
+      <Clients />
       <Footer />
     </div>
 
