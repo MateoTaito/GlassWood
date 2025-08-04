@@ -1,5 +1,6 @@
 import './App.css'
 import AboutUs from './components/AboutUs'
+import CourseSection from './components/CourseSection'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Navbar from './components/Navbar'
@@ -11,6 +12,7 @@ function App() {
       <Header />
       <AboutUs />
       <WhyUs />
+      <CourseSection />
       <Footer />
     </div>
 
