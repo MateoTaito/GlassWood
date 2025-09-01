@@ -1,5 +1,6 @@
 header {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("./header.png");
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/header.webp');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -9,7 +10,9 @@ header {
 /* Versión móvil: hasta 640px */
 @media (max-width: 640px) {
   header {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("./header_mobile.jpg");
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url('/header_mobile.webp');
     background-position: 60% center;
     /* desplaza la imagen hacia la izquierda */
     width: 100%;

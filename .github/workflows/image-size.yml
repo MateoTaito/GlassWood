@@ -1,0 +1,45 @@
+name: Check Image Sizes
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  check-image-sizes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Check image sizes in public directory
+        run: |
+          MAX_SIZE=838860  # 0.8MB in bytes
+
+          if [ ! -d "./public" ]; then
+            echo "No ./public directory found, skipping check"
+            exit 0
+          fi
+
+          LARGE_IMAGES=""
+
+          while IFS= read -r -d '' file; do
+            if [ -f "$file" ]; then
+              size=$(stat -c%s "$file")
+              size_mb=$(echo "scale=2; $size / 1048576" | bc -l)
+              if [ $size -gt $MAX_SIZE ]; then
+                echo "❌ LARGE IMAGE FOUND: $file (${size_mb}MB)"
+                LARGE_IMAGES="$LARGE_IMAGES$file "
+              else
+                echo "✅ $file (${size_mb}MB)"
+              fi
+            fi
+          done < <(find ./public -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" -o -iname "*.bmp" -o -iname "*.webp" -o -iname "*.svg" \) -print0)
+
+          if [ -n "$LARGE_IMAGES" ]; then
+            echo ""
+            echo "ERROR: Found images larger than 0.8MB in ./public directory"
+            echo "Please optimize these images before committing"
+            exit 1
+          fi
+
+          echo ""
+          echo "All images in ./public are within size limits (≤0.8MB)"
