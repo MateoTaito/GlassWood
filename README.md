@@ -1,69 +1,26 @@
-# React + TypeScript + Vite
+# Cloud & Digital website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Build check](https://github.com/Cloud-and-digital/cad/actions/workflows/build.yml/badge.svg)
+![Code style](https://github.com/Cloud-and-digital/cad/actions/workflows/code-style.yml/badge.svg)
 
-Currently, two official plugins are available:
+A React-based website for Cloud&Digital. Built with React, TypeScript, Vite, and Tailwind CSS to showcase services including custom business platforms, customers and experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Essential Commands
 
-## Expanding the ESLint configuration
+- `npm run dev` - Start development server with hot reload
+- `npm run build` - Build production bundle
+- `npm run check` - Run all code quality checks (linting + formatting)
+- `npm run lint` - Run ESLint with auto-fix
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Development Requirements
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+All code quality checks must pass before merging pull requests. Run `npm run check` to verify your changes meet the project standards.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+- React 19 with TypeScript
+- Vite for fast development and building
+- Tailwind CSS for styling
+- ESLint + Prettier for code quality
+- Swiper.js for interactive components
+- Lucide React for icons
