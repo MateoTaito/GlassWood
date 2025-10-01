@@ -185,7 +185,8 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
             onClick={handlePrevSlide}
             className='w-12 h-12 bg-white hover:bg-blue text-blue hover:text-white rounded-full
                      flex items-center justify-center shadow-md hover:shadow-lg
-                     transition-all duration-300 transform hover:scale-110'
+                     transition-all duration-300 transform hover:scale-110 focus:outline-none
+                     focus:ring-2 focus:ring-blue focus:ring-offset-2 focus:ring-offset-white'
             aria-label='Proyecto anterior'
           >
             <ChevronLeft className='w-6 h-6' />
@@ -201,11 +202,12 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
                     swiperRef.current.slideTo(index);
                   }
                 }}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  activeSlide === index
-                    ? 'bg-blue w-8'
-                    : 'bg-gray-300 hover:bg-blue/50'
-                }`}
+                className={`h-3 rounded-full transition-all duration-300 focus:outline-none
+                          focus:ring-2 focus:ring-blue focus:ring-offset-1 ${
+                            activeSlide === index
+                              ? 'bg-blue w-8'
+                              : 'bg-gray-300 hover:bg-blue/50 w-3'
+                          }`}
                 aria-label={`Ir al proyecto ${index + 1}`}
               />
             ))}
@@ -215,7 +217,8 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
             onClick={handleNextSlide}
             className='w-12 h-12 bg-white hover:bg-blue text-blue hover:text-white rounded-full
                      flex items-center justify-center shadow-md hover:shadow-lg
-                     transition-all duration-300 transform hover:scale-110'
+                     transition-all duration-300 transform hover:scale-110 focus:outline-none
+                     focus:ring-2 focus:ring-blue focus:ring-offset-2 focus:ring-offset-white'
             aria-label='Siguiente proyecto'
           >
             <ChevronRight className='w-6 h-6' />
@@ -240,24 +243,32 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
               crossFade: true,
             }}
             loop={clientProjects.length > 1}
-            className='clients-swiper'
+            className='overflow-visible pb-8'
             style={{ overflow: 'visible' }}
           >
             {clientProjects.map(project => (
               <SwiperSlide key={project.id}>
-                <div className='relative bg-white rounded-3xl shadow-xl overflow-hidden'>
+                <div
+                  className='relative bg-white rounded-3xl shadow-xl overflow-hidden backdrop-blur-sm
+                              before:absolute before:inset-0 before:bg-gradient-to-br
+                              before:from-blue/5 before:via-transparent before:to-positivegreen/5
+                              before:z-10'
+                >
                   {/* Logo badge */}
-                  <div className='absolute -top-12 left-1/2 transform -translate-x-1/2 z-20'>
+                  <div
+                    className='absolute -top-12 left-1/2 transform -translate-x-1/2 z-30
+                                drop-shadow-[0_4px_20px_rgba(0,0,0,0.15)]'
+                  >
                     <div className='w-24 h-24 bg-white rounded-full p-3 shadow-xl border-4 border-gray-100'>
                       <img
                         src={project.logoSrc}
                         alt={`${project.title} logo`}
-                        className='w-full h-full object-contain'
+                        className='w-full h-full object-contain brightness-110 contrast-110'
                       />
                     </div>
                   </div>
 
-                  <div className='pt-16 p-8 lg:p-12'>
+                  <div className='relative z-20 pt-16 p-8 lg:p-12'>
                     <div className='grid lg:grid-cols-2 gap-12 items-center'>
                       {/* Content */}
                       <div className='space-y-8'>
@@ -286,7 +297,9 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
                               {project.technologies.map((tech, index) => (
                                 <span
                                   key={index}
-                                  className='px-3 py-1 bg-skyblue/30 text-blue text-sm rounded-full border border-blue/20'
+                                  className='px-3 py-1 bg-skyblue/30 text-blue text-sm rounded-full
+                                           border border-blue/20 hover:bg-blue hover:text-white
+                                           transition-colors duration-300'
                                 >
                                   {tech}
                                 </span>
@@ -301,7 +314,9 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
                             {project.metrics.map((metric, index) => (
                               <div
                                 key={index}
-                                className='bg-gradient-to-r from-blue/5 to-positivegreen/5 p-4 rounded-xl border border-blue/10'
+                                className='bg-gradient-to-r from-blue/5 to-positivegreen/5 p-4 rounded-xl
+                                         border border-blue/10 hover:from-blue/10 hover:to-positivegreen/10
+                                         transition-all duration-300'
                               >
                                 <div className='flex items-center gap-3'>
                                   <div className='text-blue'>{metric.icon}</div>
@@ -321,7 +336,13 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
 
                         {/* Testimonial */}
                         {project.testimonial && (
-                          <div className='bg-gradient-to-r from-blue to-blue-700 p-6 rounded-xl text-white'>
+                          <div
+                            className='relative bg-gradient-to-r from-blue to-blue-700 p-6 rounded-xl
+                                        text-white shadow-lg hover:shadow-xl transition-shadow duration-300
+                                        before:absolute before:-inset-1 before:bg-gradient-to-r
+                                        before:from-blue before:via-positivegreen before:to-blue
+                                        before:rounded-xl before:opacity-75 before:-z-10 before:blur-sm'
+                          >
                             <div className='flex items-start gap-4'>
                               <Quote className='w-8 h-8 text-skyblue flex-shrink-0 mt-1' />
                               <div className='space-y-4'>
@@ -382,12 +403,21 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
                             alt={project.altText}
                             className='w-full h-auto transform group-hover:scale-105 transition-transform duration-700'
                           />
-                          <div className='absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
+                          <div
+                            className='absolute inset-0 bg-gradient-to-t from-black/20 via-transparent
+                                        to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'
+                          />
                         </div>
 
                         {/* Floating elements */}
-                        <div className='absolute -top-4 -right-4 w-8 h-8 bg-positivegreen rounded-full animate-ping opacity-75' />
-                        <div className='absolute -bottom-4 -left-4 w-6 h-6 bg-blue rounded-full animate-pulse' />
+                        <div
+                          className='absolute -top-4 -right-4 w-8 h-8 bg-positivegreen rounded-full
+                                      opacity-75 animate-[float_3s_ease-in-out_infinite]'
+                        />
+                        <div
+                          className='absolute -bottom-4 -left-4 w-6 h-6 bg-blue rounded-full
+                                      animate-[float_3s_ease-in-out_infinite] [animation-delay:1s]'
+                        />
                       </div>
                     </div>
                   </div>
@@ -398,7 +428,10 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
         </div>
 
         {/* Bottom CTA */}
-        <div className='mt-20 text-center bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/50'>
+        <div
+          className='mt-20 text-center bg-white/80 backdrop-blur-sm rounded-2xl p-8 border
+                      border-white/50 hover:bg-white/90 transition-all duration-300'
+        >
           <h3 className='text-2xl font-bold text-blue mb-4'>
             ¿Tu proyecto será el próximo caso de éxito?
           </h3>

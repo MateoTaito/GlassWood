@@ -1,28 +1,13 @@
-/* Enhanced Clients Component Styles */
+/* Essential Swiper-specific styles that can't be achieved with Tailwind */
 
+/* Force overflow visible for Swiper components */
 .swiper,
 .swiper-wrapper,
 .swiper-slide {
   overflow: visible !important;
 }
 
-.clients-swiper {
-  overflow: visible !important;
-  padding: 2rem 0;
-}
-
-.clients-swiper .swiper-slide {
-  opacity: 0.7;
-  transform: scale(0.95);
-  transition: all 0.3s ease;
-}
-
-.clients-swiper .swiper-slide-active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Fade effect enhancement */
+/* Swiper slide states for fade effect */
 .swiper-fade .swiper-slide {
   pointer-events: none;
 }
@@ -31,104 +16,7 @@
   pointer-events: auto;
 }
 
-/* Custom navigation buttons */
-.clients-nav-button {
-  width: 3rem;
-  height: 3rem;
-  background-color: white;
-  color: #0f4cba;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
-  transform: scale(1);
-}
-
-.clients-nav-button:hover {
-  background-color: #0f4cba;
-  color: white;
-  box-shadow:
-    0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  transform: scale(1.1);
-}
-
-.clients-nav-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* Pagination dots styling */
-.swiper-pagination-bullet {
-  width: 0.75rem;
-  height: 0.75rem;
-  background-color: #d1d5db;
-  opacity: 1;
-  transition: all 0.3s ease;
-}
-
-.swiper-pagination-bullet-active {
-  background-color: #0f4cba;
-  width: 2rem;
-  border-radius: 9999px;
-}
-
-.testimonial-card:hover {
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
-.testimonial-card::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  background: linear-gradient(to right, #0f4cba, #10b981, #0f4cba);
-  border-radius: 0.75rem;
-  opacity: 0.75;
-  z-index: -1;
-  filter: blur(4px);
-}
-
-/* Project image container */
-.project-image-container {
-  position: relative;
-  overflow: hidden;
-  border-radius: 1rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
-.project-image-container img {
-  width: 100%;
-  height: auto;
-  transition: transform 0.7s ease;
-}
-
-.project-image-container:hover img {
-  transform: scale(1.05);
-}
-
-.project-image-container::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.2),
-    transparent,
-    transparent
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.project-image-container:hover::after {
-  opacity: 1;
-}
-
-/* Floating animation elements */
+/* Custom floating animation keyframes */
 @keyframes float {
   0%,
   100% {
@@ -139,121 +27,10 @@
   }
 }
 
-.floating-element {
-  animation: float 3s ease-in-out infinite;
-}
-
-.floating-element:nth-child(2) {
-  animation-delay: 1s;
-}
-
-.floating-element:nth-child(3) {
-  animation-delay: 2s;
-}
-
-/* CTA section styling */
-.clients-cta {
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(8px);
-  border-radius: 1rem;
-  padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  transition: all 0.3s ease;
-}
-
-.clients-cta:hover {
-  background-color: rgba(255, 255, 255, 0.9);
-}
-
-/* Star rating */
-.star-rating {
-  display: flex;
-  gap: 0.25rem;
-}
-
-.star-filled {
-  color: #fbbf24;
-  fill: currentColor;
-}
-
-.star-empty {
-  color: #d1d5db;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .clients-swiper {
-    padding: 1rem 0;
-  }
-
-  .client-project-card {
-    border-radius: 1rem;
-  }
-
-  .client-logo-badge {
-    width: 5rem;
-    height: 5rem;
-    top: -2.5rem;
-  }
-
-  .project-image-container {
-    border-radius: 0.75rem;
-  }
-}
-
-/* Loading animation for swiper */
-.swiper-loading {
-  opacity: 0;
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Accessibility improvements */
-.clients-swiper button:focus {
-  outline: none;
-  box-shadow:
-    0 0 0 2px white,
-    0 0 0 4px #0f4cba;
-}
-
-.clients-swiper .swiper-slide:focus {
-  outline: none;
-  box-shadow:
-    0 0 0 2px white,
-    0 0 0 4px #0f4cba;
-  border-radius: 1.5rem;
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .client-project-card {
-    border: 2px solid #374151;
-  }
-
-  .tech-tag {
-    border: 2px solid #0f4cba;
-  }
-
-  .metric-card {
-    border: 2px solid rgba(15, 76, 186, 0.3);
-  }
-}
-
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .swiper-slide,
-  .project-image-container img,
-  .floating-element {
+  * {
     transition: none !important;
     animation: none !important;
   }
@@ -261,19 +38,9 @@
 
 /* Print styles */
 @media print {
-  .clients-swiper {
-    display: block;
-  }
-
   .swiper-slide {
-    display: block;
-    margin-bottom: 2rem;
-    opacity: 1;
-    transform: none;
-  }
-
-  .clients-nav-button,
-  .swiper-pagination {
-    display: none;
+    display: block !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
