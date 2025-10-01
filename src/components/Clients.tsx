@@ -1,90 +1,424 @@
-// src/components/ClientsSwiperSection.jsx
+import React, { useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
+import { Autoplay, EffectFade, Navigation } from 'swiper/modules';
+import {
+  ChevronLeft,
+  ChevronRight,
+  Star,
+  ExternalLink,
+  Quote,
+  Award,
+  Users,
+  TrendingUp,
+} from 'lucide-react';
+import 'swiper/swiper-bundle.css';
 import './Clients.css';
 
-const slides = [
+interface ClientProject {
+  id: string;
+  logoSrc: string;
+  title: string;
+  category: string;
+  description: string;
+  mediaSrc: string;
+  altText: string;
+  websiteUrl?: string;
+  testimonial?: {
+    quote: string;
+    author: string;
+    position: string;
+    rating: number;
+  };
+  metrics?: {
+    label: string;
+    value: string;
+    icon: React.ReactNode;
+  }[];
+  technologies?: string[];
+}
+
+interface ClientsSectionProps {
+  onViewProject?: (projectId: string) => void;
+  onContactUs?: () => void;
+  className?: string;
+}
+
+const clientProjects: ClientProject[] = [
   {
-    id: 1,
+    id: 'urbina',
     logoSrc: 'clients/urbina/logo_urbina.webp',
     title: 'Urbina Consultores',
-    description: `Consultora tributaria legal
-Plataforma institucional moderna y optimizada para SEO.`,
+    category: 'Consultoría Legal y Tributaria',
+    description: `Desarrollamos una plataforma institucional moderna y optimizada para SEO que refleja la seriedad y profesionalismo de esta prestigiosa consultora tributaria legal.
+
+    La nueva presencia digital incluye un sistema de gestión de contenidos intuitivo, formularios de contacto especializados y una arquitectura de información clara que facilita a los clientes encontrar exactamente el servicio que necesitan.`,
     mediaSrc: 'clients/urbina/urbina_combination.png',
-    altText: 'Urbina Consultores - desktop y móvil',
+    altText: 'Urbina Consultores - Vista responsive desktop y móvil',
+    websiteUrl: 'https://urbinaconsultores.cl',
+    testimonial: {
+      quote:
+        'El nuevo sitio web ha mejorado significativamente nuestra presencia digital. Los clientes encuentran fácilmente la información que necesitan y hemos visto un aumento notable en las consultas.',
+      author: 'María Urbina',
+      position: 'Directora General',
+      rating: 5,
+    },
+    metrics: [
+      {
+        label: 'Aumento en consultas',
+        value: '+150%',
+        icon: <TrendingUp className='w-5 h-5' />,
+      },
+      {
+        label: 'Tiempo de carga',
+        value: '< 2s',
+        icon: <Award className='w-5 h-5' />,
+      },
+    ],
+    technologies: ['React', 'Next.js', 'Tailwind CSS', 'SEO'],
   },
   {
-    id: 2,
+    id: 'uakari',
     logoSrc: 'clients/uakari/logo_uakari.png',
     title: 'Uakari Academy',
-    description: `Academia de formación online
-Plataforma de cursos online con integración de pagos y gestión de usuarios.`,
+    category: 'Plataforma Educativa Online',
+    description: `Creamos una academia de formación online completa con sistema de cursos, evaluaciones automatizadas y emisión de certificados digitales.
+
+    La plataforma incluye integración con medios de pago, panel de administración avanzado, sistema de gamificación para estudiantes y análisis detallados de progreso. Los instructores pueden crear contenido multimedia y gestionar sus cursos de manera intuitiva.`,
     mediaSrc: 'clients/uakari/uakari_combination.png',
-    altText: 'Uakari Academy - desktop y móvil',
+    altText: 'Uakari Academy - Plataforma de cursos online responsive',
+    websiteUrl: 'https://uakariacademy.com',
+    testimonial: {
+      quote:
+        'La plataforma superó nuestras expectativas. El sistema de certificaciones automático y la interfaz intuitiva han revolucionado nuestra forma de enseñar online.',
+      author: 'Carlos Mendoza',
+      position: 'Fundador & CEO',
+      rating: 5,
+    },
+    metrics: [
+      {
+        label: 'Estudiantes activos',
+        value: '500+',
+        icon: <Users className='w-5 h-5' />,
+      },
+      {
+        label: 'Certificados emitidos',
+        value: '1,200+',
+        icon: <Award className='w-5 h-5' />,
+      },
+    ],
+    technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'AWS'],
   },
-  // ➤ Añade más objetos con logoSrc, title, description, mediaSrc y altText
 ];
 
-export default function ClientsSwiperSection() {
+const ClientsSection: React.FC<ClientsSectionProps> = ({
+  onViewProject = () => {},
+  onContactUs = () => {},
+  className = '',
+}) => {
+  const [activeSlide, setActiveSlide] = useState<number>(0);
+  const swiperRef = useRef<{
+    slidePrev: () => void;
+    slideNext: () => void;
+    slideTo: (index: number) => void;
+  } | null>(null);
+
+  const handlePrevSlide = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slidePrev();
+    }
+  };
+
+  const handleNextSlide = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slideNext();
+    }
+  };
+
+  const renderStars = (rating: number) => {
+    return Array.from({ length: 5 }, (_, index) => (
+      <Star
+        key={index}
+        className={`w-4 h-4 ${
+          index < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
+        }`}
+      />
+    ));
+  };
+
   return (
-    <section className='bg-blue-50 py-12 w-full'>
-      <div className='w-screen overflow-visible'>
-        {/* Título general */}
-        <div className='text-center mb-8'>
-          <h2 className='text-2xl sm:text-3xl font-bold text-blue-700'>
-            Clientes que confían en nosotros
+    <section
+      id='clients-section'
+      className={`relative py-20 bg-gradient-to-br from-blue-50 via-white to-skyblue/30 overflow-hidden ${className}`}
+    >
+      {/* Background decorative elements */}
+      <div className='absolute inset-0 opacity-5'>
+        <div className='absolute top-20 right-20 w-64 h-64 bg-blue rounded-full blur-3xl' />
+        <div className='absolute bottom-20 left-20 w-48 h-48 bg-positivegreen rounded-full blur-3xl' />
+      </div>
+
+      <div className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+        {/* Header */}
+        <div className='text-center space-y-6 mb-16'>
+          <div className='inline-flex items-center px-4 py-2 bg-blue/10 text-blue rounded-full text-sm font-medium'>
+            <Award className='w-4 h-4 mr-2' />
+            Casos de Éxito
+          </div>
+
+          <h2 className='text-3xl sm:text-4xl lg:text-5xl font-bold text-blue leading-tight'>
+            Clientes que confían
+            <br />
+            <span className='bg-gradient-to-r from-blue to-positivegreen bg-clip-text text-transparent'>
+              en nosotros
+            </span>
           </h2>
-          <p className='mt-2 text-sm sm:text-base italic text-blue-500'>
-            Organizaciones que han transformado su presencia digital
+
+          <p className='text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed'>
+            Organizaciones que han transformado su presencia digital con
+            nuestras soluciones personalizadas. Cada proyecto es una historia de
+            éxito compartida.
           </p>
         </div>
 
-        <Swiper
-          modules={[Autoplay]}
-          autoplay={{ delay: 4000 }}
-          pagination
-          loop
-          className='w-full overflow-visible'
-          style={{ overflow: 'visible' }}
-        >
-          {slides.map(slide => (
-            <SwiperSlide key={slide.id} className='w-full overflow-visible'>
-              <div className='min-h-[25rem] relative bg-white shadow-md p-6 flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-6 overflow-visible'>
-                {/* Logo solapado */}
-                <div className='absolute -top-12 left-50 bg-white rounded-full p-2 shadow-xl z-10'>
-                  <img
-                    src={slide.logoSrc}
-                    alt={`${slide.title} logo`}
-                    className='w-28 h-28'
-                  />
-                </div>
-                <div className='flex w-full justify-center items-center'>
-                  {/* Texto (izquierda) */}
-                  <div className='text-start mx-6'>
-                    <div>
-                      <h1 className='text-start text-3xl font-semibold text-blue-800'>
-                        {slide.title}
-                      </h1>
-                      <p className='mt-2 text-gray-700 whitespace-pre-line'>
-                        {slide.description}
-                      </p>
+        {/* Custom Navigation */}
+        <div className='flex justify-center items-center gap-4 mb-8'>
+          <button
+            onClick={handlePrevSlide}
+            className='w-12 h-12 bg-white hover:bg-blue text-blue hover:text-white rounded-full
+                     flex items-center justify-center shadow-md hover:shadow-lg
+                     transition-all duration-300 transform hover:scale-110'
+            aria-label='Proyecto anterior'
+          >
+            <ChevronLeft className='w-6 h-6' />
+          </button>
+
+          <div className='flex gap-2'>
+            {clientProjects.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setActiveSlide(index);
+                  if (swiperRef.current) {
+                    swiperRef.current.slideTo(index);
+                  }
+                }}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  activeSlide === index
+                    ? 'bg-blue w-8'
+                    : 'bg-gray-300 hover:bg-blue/50'
+                }`}
+                aria-label={`Ir al proyecto ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={handleNextSlide}
+            className='w-12 h-12 bg-white hover:bg-blue text-blue hover:text-white rounded-full
+                     flex items-center justify-center shadow-md hover:shadow-lg
+                     transition-all duration-300 transform hover:scale-110'
+            aria-label='Siguiente proyecto'
+          >
+            <ChevronRight className='w-6 h-6' />
+          </button>
+        </div>
+
+        {/* Projects Swiper */}
+        <div className='relative'>
+          <Swiper
+            modules={[Autoplay, EffectFade, Navigation]}
+            onSwiper={swiper => {
+              swiperRef.current = swiper;
+            }}
+            onSlideChange={swiper => setActiveSlide(swiper.activeIndex)}
+            autoplay={{
+              delay: 8000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            effect='fade'
+            fadeEffect={{
+              crossFade: true,
+            }}
+            loop={clientProjects.length > 1}
+            className='clients-swiper'
+            style={{ overflow: 'visible' }}
+          >
+            {clientProjects.map(project => (
+              <SwiperSlide key={project.id}>
+                <div className='relative bg-white rounded-3xl shadow-xl overflow-hidden'>
+                  {/* Logo badge */}
+                  <div className='absolute -top-12 left-1/2 transform -translate-x-1/2 z-20'>
+                    <div className='w-24 h-24 bg-white rounded-full p-3 shadow-xl border-4 border-gray-100'>
+                      <img
+                        src={project.logoSrc}
+                        alt={`${project.title} logo`}
+                        className='w-full h-full object-contain'
+                      />
                     </div>
                   </div>
 
-                  {/* Imagen (derecha) */}
-                  <div className=' flex justify-center items-center'>
-                    <img
-                      src={slide.mediaSrc}
-                      alt={slide.altText}
-                      className='w-full max-w-sm md:max-w-md'
-                    />
+                  <div className='pt-16 p-8 lg:p-12'>
+                    <div className='grid lg:grid-cols-2 gap-12 items-center'>
+                      {/* Content */}
+                      <div className='space-y-8'>
+                        {/* Project info */}
+                        <div className='space-y-4'>
+                          <div className='inline-flex items-center px-3 py-1 bg-blue/10 text-blue rounded-full text-sm font-medium'>
+                            {project.category}
+                          </div>
+
+                          <h3 className='text-3xl lg:text-4xl font-bold text-blue'>
+                            {project.title}
+                          </h3>
+
+                          <p className='text-gray-600 leading-relaxed text-lg'>
+                            {project.description}
+                          </p>
+                        </div>
+
+                        {/* Technologies */}
+                        {project.technologies && (
+                          <div className='space-y-3'>
+                            <h4 className='font-semibold text-gray-800'>
+                              Tecnologías utilizadas:
+                            </h4>
+                            <div className='flex flex-wrap gap-2'>
+                              {project.technologies.map((tech, index) => (
+                                <span
+                                  key={index}
+                                  className='px-3 py-1 bg-skyblue/30 text-blue text-sm rounded-full border border-blue/20'
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Metrics */}
+                        {project.metrics && (
+                          <div className='grid grid-cols-2 gap-4'>
+                            {project.metrics.map((metric, index) => (
+                              <div
+                                key={index}
+                                className='bg-gradient-to-r from-blue/5 to-positivegreen/5 p-4 rounded-xl border border-blue/10'
+                              >
+                                <div className='flex items-center gap-3'>
+                                  <div className='text-blue'>{metric.icon}</div>
+                                  <div>
+                                    <div className='text-2xl font-bold text-blue'>
+                                      {metric.value}
+                                    </div>
+                                    <div className='text-sm text-gray-600'>
+                                      {metric.label}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {/* Testimonial */}
+                        {project.testimonial && (
+                          <div className='bg-gradient-to-r from-blue to-blue-700 p-6 rounded-xl text-white'>
+                            <div className='flex items-start gap-4'>
+                              <Quote className='w-8 h-8 text-skyblue flex-shrink-0 mt-1' />
+                              <div className='space-y-4'>
+                                <p className='text-skyblue leading-relaxed italic'>
+                                  "{project.testimonial.quote}"
+                                </p>
+                                <div className='flex items-center justify-between'>
+                                  <div>
+                                    <div className='font-semibold'>
+                                      {project.testimonial.author}
+                                    </div>
+                                    <div className='text-skyblue text-sm'>
+                                      {project.testimonial.position}
+                                    </div>
+                                  </div>
+                                  <div className='flex gap-1'>
+                                    {renderStars(project.testimonial.rating)}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Action buttons */}
+                        <div className='flex flex-col sm:flex-row gap-4'>
+                          <button
+                            onClick={() => onViewProject(project.id)}
+                            className='group bg-blue hover:bg-positivegreen text-white font-semibold
+                                     px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105
+                                     flex items-center justify-center gap-2'
+                          >
+                            Ver proyecto completo
+                            <ExternalLink className='w-4 h-4 group-hover:translate-x-1 transition-transform duration-300' />
+                          </button>
+
+                          {project.websiteUrl && (
+                            <a
+                              href={project.websiteUrl}
+                              target='_blank'
+                              rel='noopener noreferrer'
+                              className='group bg-transparent hover:bg-blue/10 text-blue border border-blue
+                                       font-semibold px-6 py-3 rounded-xl transition-all duration-300
+                                       flex items-center justify-center gap-2'
+                            >
+                              Visitar sitio web
+                              <ExternalLink className='w-4 h-4' />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Project image */}
+                      <div className='relative group'>
+                        <div className='relative overflow-hidden rounded-2xl shadow-2xl'>
+                          <img
+                            src={project.mediaSrc}
+                            alt={project.altText}
+                            className='w-full h-auto transform group-hover:scale-105 transition-transform duration-700'
+                          />
+                          <div className='absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
+                        </div>
+
+                        {/* Floating elements */}
+                        <div className='absolute -top-4 -right-4 w-8 h-8 bg-positivegreen rounded-full animate-ping opacity-75' />
+                        <div className='absolute -bottom-4 -left-4 w-6 h-6 bg-blue rounded-full animate-pulse' />
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* Bottom CTA */}
+        <div className='mt-20 text-center bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-white/50'>
+          <h3 className='text-2xl font-bold text-blue mb-4'>
+            ¿Tu proyecto será el próximo caso de éxito?
+          </h3>
+          <p className='text-gray-600 mb-6 max-w-2xl mx-auto'>
+            Únete a las empresas que ya han transformado su presencia digital
+            con nuestras soluciones personalizadas.
+          </p>
+          <button
+            onClick={onContactUs}
+            className='group bg-positivegreen hover:bg-blue text-white font-semibold
+                     px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105
+                     hover:shadow-lg flex items-center gap-2 mx-auto'
+          >
+            Comenzar mi proyecto
+            <ChevronRight className='w-5 h-5 group-hover:translate-x-1 transition-transform duration-300' />
+          </button>
+        </div>
       </div>
     </section>
   );
-}
+};
+
+export default ClientsSection;
