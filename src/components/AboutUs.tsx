@@ -1,5 +1,5 @@
-import React from 'react';
-import { CheckCircle, Users, Target, Award } from 'lucide-react';
+import React from "react";
+import { CheckCircle, Users, Target, Award } from "lucide-react";
 
 interface Stat {
   id: string;
@@ -14,32 +14,32 @@ interface AboutUsProps {
 
 const stats: Stat[] = [
   {
-    id: 'projects',
-    value: '50+',
-    label: 'Proyectos Exitosos',
+    id: "projects",
+    value: "50+",
+    label: "Proyectos Exitosos",
     icon: <CheckCircle className='w-8 h-8' />,
   },
   {
-    id: 'clients',
-    value: '30+',
-    label: 'Clientes Satisfechos',
+    id: "clients",
+    value: "30+",
+    label: "Clientes Satisfechos",
     icon: <Users className='w-8 h-8' />,
   },
   {
-    id: 'experience',
-    value: '5+',
-    label: 'Años de Experiencia',
+    id: "experience",
+    value: "5+",
+    label: "Años de Experiencia",
     icon: <Target className='w-8 h-8' />,
   },
   {
-    id: 'satisfaction',
-    value: '100%',
-    label: 'Satisfacción',
+    id: "satisfaction",
+    value: "100%",
+    label: "Satisfacción",
     icon: <Award className='w-8 h-8' />,
   },
 ];
 
-const AboutUs: React.FC<AboutUsProps> = ({ className = '' }) => {
+const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
   return (
     <section className={`relative py-20 bg-white overflow-hidden ${className}`}>
       {/* Background decorative elements */}
@@ -81,10 +81,10 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = '' }) => {
             {/* Key points */}
             <div className='space-y-4'>
               {[
-                'Desarrollo personalizado según tus necesidades específicas',
-                'Tecnologías modernas y escalables para crecer contigo',
-                'Soporte continuo y mantenimiento proactivo',
-                'Seguridad integrada desde el primer día',
+                "Desarrollo personalizado según tus necesidades específicas",
+                "Tecnologías modernas y escalables para crecer contigo",
+                "Soporte continuo y mantenimiento proactivo",
+                "Seguridad integrada desde el primer día",
               ].map((point, index) => (
                 <div key={index} className='flex items-start gap-3'>
                   <div className='flex-shrink-0 w-6 h-6 bg-positivegreen rounded-full flex items-center justify-center mt-0.5'>
@@ -170,22 +170,22 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = '' }) => {
             <div className='grid md:grid-cols-3 gap-8'>
               {[
                 {
-                  title: 'Innovación Constante',
+                  title: "Innovación Constante",
                   description:
-                    'Aplicamos las últimas tecnologías para crear soluciones vanguardistas.',
-                  icon: '🚀',
+                    "Aplicamos las últimas tecnologías para crear soluciones vanguardistas.",
+                  icon: "🚀",
                 },
                 {
-                  title: 'Calidad Sin Compromiso',
+                  title: "Calidad Sin Compromiso",
                   description:
-                    'Cada línea de código es revisada y optimizada para máximo rendimiento.',
-                  icon: '⭐',
+                    "Cada línea de código es revisada y optimizada para máximo rendimiento.",
+                  icon: "⭐",
                 },
                 {
-                  title: 'Transparencia Total',
+                  title: "Transparencia Total",
                   description:
-                    'Comunicación clara y honesta en cada etapa del proyecto.',
-                  icon: '🤝',
+                    "Comunicación clara y honesta en cada etapa del proyecto.",
+                  icon: "🤝",
                 },
               ].map((value, index) => (
                 <div

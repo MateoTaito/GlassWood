@@ -1,5 +1,5 @@
-import React from 'react';
-import { ArrowRight, Play } from 'lucide-react';
+import React from "react";
+import { ArrowRight, Play } from "lucide-react";
 
 interface HeaderProps {
   onContactClick?: () => void;
@@ -20,11 +20,11 @@ const Header: React.FC<HeaderProps> = ({
         <div className='absolute top-20 left-10 w-32 h-32 bg-skyblue rounded-full animate-pulse' />
         <div
           className='absolute bottom-32 right-16 w-24 h-24 bg-positivegreen rounded-full animate-bounce'
-          style={{ animationDelay: '1s' }}
+          style={{ animationDelay: "1s" }}
         />
         <div
           className='absolute top-1/2 left-1/4 w-16 h-16 bg-skyblue rounded-full animate-ping'
-          style={{ animationDelay: '2s' }}
+          style={{ animationDelay: "2s" }}
         />
       </div>
 
@@ -50,9 +50,9 @@ const Header: React.FC<HeaderProps> = ({
           {/* Features highlights */}
           <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto'>
             {[
-              { icon: '🚀', text: 'Desarrollo ágil' },
-              { icon: '🔒', text: 'Seguridad integrada' },
-              { icon: '📱', text: 'Responsive design' },
+              { icon: "🚀", text: "Desarrollo ágil" },
+              { icon: "🔒", text: "Seguridad integrada" },
+              { icon: "📱", text: "Responsive design" },
             ].map((feature, index) => (
               <div
                 key={index}

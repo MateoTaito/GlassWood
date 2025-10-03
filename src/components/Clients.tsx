@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, EffectFade, Navigation } from 'swiper/modules';
+import React, { useState, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectFade, Navigation } from "swiper/modules";
 import {
   ChevronLeft,
   ChevronRight,
@@ -10,9 +10,9 @@ import {
   Award,
   Users,
   TrendingUp,
-} from 'lucide-react';
-import 'swiper/swiper-bundle.css';
-import './Clients.css';
+} from "lucide-react";
+import "swiper/swiper-bundle.css";
+import "./Clients.css";
 
 interface ClientProject {
   id: string;
@@ -45,75 +45,75 @@ interface ClientsSectionProps {
 
 const clientProjects: ClientProject[] = [
   {
-    id: 'urbina',
-    logoSrc: 'clients/urbina/logo_urbina.webp',
-    title: 'Urbina Consultores',
-    category: 'Consultoría Legal y Tributaria',
+    id: "urbina",
+    logoSrc: "clients/urbina/logo_urbina.webp",
+    title: "Urbina Consultores",
+    category: "Consultoría Legal y Tributaria",
     description: `Desarrollamos una plataforma institucional moderna y optimizada para SEO que refleja la seriedad y profesionalismo de esta prestigiosa consultora tributaria legal.
 
     La nueva presencia digital incluye un sistema de gestión de contenidos intuitivo, formularios de contacto especializados y una arquitectura de información clara que facilita a los clientes encontrar exactamente el servicio que necesitan.`,
-    mediaSrc: 'clients/urbina/urbina_combination.webp',
-    altText: 'Urbina Consultores - Vista responsive desktop y móvil',
-    websiteUrl: 'https://urbinaconsultores.cl',
+    mediaSrc: "clients/urbina/urbina_combination.webp",
+    altText: "Urbina Consultores - Vista responsive desktop y móvil",
+    websiteUrl: "https://urbinaconsultores.cl",
     testimonial: {
       quote:
-        'El nuevo sitio web ha mejorado significativamente nuestra presencia digital. Los clientes encuentran fácilmente la información que necesitan y hemos visto un aumento notable en las consultas.',
-      author: 'María Urbina',
-      position: 'Directora General',
+        "El nuevo sitio web ha mejorado significativamente nuestra presencia digital. Los clientes encuentran fácilmente la información que necesitan y hemos visto un aumento notable en las consultas.",
+      author: "María Urbina",
+      position: "Directora General",
       rating: 5,
     },
     metrics: [
       {
-        label: 'Aumento en consultas',
-        value: '+150%',
+        label: "Aumento en consultas",
+        value: "+150%",
         icon: <TrendingUp className='w-5 h-5' />,
       },
       {
-        label: 'Tiempo de carga',
-        value: '< 2s',
+        label: "Tiempo de carga",
+        value: "< 2s",
         icon: <Award className='w-5 h-5' />,
       },
     ],
-    technologies: ['React', 'Next.js', 'Tailwind CSS', 'SEO'],
+    technologies: ["React", "Next.js", "Tailwind CSS", "SEO"],
   },
   {
-    id: 'uakari',
-    logoSrc: 'clients/uakari/logo_uakari.png',
-    title: 'Uakari Academy',
-    category: 'Plataforma Educativa Online',
+    id: "uakari",
+    logoSrc: "clients/uakari/logo_uakari.png",
+    title: "Uakari Academy",
+    category: "Plataforma Educativa Online",
     description: `Creamos una academia de formación online completa con sistema de cursos, evaluaciones automatizadas y emisión de certificados digitales.
 
     La plataforma incluye integración con medios de pago, panel de administración avanzado, sistema de gamificación para estudiantes y análisis detallados de progreso. Los instructores pueden crear contenido multimedia y gestionar sus cursos de manera intuitiva.`,
-    mediaSrc: 'clients/uakari/uakari_combination.png',
-    altText: 'Uakari Academy - Plataforma de cursos online responsive',
-    websiteUrl: 'https://uakariacademy.com',
+    mediaSrc: "clients/uakari/uakari_combination.png",
+    altText: "Uakari Academy - Plataforma de cursos online responsive",
+    websiteUrl: "https://uakariacademy.com",
     testimonial: {
       quote:
-        'La plataforma superó nuestras expectativas. El sistema de certificaciones automático y la interfaz intuitiva han revolucionado nuestra forma de enseñar online.',
-      author: 'Carlos Mendoza',
-      position: 'Fundador & CEO',
+        "La plataforma superó nuestras expectativas. El sistema de certificaciones automático y la interfaz intuitiva han revolucionado nuestra forma de enseñar online.",
+      author: "Carlos Mendoza",
+      position: "Fundador & CEO",
       rating: 5,
     },
     metrics: [
       {
-        label: 'Estudiantes activos',
-        value: '500+',
+        label: "Estudiantes activos",
+        value: "500+",
         icon: <Users className='w-5 h-5' />,
       },
       {
-        label: 'Certificados emitidos',
-        value: '1,200+',
+        label: "Certificados emitidos",
+        value: "1,200+",
         icon: <Award className='w-5 h-5' />,
       },
     ],
-    technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'AWS'],
+    technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "AWS"],
   },
 ];
 
 const ClientsSection: React.FC<ClientsSectionProps> = ({
   onViewProject = () => {},
   onContactUs = () => {},
-  className = '',
+  className = "",
 }) => {
   const [activeSlide, setActiveSlide] = useState<number>(0);
   const swiperRef = useRef<{
@@ -139,7 +139,7 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
       <Star
         key={index}
         className={`w-4 h-4 ${
-          index < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
+          index < rating ? "text-yellow-400 fill-current" : "text-gray-300"
         }`}
       />
     ));
@@ -205,8 +205,8 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
                 className={`h-3 rounded-full transition-all duration-300 focus:outline-none
                           focus:ring-2 focus:ring-blue focus:ring-offset-1 ${
                             activeSlide === index
-                              ? 'bg-blue w-8'
-                              : 'bg-gray-300 hover:bg-blue/50 w-3'
+                              ? "bg-blue w-8"
+                              : "bg-gray-300 hover:bg-blue/50 w-3"
                           }`}
                 aria-label={`Ir al proyecto ${index + 1}`}
               />
@@ -244,7 +244,7 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
             }}
             loop={clientProjects.length > 1}
             className='overflow-visible pb-8'
-            style={{ overflow: 'visible' }}
+            style={{ overflow: "visible" }}
           >
             {clientProjects.map(project => (
               <SwiperSlide key={project.id}>

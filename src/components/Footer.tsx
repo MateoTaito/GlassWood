@@ -1,5 +1,5 @@
-import React from 'react';
-import { MapPin, Phone, Mail, ArrowRight, ExternalLink } from 'lucide-react';
+import React from "react";
+import { MapPin, Phone, Mail, ArrowRight, ExternalLink } from "lucide-react";
 
 // Custom social media icons to replace deprecated ones
 const FacebookIcon = ({ className }: { className?: string }) => (
@@ -55,108 +55,108 @@ interface FooterProps {
 
 const footerSections: FooterSection[] = [
   {
-    id: 'company',
-    title: 'Empresa',
+    id: "company",
+    title: "Empresa",
     links: [
-      { id: 'about', label: 'Sobre Nosotros', href: '#about' },
-      { id: 'team', label: 'Nuestro Equipo', href: '#team' },
-      { id: 'careers', label: 'Trabaja con Nosotros', href: '#careers' },
-      { id: 'blog', label: 'Blog', href: '#blog' },
+      { id: "about", label: "Sobre Nosotros", href: "#about" },
+      { id: "team", label: "Nuestro Equipo", href: "#team" },
+      { id: "careers", label: "Trabaja con Nosotros", href: "#careers" },
+      { id: "blog", label: "Blog", href: "#blog" },
     ],
   },
   {
-    id: 'services',
-    title: 'Servicios',
+    id: "services",
+    title: "Servicios",
     links: [
-      { id: 'web-dev', label: 'Desarrollo Web', href: '#web-development' },
-      { id: 'courses', label: 'Plataformas de Cursos', href: '#courses' },
-      { id: 'consulting', label: 'Consultoría Digital', href: '#consulting' },
-      { id: 'maintenance', label: 'Mantenimiento', href: '#maintenance' },
+      { id: "web-dev", label: "Desarrollo Web", href: "#web-development" },
+      { id: "courses", label: "Plataformas de Cursos", href: "#courses" },
+      { id: "consulting", label: "Consultoría Digital", href: "#consulting" },
+      { id: "maintenance", label: "Mantenimiento", href: "#maintenance" },
     ],
   },
   {
-    id: 'resources',
-    title: 'Recursos',
+    id: "resources",
+    title: "Recursos",
     links: [
-      { id: 'documentation', label: 'Documentación', href: '#docs' },
-      { id: 'case-studies', label: 'Casos de Éxito', href: '#case-studies' },
-      { id: 'support', label: 'Centro de Ayuda', href: '#support' },
-      { id: 'faq', label: 'Preguntas Frecuentes', href: '#faq' },
+      { id: "documentation", label: "Documentación", href: "#docs" },
+      { id: "case-studies", label: "Casos de Éxito", href: "#case-studies" },
+      { id: "support", label: "Centro de Ayuda", href: "#support" },
+      { id: "faq", label: "Preguntas Frecuentes", href: "#faq" },
     ],
   },
   {
-    id: 'legal',
-    title: 'Legal',
+    id: "legal",
+    title: "Legal",
     links: [
-      { id: 'privacy', label: 'Política de Privacidad', href: '/privacy' },
-      { id: 'terms', label: 'Términos de Servicio', href: '/terms' },
-      { id: 'cookies', label: 'Política de Cookies', href: '/cookies' },
-      { id: 'security', label: 'Seguridad', href: '/security' },
+      { id: "privacy", label: "Política de Privacidad", href: "/privacy" },
+      { id: "terms", label: "Términos de Servicio", href: "/terms" },
+      { id: "cookies", label: "Política de Cookies", href: "/cookies" },
+      { id: "security", label: "Seguridad", href: "/security" },
     ],
   },
 ];
 
 const socialLinks: SocialLink[] = [
   {
-    id: 'linkedin',
-    platform: 'LinkedIn',
-    href: 'https://linkedin.com/company/cloudanddigital',
+    id: "linkedin",
+    platform: "LinkedIn",
+    href: "https://linkedin.com/company/cloudanddigital",
     icon: <LinkedinIcon className='w-5 h-5' />,
-    color: 'hover:text-blue-600',
+    color: "hover:text-blue-600",
   },
   {
-    id: 'instagram',
-    platform: 'Instagram',
-    href: 'https://instagram.com/cloudanddigital',
+    id: "instagram",
+    platform: "Instagram",
+    href: "https://instagram.com/cloudanddigital",
     icon: <InstagramIcon className='w-5 h-5' />,
-    color: 'hover:text-pink-600',
+    color: "hover:text-pink-600",
   },
   {
-    id: 'facebook',
-    platform: 'Facebook',
-    href: 'https://facebook.com/cloudanddigital',
+    id: "facebook",
+    platform: "Facebook",
+    href: "https://facebook.com/cloudanddigital",
     icon: <FacebookIcon className='w-5 h-5' />,
-    color: 'hover:text-blue-700',
+    color: "hover:text-blue-700",
   },
   {
-    id: 'twitter',
-    platform: 'Twitter',
-    href: 'https://twitter.com/cloudanddigital',
+    id: "twitter",
+    platform: "Twitter",
+    href: "https://twitter.com/cloudanddigital",
     icon: <TwitterIcon className='w-5 h-5' />,
-    color: 'hover:text-blue-400',
+    color: "hover:text-blue-400",
   },
 ];
 
 const contactInfo = [
   {
-    id: 'phone',
+    id: "phone",
     icon: <Phone className='w-5 h-5' />,
-    label: 'Teléfono',
-    value: '+56 9 5690 3556',
-    href: 'tel:+56956903556',
+    label: "Teléfono",
+    value: "+56 9 5690 3556",
+    href: "tel:+56956903556",
   },
   {
-    id: 'email',
+    id: "email",
     icon: <Mail className='w-5 h-5' />,
-    label: 'Email',
-    value: 'info@cloudanddigital.cl',
-    href: 'mailto:info@cloudanddigital.cl',
+    label: "Email",
+    value: "info@cloudanddigital.cl",
+    href: "mailto:info@cloudanddigital.cl",
   },
   {
-    id: 'address',
+    id: "address",
     icon: <MapPin className='w-5 h-5' />,
-    label: 'Ubicación',
-    value: 'Toromazote 135, San Felipe',
-    href: 'https://maps.google.com/?q=Toromazote+135+San+Felipe',
+    label: "Ubicación",
+    value: "Toromazote 135, San Felipe",
+    href: "https://maps.google.com/?q=Toromazote+135+San+Felipe",
   },
 ];
 
 const Footer: React.FC<FooterProps> = ({
   onNewsletterSubmit = () => {},
   onLinkClick = () => {},
-  className = '',
+  className = "",
 }) => {
-  const [email, setEmail] = React.useState<string>('');
+  const [email, setEmail] = React.useState<string>("");
   const [isSubscribing, setIsSubscribing] = React.useState<boolean>(false);
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
@@ -166,7 +166,7 @@ const Footer: React.FC<FooterProps> = ({
     setIsSubscribing(true);
     try {
       onNewsletterSubmit(email);
-      setEmail('');
+      setEmail("");
     } finally {
       setIsSubscribing(false);
     }
@@ -174,8 +174,8 @@ const Footer: React.FC<FooterProps> = ({
 
   const handleLinkClick = (linkId: string, href: string) => {
     onLinkClick(linkId);
-    if (href.startsWith('http')) {
-      window.open(href, '_blank');
+    if (href.startsWith("http")) {
+      window.open(href, "_blank");
     }
   };
 
@@ -191,7 +191,7 @@ const Footer: React.FC<FooterProps> = ({
               <a
                 href='/'
                 className='inline-block group'
-                onClick={() => handleLinkClick('home', '/')}
+                onClick={() => handleLinkClick("home", "/")}
               >
                 <img
                   src='logo_negro.webp'
@@ -215,10 +215,10 @@ const Footer: React.FC<FooterProps> = ({
                     href={info.href}
                     className='flex items-center gap-3 text-gray-700 hover:text-blue
                              transition-colors duration-300 group'
-                    target={info.href.startsWith('http') ? '_blank' : undefined}
+                    target={info.href.startsWith("http") ? "_blank" : undefined}
                     rel={
-                      info.href.startsWith('http')
-                        ? 'noopener noreferrer'
+                      info.href.startsWith("http")
+                        ? "noopener noreferrer"
                         : undefined
                     }
                   >
@@ -233,7 +233,7 @@ const Footer: React.FC<FooterProps> = ({
                       <div className='text-sm text-gray-500'>{info.label}</div>
                       <div className='font-medium'>{info.value}</div>
                     </div>
-                    {info.href.startsWith('http') && (
+                    {info.href.startsWith("http") && (
                       <ExternalLink className='w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
                     )}
                   </a>
@@ -297,8 +297,8 @@ const Footer: React.FC<FooterProps> = ({
                         onClick={() => handleLinkClick(link.id, link.href)}
                         className='text-gray-600 hover:text-blue transition-colors duration-300
                                  flex items-center gap-1 group'
-                        target={link.external ? '_blank' : undefined}
-                        rel={link.external ? 'noopener noreferrer' : undefined}
+                        target={link.external ? "_blank" : undefined}
+                        rel={link.external ? "noopener noreferrer" : undefined}
                       >
                         {link.label}
                         {link.external && (

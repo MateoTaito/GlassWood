@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Play,
   Users,
@@ -10,7 +10,7 @@ import {
   BookOpen,
   Video,
   BarChart,
-} from 'lucide-react';
+} from "lucide-react";
 
 interface Feature {
   id: string;
@@ -27,45 +27,45 @@ interface CourseSectionProps {
 
 const features: Feature[] = [
   {
-    id: 'multimedia',
-    title: 'Lecciones multimedia y evaluaciones',
-    description: 'Videos HD, documentos interactivos y exámenes automatizados',
+    id: "multimedia",
+    title: "Lecciones multimedia y evaluaciones",
+    description: "Videos HD, documentos interactivos y exámenes automatizados",
     icon: <Video className='w-5 h-5' />,
   },
   {
-    id: 'management',
-    title: 'Panel de gestión de usuarios',
-    description: 'Control total sobre estudiantes, instructores y contenido',
+    id: "management",
+    title: "Panel de gestión de usuarios",
+    description: "Control total sobre estudiantes, instructores y contenido",
     icon: <Users className='w-5 h-5' />,
   },
   {
-    id: 'payments',
-    title: 'Integración con medios de pago',
-    description: 'WebPay, PayPal y otros procesadores de pago seguros',
+    id: "payments",
+    title: "Integración con medios de pago",
+    description: "WebPay, PayPal y otros procesadores de pago seguros",
     icon: <CreditCard className='w-5 h-5' />,
   },
   {
-    id: 'customization',
-    title: 'Personalización visual',
-    description: 'Diseño adaptado a tu marca y colores corporativos',
+    id: "customization",
+    title: "Personalización visual",
+    description: "Diseño adaptado a tu marca y colores corporativos",
     icon: <Palette className='w-5 h-5' />,
   },
 ];
 
 const stats = [
   {
-    label: 'Tiempo de desarrollo',
-    value: '4-6 semanas',
+    label: "Tiempo de desarrollo",
+    value: "4-6 semanas",
     icon: <BarChart className='w-6 h-6' />,
   },
   {
-    label: 'Usuarios concurrentes',
-    value: '1000+',
+    label: "Usuarios concurrentes",
+    value: "1000+",
     icon: <Users className='w-6 h-6' />,
   },
   {
-    label: 'Certificados emitidos',
-    value: 'Ilimitados',
+    label: "Certificados emitidos",
+    value: "Ilimitados",
     icon: <Award className='w-6 h-6' />,
   },
 ];
@@ -73,9 +73,9 @@ const stats = [
 const CourseSection: React.FC<CourseSectionProps> = ({
   onGetStarted = () => {},
   onDemo = () => {},
-  className = '',
+  className = "",
 }) => {
-  const [activeFeature, setActiveFeature] = useState<string>('multimedia');
+  const [activeFeature, setActiveFeature] = useState<string>("multimedia");
 
   return (
     <section
@@ -118,8 +118,8 @@ const CourseSection: React.FC<CourseSectionProps> = ({
                   key={feature.id}
                   className={`group p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
                     activeFeature === feature.id
-                      ? 'border-blue bg-blue/5 shadow-lg'
-                      : 'border-gray-200 hover:border-blue/50 hover:bg-blue/5'
+                      ? "border-blue bg-blue/5 shadow-lg"
+                      : "border-gray-200 hover:border-blue/50 hover:bg-blue/5"
                   }`}
                   onClick={() => setActiveFeature(feature.id)}
                 >
@@ -127,8 +127,8 @@ const CourseSection: React.FC<CourseSectionProps> = ({
                     <div
                       className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center transition-colors duration-300 ${
                         activeFeature === feature.id
-                          ? 'bg-blue text-white'
-                          : 'bg-skyblue text-blue group-hover:bg-blue group-hover:text-white'
+                          ? "bg-blue text-white"
+                          : "bg-skyblue text-blue group-hover:bg-blue group-hover:text-white"
                       }`}
                     >
                       {feature.icon}
@@ -138,8 +138,8 @@ const CourseSection: React.FC<CourseSectionProps> = ({
                       <h4
                         className={`font-semibold text-lg mb-2 transition-colors duration-300 ${
                           activeFeature === feature.id
-                            ? 'text-blue'
-                            : 'text-gray-800'
+                            ? "text-blue"
+                            : "text-gray-800"
                         }`}
                       >
                         {feature.title}
@@ -152,8 +152,8 @@ const CourseSection: React.FC<CourseSectionProps> = ({
                     <CheckCircle
                       className={`w-6 h-6 transition-all duration-300 ${
                         activeFeature === feature.id
-                          ? 'text-positivegreen opacity-100 scale-100'
-                          : 'text-gray-300 opacity-0 scale-75'
+                          ? "text-positivegreen opacity-100 scale-100"
+                          : "text-gray-300 opacity-0 scale-75"
                       }`}
                     />
                   </div>
@@ -238,10 +238,10 @@ const CourseSection: React.FC<CourseSectionProps> = ({
               </h4>
               <div className='space-y-3'>
                 {[
-                  'Análisis de necesidades y diseño UX/UI',
-                  'Desarrollo de la plataforma base',
-                  'Integración de contenidos y pruebas',
-                  'Lanzamiento y capacitación del equipo',
+                  "Análisis de necesidades y diseño UX/UI",
+                  "Desarrollo de la plataforma base",
+                  "Integración de contenidos y pruebas",
+                  "Lanzamiento y capacitación del equipo",
                 ].map((step, index) => (
                   <div key={index} className='flex items-center gap-3'>
                     <div

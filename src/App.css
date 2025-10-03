@@ -1,6 +1,6 @@
 header {
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/header.webp');
+    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("/header.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -12,7 +12,7 @@ header {
   header {
     background-image:
       linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-      url('/header_mobile.webp');
+      url("/header_mobile.webp");
     background-position: 60% center;
     /* desplaza la imagen hacia la izquierda */
     width: 100%;

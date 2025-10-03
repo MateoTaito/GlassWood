@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay } from 'swiper/modules';
+import React, { useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
 import {
   Shield,
   Handshake,
@@ -8,8 +8,8 @@ import {
   Zap,
   CheckCircle,
   ArrowRight,
-} from 'lucide-react';
-import 'swiper/swiper-bundle.css';
+} from "lucide-react";
+import "swiper/swiper-bundle.css";
 
 interface CommitmentItem {
   id: number;
@@ -27,43 +27,43 @@ interface WhyUsProps {
 const commitmentItems: CommitmentItem[] = [
   {
     id: 1,
-    title: 'Seguridad integrada desde el diseño',
+    title: "Seguridad integrada desde el diseño",
     description:
-      'Implementamos las mejores prácticas de seguridad desde la primera línea de código, protegiendo tus datos y los de tus usuarios.',
+      "Implementamos las mejores prácticas de seguridad desde la primera línea de código, protegiendo tus datos y los de tus usuarios.",
     icon: <Shield className='w-8 h-8' />,
-    color: 'text-blue-600',
-    bgColor: 'bg-blue-50',
+    color: "text-blue-600",
+    bgColor: "bg-blue-50",
   },
   {
     id: 2,
-    title: 'Acompañamiento claro y cercano',
+    title: "Acompañamiento claro y cercano",
     description:
-      'Te guiamos en cada paso del proceso con comunicación transparente y soporte técnico especializado.',
+      "Te guiamos en cada paso del proceso con comunicación transparente y soporte técnico especializado.",
     icon: <Handshake className='w-8 h-8' />,
-    color: 'text-positivegreen',
-    bgColor: 'bg-green-50',
+    color: "text-positivegreen",
+    bgColor: "bg-green-50",
   },
   {
     id: 3,
-    title: 'Automatización y eficiencia',
+    title: "Automatización y eficiencia",
     description:
-      'Optimizamos tus procesos con soluciones automatizadas que ahorran tiempo y reducen errores operativos.',
+      "Optimizamos tus procesos con soluciones automatizadas que ahorran tiempo y reducen errores operativos.",
     icon: <Cog className='w-8 h-8' />,
-    color: 'text-orange',
-    bgColor: 'bg-orange-50',
+    color: "text-orange",
+    bgColor: "bg-orange-50",
   },
   {
     id: 4,
-    title: 'Agilidad y adaptabilidad',
+    title: "Agilidad y adaptabilidad",
     description:
-      'Desarrollamos con metodologías ágiles que nos permiten adaptarnos rápidamente a tus necesidades cambiantes.',
+      "Desarrollamos con metodologías ágiles que nos permiten adaptarnos rápidamente a tus necesidades cambiantes.",
     icon: <Zap className='w-8 h-8' />,
-    color: 'text-coral',
-    bgColor: 'bg-red-50',
+    color: "text-coral",
+    bgColor: "bg-red-50",
   },
 ];
 
-const WhyUs: React.FC<WhyUsProps> = ({ className = '' }) => {
+const WhyUs: React.FC<WhyUsProps> = ({ className = "" }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
@@ -77,7 +77,7 @@ const WhyUs: React.FC<WhyUsProps> = ({ className = '' }) => {
       { threshold: 0.1 }
     );
 
-    const element = document.getElementById('why-us-section');
+    const element = document.getElementById("why-us-section");
     if (element) {
       observer.observe(element);
     }
@@ -99,11 +99,11 @@ const WhyUs: React.FC<WhyUsProps> = ({ className = '' }) => {
         <div className='absolute top-10 left-10 w-32 h-32 bg-blue rounded-full blur-2xl animate-pulse' />
         <div
           className='absolute bottom-20 right-20 w-24 h-24 bg-positivegreen rounded-full blur-xl animate-bounce'
-          style={{ animationDelay: '1s' }}
+          style={{ animationDelay: "1s" }}
         />
         <div
           className='absolute top-1/2 left-1/4 w-16 h-16 bg-orange rounded-full blur-lg animate-ping'
-          style={{ animationDelay: '2s' }}
+          style={{ animationDelay: "2s" }}
         />
       </div>
 
@@ -118,7 +118,7 @@ const WhyUs: React.FC<WhyUsProps> = ({ className = '' }) => {
           <h2 className='text-3xl sm:text-4xl lg:text-5xl font-bold text-blue leading-tight'>
             Nuestro
             <span className='bg-gradient-to-r from-blue to-positivegreen bg-clip-text text-transparent'>
-              {' '}
+              {" "}
               compromiso
             </span>
             <br />
@@ -139,11 +139,11 @@ const WhyUs: React.FC<WhyUsProps> = ({ className = '' }) => {
               className={`group p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl
                         transition-all duration-500 transform hover:scale-105
                         border border-gray-100 hover:border-blue/20
-                        ${isVisible ? 'animate-in slide-in-from-bottom-4' : 'opacity-0'}
+                        ${isVisible ? "animate-in slide-in-from-bottom-4" : "opacity-0"}
                       `}
               style={{
                 animationDelay: `${index * 0.2}s`,
-                animationFillMode: 'both',
+                animationFillMode: "both",
               }}
               onMouseEnter={() => setActiveIndex(index)}
             >
@@ -152,12 +152,12 @@ const WhyUs: React.FC<WhyUsProps> = ({ className = '' }) => {
                 <div
                   className={`flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center
                             transition-all duration-300 group-hover:scale-110
-                            ${activeIndex === index ? item.bgColor : 'bg-gray-50'}
+                            ${activeIndex === index ? item.bgColor : "bg-gray-50"}
                           `}
                 >
                   <div
                     className={`transition-colors duration-300 ${
-                      activeIndex === index ? item.color : 'text-gray-400'
+                      activeIndex === index ? item.color : "text-gray-400"
                     }`}
                   >
                     {item.icon}
@@ -185,7 +185,7 @@ const WhyUs: React.FC<WhyUsProps> = ({ className = '' }) => {
               <div className='mt-6 h-1 bg-gray-100 rounded-full overflow-hidden'>
                 <div
                   className={`h-full transition-all duration-500 ${
-                    activeIndex === index ? 'w-full bg-positivegreen' : 'w-0'
+                    activeIndex === index ? "w-full bg-positivegreen" : "w-0"
                   }`}
                 />
               </div>
@@ -199,9 +199,9 @@ const WhyUs: React.FC<WhyUsProps> = ({ className = '' }) => {
             modules={[Pagination, Autoplay]}
             pagination={{
               clickable: true,
-              bulletClass: 'swiper-pagination-bullet !bg-blue !opacity-50',
+              bulletClass: "swiper-pagination-bullet !bg-blue !opacity-50",
               bulletActiveClass:
-                'swiper-pagination-bullet-active !bg-blue !opacity-100',
+                "swiper-pagination-bullet-active !bg-blue !opacity-100",
             }}
             autoplay={{
               delay: 4000,

@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import React, { useEffect, useState, useCallback } from "react";
+import { Menu, X, ChevronDown } from "lucide-react";
 
 interface NavItem {
   id: string;
@@ -15,28 +15,28 @@ interface NavbarProps {
 }
 
 const defaultNavItems: NavItem[] = [
-  { id: 'home', label: 'Inicio', href: '#home' },
-  { id: 'about', label: 'Nosotros', href: '#about' },
+  { id: "home", label: "Inicio", href: "#home" },
+  { id: "about", label: "Nosotros", href: "#about" },
   {
-    id: 'services',
-    label: 'Servicios',
-    href: '#services',
+    id: "services",
+    label: "Servicios",
+    href: "#services",
     subItems: [
-      { id: 'web-dev', label: 'Desarrollo Web', href: '#web-development' },
+      { id: "web-dev", label: "Desarrollo Web", href: "#web-development" },
       {
-        id: 'courses',
-        label: 'Plataformas de Cursos',
-        href: '#course-platforms',
+        id: "courses",
+        label: "Plataformas de Cursos",
+        href: "#course-platforms",
       },
-      { id: 'consulting', label: 'Consultoría Digital', href: '#consulting' },
+      { id: "consulting", label: "Consultoría Digital", href: "#consulting" },
     ],
   },
-  { id: 'contact', label: 'Contacto', href: '#contact' },
+  { id: "contact", label: "Contacto", href: "#contact" },
 ];
 
 const Navbar: React.FC<NavbarProps> = ({
   onNavigate = () => {},
-  className = '',
+  className = "",
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
@@ -47,8 +47,8 @@ const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
   const handleNavClick = useCallback(
@@ -80,8 +80,8 @@ const Navbar: React.FC<NavbarProps> = ({
     <nav
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100'
-          : 'bg-transparent'
+          ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100"
+          : "bg-transparent"
       } ${className}`}
       role='navigation'
       aria-label='Main navigation'
@@ -93,10 +93,10 @@ const Navbar: React.FC<NavbarProps> = ({
             <a
               href='#home'
               className='flex items-center space-x-2 group'
-              onClick={() => handleNavClick({ id: 'home', label: 'Inicio' })}
+              onClick={() => handleNavClick({ id: "home", label: "Inicio" })}
             >
               <img
-                src={isScrolled ? 'nube_negra.webp' : 'nube_blanca.webp'}
+                src={isScrolled ? "nube_negra.webp" : "nube_blanca.webp"}
                 className='h-12 sm:h-16 w-auto transition-transform duration-300 group-hover:scale-105'
                 alt='Cloud and Digital Logo'
               />
@@ -117,8 +117,8 @@ const Navbar: React.FC<NavbarProps> = ({
                     transition-all duration-200 hover:bg-white/10 hover:backdrop-blur-sm
                     ${
                       isScrolled
-                        ? 'text-gray-700 hover:text-blue hover:bg-skyblue/20'
-                        : 'text-white hover:text-skyblue'
+                        ? "text-gray-700 hover:text-blue hover:bg-skyblue/20"
+                        : "text-white hover:text-skyblue"
                     }`}
                   aria-expanded={
                     item.subItems ? activeDropdown === item.id : undefined
@@ -129,7 +129,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   {item.subItems && (
                     <ChevronDown
                       className={`w-4 h-4 transition-transform duration-200 ${
-                        activeDropdown === item.id ? 'rotate-180' : ''
+                        activeDropdown === item.id ? "rotate-180" : ""
                       }`}
                     />
                   )}
@@ -161,14 +161,14 @@ const Navbar: React.FC<NavbarProps> = ({
           <div className='hidden lg:block'>
             <button
               onClick={() =>
-                handleNavClick({ id: 'contact', label: 'Contacto' })
+                handleNavClick({ id: "contact", label: "Contacto" })
               }
               className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300
                 transform hover:scale-105 hover:shadow-lg
                 ${
                   isScrolled
-                    ? 'bg-blue hover:bg-positivegreen text-white hover:shadow-blue/25'
-                    : 'bg-skyblue hover:bg-positivegreen text-blue hover:text-white'
+                    ? "bg-blue hover:bg-positivegreen text-white hover:shadow-blue/25"
+                    : "bg-skyblue hover:bg-positivegreen text-blue hover:text-white"
                 }`}
             >
               Comenzar Proyecto
@@ -179,7 +179,7 @@ const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={`lg:hidden p-2 rounded-lg transition-colors duration-200
-              ${isScrolled ? 'text-gray-900 hover:bg-gray-100' : 'text-white hover:bg-white/10'}`}
+              ${isScrolled ? "text-gray-900 hover:bg-gray-100" : "text-white hover:bg-white/10"}`}
             aria-expanded={isOpen}
             aria-controls='mobile-menu'
             aria-label='Toggle mobile menu'
@@ -212,7 +212,7 @@ const Navbar: React.FC<NavbarProps> = ({
                     {item.subItems && (
                       <ChevronDown
                         className={`w-4 h-4 transition-transform duration-200 ${
-                          activeDropdown === item.id ? 'rotate-180' : ''
+                          activeDropdown === item.id ? "rotate-180" : ""
                         }`}
                       />
                     )}
@@ -240,7 +240,7 @@ const Navbar: React.FC<NavbarProps> = ({
               <div className='pt-4 border-t border-gray-200'>
                 <button
                   onClick={() =>
-                    handleNavClick({ id: 'contact', label: 'Contacto' })
+                    handleNavClick({ id: "contact", label: "Contacto" })
                   }
                   className='w-full bg-blue hover:bg-positivegreen text-white font-semibold
                            py-3 px-4 rounded-lg transition-colors duration-300'
