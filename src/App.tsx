@@ -1,22 +1,19 @@
 import "./App.css";
-import AboutUs from "./components/AboutUs";
-import Clients from "./components/Clients";
-import CourseSection from "./components/CourseSection";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Navbar from "./components/Navbar";
-import WhyUs from "./components/WhyUs";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import TeamPage from "./pages/TeamPage";
+
 function App() {
   return (
-    <div>
-      <Navbar />
-      <Header />
-      <AboutUs />
-      <WhyUs />
-      <CourseSection />
-      <Clients />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path='team' element={<TeamPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

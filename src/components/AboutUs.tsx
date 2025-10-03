@@ -41,7 +41,10 @@ const stats: Stat[] = [
 
 const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
   return (
-    <section className={`relative py-20 bg-white overflow-hidden ${className}`}>
+    <section
+      id='about'
+      className={`relative py-20 bg-white overflow-hidden ${className}`}
+    >
       {/* Background decorative elements */}
       <div className='absolute inset-0 opacity-5'>
         <div className='absolute top-20 left-10 w-64 h-64 bg-blue rounded-full blur-3xl' />

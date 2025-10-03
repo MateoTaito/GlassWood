@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 interface NavItem {
   id: string;
@@ -15,8 +16,8 @@ interface NavbarProps {
 }
 
 const defaultNavItems: NavItem[] = [
-  { id: "home", label: "Inicio", href: "#home" },
-  { id: "about", label: "Nosotros", href: "#about" },
+  { id: "home", label: "Inicio", href: "/" },
+  { id: "about", label: "Nosotros", href: "/#about" },
   {
     id: "services",
     label: "Servicios",
@@ -31,6 +32,7 @@ const defaultNavItems: NavItem[] = [
       { id: "consulting", label: "Consultoría Digital", href: "#consulting" },
     ],
   },
+  { id: "team", label: "Equipo", href: "/team" },
   { id: "contact", label: "Contacto", href: "#contact" },
 ];
 
@@ -41,6 +43,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const location = useLocation();
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 50);
@@ -90,50 +93,72 @@ const Navbar: React.FC<NavbarProps> = ({
         <div className='flex justify-between items-center py-4'>
           {/* Logo */}
           <div className='flex items-center space-x-2 z-50'>
-            <a
-              href='#home'
+            <Link
+              to='/'
               className='flex items-center space-x-2 group'
-              onClick={() => handleNavClick({ id: "home", label: "Inicio" })}
+              onClick={closeMenu}
             >
               <img
-                src={isScrolled ? "nube_negra.webp" : "nube_blanca.webp"}
+                src={
+                  isScrolled || location.pathname !== "/"
+                    ? "nube_negra.webp"
+                    : "nube_blanca.webp"
+                }
                 className='h-12 sm:h-16 w-auto transition-transform duration-300 group-hover:scale-105'
                 alt='Cloud and Digital Logo'
               />
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className='hidden lg:flex items-center space-x-1'>
             {defaultNavItems.map(item => (
               <div key={item.id} className='relative group'>
-                <button
-                  onClick={() =>
-                    item.subItems
-                      ? toggleDropdown(item.id)
-                      : handleNavClick(item)
-                  }
-                  className={`flex items-center gap-1 px-4 py-2 rounded-lg text-lg font-medium
-                    transition-all duration-200 hover:bg-white/10 hover:backdrop-blur-sm
-                    ${
-                      isScrolled
-                        ? "text-gray-700 hover:text-blue hover:bg-skyblue/20"
-                        : "text-white hover:text-skyblue"
-                    }`}
-                  aria-expanded={
-                    item.subItems ? activeDropdown === item.id : undefined
-                  }
-                  aria-haspopup={item.subItems ? true : undefined}
-                >
-                  {item.label}
-                  {item.subItems && (
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${
-                        activeDropdown === item.id ? "rotate-180" : ""
+                {item.href &&
+                !item.subItems &&
+                item.href.startsWith("/") &&
+                !item.href.includes("#") ? (
+                  <Link
+                    to={item.href}
+                    className={`flex items-center gap-1 px-4 py-2 rounded-lg text-lg font-medium
+                      transition-all duration-200 hover:bg-white/10 hover:backdrop-blur-sm
+                      ${
+                        isScrolled || location.pathname !== "/"
+                          ? "text-gray-700 hover:text-blue hover:bg-skyblue/20"
+                          : "text-white hover:text-skyblue"
                       }`}
-                    />
-                  )}
-                </button>
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() =>
+                      item.subItems
+                        ? toggleDropdown(item.id)
+                        : handleNavClick(item)
+                    }
+                    className={`flex items-center gap-1 px-4 py-2 rounded-lg text-lg font-medium
+                      transition-all duration-200 hover:bg-white/10 hover:backdrop-blur-sm
+                      ${
+                        isScrolled || location.pathname !== "/"
+                          ? "text-gray-700 hover:text-blue hover:bg-skyblue/20"
+                          : "text-white hover:text-skyblue"
+                      }`}
+                    aria-expanded={
+                      item.subItems ? activeDropdown === item.id : undefined
+                    }
+                    aria-haspopup={item.subItems ? true : undefined}
+                  >
+                    {item.label}
+                    {item.subItems && (
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          activeDropdown === item.id ? "rotate-180" : ""
+                        }`}
+                      />
+                    )}
+                  </button>
+                )}
 
                 {/* Dropdown Menu */}
                 {item.subItems && activeDropdown === item.id && (
@@ -198,25 +223,40 @@ const Navbar: React.FC<NavbarProps> = ({
             <div className='px-4 py-6 space-y-2'>
               {defaultNavItems.map(item => (
                 <div key={item.id}>
-                  <button
-                    onClick={() =>
-                      item.subItems
-                        ? toggleDropdown(item.id)
-                        : handleNavClick(item)
-                    }
-                    className='w-full flex items-center justify-between px-4 py-3 text-left
-                             text-gray-700 hover:text-blue hover:bg-skyblue/20 rounded-lg
-                             transition-colors duration-200 font-medium'
-                  >
-                    {item.label}
-                    {item.subItems && (
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          activeDropdown === item.id ? "rotate-180" : ""
-                        }`}
-                      />
-                    )}
-                  </button>
+                  {item.href &&
+                  !item.subItems &&
+                  item.href.startsWith("/") &&
+                  !item.href.includes("#") ? (
+                    <Link
+                      to={item.href}
+                      onClick={closeMenu}
+                      className='w-full flex items-center justify-between px-4 py-3 text-left
+                               text-gray-700 hover:text-blue hover:bg-skyblue/20 rounded-lg
+                               transition-colors duration-200 font-medium'
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() =>
+                        item.subItems
+                          ? toggleDropdown(item.id)
+                          : handleNavClick(item)
+                      }
+                      className='w-full flex items-center justify-between px-4 py-3 text-left
+                               text-gray-700 hover:text-blue hover:bg-skyblue/20 rounded-lg
+                               transition-colors duration-200 font-medium'
+                    >
+                      {item.label}
+                      {item.subItems && (
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform duration-200 ${
+                            activeDropdown === item.id ? "rotate-180" : ""
+                          }`}
+                        />
+                      )}
+                    </button>
+                  )}
 
                   {/* Mobile Dropdown */}
                   {item.subItems && activeDropdown === item.id && (
