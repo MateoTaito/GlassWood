@@ -52,7 +52,7 @@ const clientProjects: ClientProject[] = [
     description: `Desarrollamos una plataforma institucional moderna y optimizada para SEO que refleja la seriedad y profesionalismo de esta prestigiosa consultora tributaria legal.
 
     La nueva presencia digital incluye un sistema de gestión de contenidos intuitivo, formularios de contacto especializados y una arquitectura de información clara que facilita a los clientes encontrar exactamente el servicio que necesitan.`,
-    mediaSrc: 'clients/urbina/urbina_combination.png',
+    mediaSrc: 'clients/urbina/urbina_combination.webp',
     altText: 'Urbina Consultores - Vista responsive desktop y móvil',
     websiteUrl: 'https://urbinaconsultores.cl',
     testimonial: {
@@ -248,17 +248,9 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
           >
             {clientProjects.map(project => (
               <SwiperSlide key={project.id}>
-                <div
-                  className='relative bg-white rounded-3xl shadow-xl overflow-hidden backdrop-blur-sm
-                              before:absolute before:inset-0 before:bg-gradient-to-br
-                              before:from-blue/5 before:via-transparent before:to-positivegreen/5
-                              before:z-10'
-                >
+                <div className='flex flex-col items-center'>
                   {/* Logo badge */}
-                  <div
-                    className='absolute -top-12 left-1/2 transform -translate-x-1/2 z-30
-                                drop-shadow-[0_4px_20px_rgba(0,0,0,0.15)]'
-                  >
+                  <div className='relative z-30 -mb-12 drop-shadow-[0_4px_20px_rgba(0,0,0,0.15)]'>
                     <div className='w-24 h-24 bg-white rounded-full p-3 shadow-xl border-4 border-gray-100'>
                       <img
                         src={project.logoSrc}
@@ -268,156 +260,165 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
                     </div>
                   </div>
 
-                  <div className='relative z-20 pt-16 p-8 lg:p-12'>
-                    <div className='grid lg:grid-cols-2 gap-12 items-center'>
-                      {/* Content */}
-                      <div className='space-y-8'>
-                        {/* Project info */}
-                        <div className='space-y-4'>
-                          <div className='inline-flex items-center px-3 py-1 bg-blue/10 text-blue rounded-full text-sm font-medium'>
-                            {project.category}
+                  <div
+                    className='relative bg-white rounded-3xl shadow-xl overflow-hidden backdrop-blur-sm w-full
+                                before:absolute before:inset-0 before:bg-gradient-to-br
+                                before:from-blue/5 before:via-transparent before:to-positivegreen/5
+                                before:z-10'
+                  >
+                    <div className='relative z-20 pt-16 p-8 lg:p-12'>
+                      <div className='grid lg:grid-cols-2 gap-12 items-center'>
+                        {/* Content */}
+                        <div className='space-y-8'>
+                          {/* Project info */}
+                          <div className='space-y-4'>
+                            <div className='inline-flex items-center px-3 py-1 bg-blue/10 text-blue rounded-full text-sm font-medium'>
+                              {project.category}
+                            </div>
+
+                            <h3 className='text-3xl lg:text-4xl font-bold text-blue'>
+                              {project.title}
+                            </h3>
+
+                            <p className='text-gray-600 leading-relaxed text-lg'>
+                              {project.description}
+                            </p>
                           </div>
 
-                          <h3 className='text-3xl lg:text-4xl font-bold text-blue'>
-                            {project.title}
-                          </h3>
-
-                          <p className='text-gray-600 leading-relaxed text-lg'>
-                            {project.description}
-                          </p>
-                        </div>
-
-                        {/* Technologies */}
-                        {project.technologies && (
-                          <div className='space-y-3'>
-                            <h4 className='font-semibold text-gray-800'>
-                              Tecnologías utilizadas:
-                            </h4>
-                            <div className='flex flex-wrap gap-2'>
-                              {project.technologies.map((tech, index) => (
-                                <span
-                                  key={index}
-                                  className='px-3 py-1 bg-skyblue/30 text-blue text-sm rounded-full
+                          {/* Technologies */}
+                          {project.technologies && (
+                            <div className='space-y-3'>
+                              <h4 className='font-semibold text-gray-800'>
+                                Tecnologías utilizadas:
+                              </h4>
+                              <div className='flex flex-wrap gap-2'>
+                                {project.technologies.map((tech, index) => (
+                                  <span
+                                    key={index}
+                                    className='px-3 py-1 bg-skyblue/30 text-blue text-sm rounded-full
                                            border border-blue/20 hover:bg-blue hover:text-white
                                            transition-colors duration-300'
-                                >
-                                  {tech}
-                                </span>
-                              ))}
+                                  >
+                                    {tech}
+                                  </span>
+                                ))}
+                              </div>
                             </div>
-                          </div>
-                        )}
+                          )}
 
-                        {/* Metrics */}
-                        {project.metrics && (
-                          <div className='grid grid-cols-2 gap-4'>
-                            {project.metrics.map((metric, index) => (
-                              <div
-                                key={index}
-                                className='bg-gradient-to-r from-blue/5 to-positivegreen/5 p-4 rounded-xl
+                          {/* Metrics */}
+                          {project.metrics && (
+                            <div className='grid grid-cols-2 gap-4'>
+                              {project.metrics.map((metric, index) => (
+                                <div
+                                  key={index}
+                                  className='bg-gradient-to-r from-blue/5 to-positivegreen/5 p-4 rounded-xl
                                          border border-blue/10 hover:from-blue/10 hover:to-positivegreen/10
                                          transition-all duration-300'
-                              >
-                                <div className='flex items-center gap-3'>
-                                  <div className='text-blue'>{metric.icon}</div>
-                                  <div>
-                                    <div className='text-2xl font-bold text-blue'>
-                                      {metric.value}
+                                >
+                                  <div className='flex items-center gap-3'>
+                                    <div className='text-blue'>
+                                      {metric.icon}
                                     </div>
-                                    <div className='text-sm text-gray-600'>
-                                      {metric.label}
+                                    <div>
+                                      <div className='text-2xl font-bold text-blue'>
+                                        {metric.value}
+                                      </div>
+                                      <div className='text-sm text-gray-600'>
+                                        {metric.label}
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
+                              ))}
+                            </div>
+                          )}
 
-                        {/* Testimonial */}
-                        {project.testimonial && (
-                          <div
-                            className='relative bg-gradient-to-r from-blue to-blue-700 p-6 rounded-xl
+                          {/* Testimonial */}
+                          {project.testimonial && (
+                            <div
+                              className='relative bg-gradient-to-r from-blue to-blue-700 p-6 rounded-xl
                                         text-white shadow-lg hover:shadow-xl transition-shadow duration-300
                                         before:absolute before:-inset-1 before:bg-gradient-to-r
                                         before:from-blue before:via-positivegreen before:to-blue
                                         before:rounded-xl before:opacity-75 before:-z-10 before:blur-sm'
-                          >
-                            <div className='flex items-start gap-4'>
-                              <Quote className='w-8 h-8 text-skyblue flex-shrink-0 mt-1' />
-                              <div className='space-y-4'>
-                                <p className='text-skyblue leading-relaxed italic'>
-                                  "{project.testimonial.quote}"
-                                </p>
-                                <div className='flex items-center justify-between'>
-                                  <div>
-                                    <div className='font-semibold'>
-                                      {project.testimonial.author}
+                            >
+                              <div className='flex items-start gap-4'>
+                                <Quote className='w-8 h-8 text-skyblue flex-shrink-0 mt-1' />
+                                <div className='space-y-4'>
+                                  <p className='text-skyblue leading-relaxed italic'>
+                                    "{project.testimonial.quote}"
+                                  </p>
+                                  <div className='flex items-center justify-between'>
+                                    <div>
+                                      <div className='font-semibold'>
+                                        {project.testimonial.author}
+                                      </div>
+                                      <div className='text-skyblue text-sm'>
+                                        {project.testimonial.position}
+                                      </div>
                                     </div>
-                                    <div className='text-skyblue text-sm'>
-                                      {project.testimonial.position}
+                                    <div className='flex gap-1'>
+                                      {renderStars(project.testimonial.rating)}
                                     </div>
-                                  </div>
-                                  <div className='flex gap-1'>
-                                    {renderStars(project.testimonial.rating)}
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        )}
+                          )}
 
-                        {/* Action buttons */}
-                        <div className='flex flex-col sm:flex-row gap-4'>
-                          <button
-                            onClick={() => onViewProject(project.id)}
-                            className='group bg-blue hover:bg-positivegreen text-white font-semibold
+                          {/* Action buttons */}
+                          <div className='flex flex-col sm:flex-row gap-4'>
+                            <button
+                              onClick={() => onViewProject(project.id)}
+                              className='group bg-blue hover:bg-positivegreen text-white font-semibold
                                      px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105
                                      flex items-center justify-center gap-2'
-                          >
-                            Ver proyecto completo
-                            <ExternalLink className='w-4 h-4 group-hover:translate-x-1 transition-transform duration-300' />
-                          </button>
+                            >
+                              Ver proyecto completo
+                              <ExternalLink className='w-4 h-4 group-hover:translate-x-1 transition-transform duration-300' />
+                            </button>
 
-                          {project.websiteUrl && (
-                            <a
-                              href={project.websiteUrl}
-                              target='_blank'
-                              rel='noopener noreferrer'
-                              className='group bg-transparent hover:bg-blue/10 text-blue border border-blue
+                            {project.websiteUrl && (
+                              <a
+                                href={project.websiteUrl}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                className='group bg-transparent hover:bg-blue/10 text-blue border border-blue
                                        font-semibold px-6 py-3 rounded-xl transition-all duration-300
                                        flex items-center justify-center gap-2'
-                            >
-                              Visitar sitio web
-                              <ExternalLink className='w-4 h-4' />
-                            </a>
-                          )}
+                              >
+                                Visitar sitio web
+                                <ExternalLink className='w-4 h-4' />
+                              </a>
+                            )}
+                          </div>
                         </div>
-                      </div>
 
-                      {/* Project image */}
-                      <div className='relative group'>
-                        <div className='relative overflow-hidden rounded-2xl shadow-2xl'>
-                          <img
-                            src={project.mediaSrc}
-                            alt={project.altText}
-                            className='w-full h-auto transform group-hover:scale-105 transition-transform duration-700'
+                        {/* Project image */}
+                        <div className='relative group'>
+                          <div className='relative overflow-hidden rounded-2xl shadow-2xl'>
+                            <img
+                              src={project.mediaSrc}
+                              alt={project.altText}
+                              className='w-full h-auto transform group-hover:scale-105 transition-transform duration-700'
+                            />
+                            <div
+                              className='absolute inset-0 bg-gradient-to-t from-black/20 via-transparent
+                                        to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'
+                            />
+                          </div>
+
+                          {/* Floating elements */}
+                          <div
+                            className='absolute -top-4 -right-4 w-8 h-8 bg-positivegreen rounded-full
+                                      opacity-75 animate-[float_3s_ease-in-out_infinite]'
                           />
                           <div
-                            className='absolute inset-0 bg-gradient-to-t from-black/20 via-transparent
-                                        to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'
+                            className='absolute -bottom-4 -left-4 w-6 h-6 bg-blue rounded-full
+                                      animate-[float_3s_ease-in-out_infinite] [animation-delay:1s]'
                           />
                         </div>
-
-                        {/* Floating elements */}
-                        <div
-                          className='absolute -top-4 -right-4 w-8 h-8 bg-positivegreen rounded-full
-                                      opacity-75 animate-[float_3s_ease-in-out_infinite]'
-                        />
-                        <div
-                          className='absolute -bottom-4 -left-4 w-6 h-6 bg-blue rounded-full
-                                      animate-[float_3s_ease-in-out_infinite] [animation-delay:1s]'
-                        />
                       </div>
                     </div>
                   </div>
