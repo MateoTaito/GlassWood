@@ -24,3 +24,7 @@ All code quality checks must pass before merging pull requests. Run `npm run che
 - ESLint + Prettier for code quality
 - Swiper.js for interactive components
 - Lucide React for icons
+
+## AI Assistance
+
+Pass the `.rules` file to AI tools like Github Copilot, Codex, Claude Code, etc. to ensure the generated code adheres to the project's coding standards and conventions.

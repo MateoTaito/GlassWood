@@ -1,0 +1,17 @@
+Do not write organizational or comments that summarize the code. Comments should only be written in order to explain "why" the code is written in some way in the case there is a reason that is tricky / non-obvious.
+
+This project is made with React 19, Tailwind CSS version 4.1.11 and Typescript 5.8. Follow the best practices for each of these technologies.
+
+On TypeScript, avoid using `any` and prefer using `unknown` when you don't know the type, then narrow with type guards. Always try to be as specific as possible with types. Prefer specific types or generics over broad types. Define explicit return types for functions. Use `type` for object shapes and `interface` for extensible contracts. Leverage discriminated unions for state machines or variants.
+
+When writing React components, always use function components and hooks over class components. Use React's built-in hooks like `useState`, `useEffect`, `useContext`, etc., and avoid using third-party state management libraries unless absolutely necessary. Use `useReducer` for complex state logic with multiple sub-values or when next state depends on previous. Memoize expensive calculations with `useMemo`, but avoid premature optimization. Use `useCallback` only when passing callbacks to memoized children. Prefer controlled components over uncontrolled ones. Keep components focused and single-responsibility. Extract complex logic into custom hooks. Prefer composition over prop drilling and use Context for deeply nested props. Implement Error Boundaries for component tree failures. Handle async errors explicitly with try/catch in async functions. Lazy load routes and heavy components with `React.lazy()`. Avoid inline object/array literals in props or dependencies.
+
+Make sure new components created are responsive and work well both on desktop and mobile devices.
+
+When writing styles, prefer using Tailwind CSS classes over custom CSS and CSS files. If a CSS file is needed, keep it as minimal as possible.
+
+Use PascalCase for component files (e.g., `UserProfile.tsx`). Use camelCase for utility/hook files (e.g., `useAuth.ts`, `formatDate.ts`). Co-locate related files when components are tightly coupled with their hooks or utilities.
+
+Use semantic HTML elements. Ensure keyboard navigation works. Include proper ARIA labels where needed.
+
+Make sure the code style is correct, you can use the commands `npm run lint:check` and `npm run format:check` to verify that. If you need to fix the code style format, you can run `npm run format`.
