@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -17,22 +17,29 @@ interface NavbarProps {
 
 const defaultNavItems: NavItem[] = [
   { id: "home", label: "Inicio", href: "/" },
-  { id: "about", label: "Nosotros", href: "/#about" },
   {
     id: "services",
     label: "Servicios",
     href: "#services",
     subItems: [
-      { id: "web-dev", label: "Desarrollo Web", href: "#web-development" },
+      {
+        id: "web-dev",
+        label: "Desarrollo Web",
+        href: "/servicios/desarrollo-web",
+      },
       {
         id: "courses",
         label: "Plataformas de Cursos",
-        href: "#course-platforms",
+        href: "/servicios/plataformas-cursos",
       },
-      { id: "consulting", label: "Consultoría Digital", href: "#consulting" },
+      {
+        id: "consulting",
+        label: "Consultoría Digital",
+        href: "/servicios/consultoria-digital",
+      },
     ],
   },
-  { id: "about-us", label: "Quiénes Somos", href: "/about-us" },
+  { id: "about-us", label: "Nosotros", href: "/about-us" },
   { id: "team", label: "Equipo", href: "/team" },
   { id: "contact", label: "Contacto", href: "/contact" },
 ];
@@ -45,6 +52,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 50);
@@ -54,6 +62,26 @@ const Navbar: React.FC<NavbarProps> = ({
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        activeDropdown &&
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setActiveDropdown(null);
+      }
+    };
+
+    if (activeDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [activeDropdown]);
 
   const handleNavClick = useCallback(
     (item: NavItem) => {
@@ -102,8 +130,8 @@ const Navbar: React.FC<NavbarProps> = ({
               <img
                 src={
                   isScrolled || location.pathname !== "/"
-                    ? "nube_negra.webp"
-                    : "nube_blanca.webp"
+                    ? "/nube_negra.webp"
+                    : "/nube_blanca.webp"
                 }
                 className='h-12 sm:h-16 w-auto transition-transform duration-300 group-hover:scale-105'
                 alt='Cloud and Digital Logo'
@@ -114,11 +142,12 @@ const Navbar: React.FC<NavbarProps> = ({
           {/* Desktop Navigation */}
           <nav className='hidden lg:flex items-center space-x-1'>
             {defaultNavItems.map(item => (
-              <div key={item.id} className='relative group'>
-                {item.href &&
-                !item.subItems &&
-                item.href.startsWith("/") &&
-                !item.href.includes("#") ? (
+              <div
+                key={item.id}
+                className='relative group'
+                ref={item.subItems ? dropdownRef : undefined}
+              >
+                {item.href && !item.subItems && item.href.startsWith("/") ? (
                   <Link
                     to={item.href}
                     className={`flex items-center gap-1 px-4 py-2 rounded-lg text-lg font-medium
@@ -168,14 +197,15 @@ const Navbar: React.FC<NavbarProps> = ({
                                 border border-gray-100 py-2 animate-in slide-in-from-top-2 duration-200'
                   >
                     {item.subItems.map(subItem => (
-                      <button
+                      <Link
                         key={subItem.id}
-                        onClick={() => handleNavClick(subItem)}
-                        className='w-full text-left px-4 py-3 text-gray-700 hover:text-blue
+                        to={subItem.href || "#"}
+                        onClick={closeMenu}
+                        className='block w-full text-left px-4 py-3 text-gray-700 hover:text-blue
                                  hover:bg-skyblue/20 transition-colors duration-200'
                       >
                         {subItem.label}
-                      </button>
+                      </Link>
                     ))}
                   </div>
                 )}
@@ -222,10 +252,7 @@ const Navbar: React.FC<NavbarProps> = ({
             <div className='px-4 py-6 space-y-2'>
               {defaultNavItems.map(item => (
                 <div key={item.id}>
-                  {item.href &&
-                  !item.subItems &&
-                  item.href.startsWith("/") &&
-                  !item.href.includes("#") ? (
+                  {item.href && !item.subItems && item.href.startsWith("/") ? (
                     <Link
                       to={item.href}
                       onClick={closeMenu}
@@ -261,14 +288,15 @@ const Navbar: React.FC<NavbarProps> = ({
                   {item.subItems && activeDropdown === item.id && (
                     <div className='pl-4 space-y-1 animate-in slide-in-from-top-2 duration-200'>
                       {item.subItems.map(subItem => (
-                        <button
+                        <Link
                           key={subItem.id}
-                          onClick={() => handleNavClick(subItem)}
-                          className='w-full text-left px-4 py-2 text-gray-600 hover:text-blue
+                          to={subItem.href || "#"}
+                          onClick={closeMenu}
+                          className='block w-full text-left px-4 py-2 text-gray-600 hover:text-blue
                                    hover:bg-skyblue/10 rounded-lg transition-colors duration-200'
                         >
                           {subItem.label}
-                        </button>
+                        </Link>
                       ))}
                     </div>
                   )}

@@ -10,6 +10,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import "swiper/swiper-bundle.css";
+import { Link } from "react-router-dom";
 
 interface CommitmentItem {
   id: number;
@@ -258,10 +259,15 @@ const WhyUs: React.FC<WhyUsProps> = ({ className = "" }) => {
               Conversemos sobre cómo podemos ayudarte a digitalizar y hacer
               crecer tu negocio con nuestras soluciones personalizadas.
             </p>
-            <button className='group bg-blue hover:bg-positivegreen text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center gap-2 mx-auto'>
-              Comenzar conversación
-              <ArrowRight className='w-5 h-5 group-hover:translate-x-1 transition-transform duration-300' />
-            </button>
+            <div className='flex justify-center justify-items-center'>
+              <Link
+                className='group bg-blue hover:bg-positivegreen text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center gap-2 w-auto'
+                to='/contact'
+              >
+                Comenzar conversación
+                <ArrowRight className='w-5 h-5 group-hover:translate-x-1 transition-transform duration-300' />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
