@@ -1,19 +1,7 @@
 import React, { useState } from "react";
 import { Linkedin, Github, Bluesky } from "./Icons";
 import { Mail, MapPin, Phone, Send, User, MessageSquare } from "lucide-react";
-
-interface SocialLink {
-  platform: "linkedin" | "github" | "bluesky";
-  url: string;
-}
-
-interface TeamMember {
-  id: string;
-  name: string;
-  role: string;
-  email: string;
-  socials: SocialLink[];
-}
+import { teamMembers } from "./team";
 
 interface ContactFormData {
   name: string;
@@ -25,50 +13,6 @@ interface ContactFormData {
 interface ContactProps {
   className?: string;
 }
-
-const teamMembers: TeamMember[] = [
-  {
-    id: "member-1",
-    name: "Cristóbal Quijanes",
-    role: "CEO & Fundador",
-    email: "cristobal@cloudanddigital.com",
-    socials: [
-      { platform: "linkedin", url: "https://linkedin.com/in/usuario" },
-      { platform: "github", url: "https://github.com/Cristobal-Quijanes" },
-    ],
-  },
-  {
-    id: "member-2",
-    name: "Hans Barnert",
-    role: "CFO & Co-Fundador",
-    email: "hans@cloudanddigital.com",
-    socials: [
-      { platform: "linkedin", url: "https://linkedin.com/in/usuario" },
-      { platform: "github", url: "https://github.com/hansbarnert" },
-    ],
-  },
-  {
-    id: "member-3",
-    name: "Alvaro Parker",
-    role: "CTO",
-    email: "alvaro@cloudanddigital.com",
-    socials: [
-      { platform: "linkedin", url: "https://linkedin.com/in/aparkerdf" },
-      { platform: "github", url: "https://github.com/alvaroparker" },
-      { platform: "bluesky", url: "https://bsky.app/profile/alvarop.dev" },
-    ],
-  },
-  {
-    id: "member-4",
-    name: "Mateo Taito",
-    role: "Desarrollador",
-    email: "mateo@cloudanddigital.com",
-    socials: [
-      { platform: "linkedin", url: "https://linkedin.com/in/usuario" },
-      { platform: "github", url: "https://github.com/MateoTaito" },
-    ],
-  },
-];
 
 const getSocialIcon = (platform: string): React.ReactNode => {
   const iconClass = "w-5 h-5";
