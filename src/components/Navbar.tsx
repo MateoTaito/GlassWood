@@ -33,7 +33,7 @@ const defaultNavItems: NavItem[] = [
     ],
   },
   { id: "team", label: "Equipo", href: "/team" },
-  { id: "contact", label: "Contacto", href: "#contact" },
+  { id: "contact", label: "Contacto", href: "/contact" },
 ];
 
 const Navbar: React.FC<NavbarProps> = ({
@@ -184,12 +184,10 @@ const Navbar: React.FC<NavbarProps> = ({
 
           {/* CTA Button - Desktop */}
           <div className='hidden lg:block'>
-            <button
-              onClick={() =>
-                handleNavClick({ id: "contact", label: "Contacto" })
-              }
+            <Link
+              to='/contact'
               className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300
-                transform hover:scale-105 hover:shadow-lg
+                transform hover:scale-105 hover:shadow-lg inline-block
                 ${
                   isScrolled
                     ? "bg-blue hover:bg-positivegreen text-white hover:shadow-blue/25"
@@ -197,7 +195,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 }`}
             >
               Comenzar Proyecto
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -278,15 +276,14 @@ const Navbar: React.FC<NavbarProps> = ({
 
               {/* Mobile CTA */}
               <div className='pt-4 border-t border-gray-200'>
-                <button
-                  onClick={() =>
-                    handleNavClick({ id: "contact", label: "Contacto" })
-                  }
+                <Link
+                  to='/contact'
+                  onClick={closeMenu}
                   className='w-full bg-blue hover:bg-positivegreen text-white font-semibold
-                           py-3 px-4 rounded-lg transition-colors duration-300'
+                           py-3 px-4 rounded-lg transition-colors duration-300 block text-center'
                 >
                   Comenzar Proyecto
-                </button>
+                </Link>
               </div>
             </div>
           </div>
