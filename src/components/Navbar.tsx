@@ -32,6 +32,7 @@ const defaultNavItems: NavItem[] = [
       { id: "consulting", label: "Consultoría Digital", href: "#consulting" },
     ],
   },
+  { id: "about-us", label: "Quiénes Somos", href: "/about-us" },
   { id: "team", label: "Equipo", href: "/team" },
   { id: "contact", label: "Contacto", href: "/contact" },
 ];
