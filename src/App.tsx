@@ -7,6 +7,9 @@ import TeamPage from "./pages/TeamPage";
 import ContactPage from "./pages/ContactPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import ServiciosPage from "./pages/ServiciosPage";
+import PrivacyPage from "./pages/legal/PrivacyPage";
+import TermsPage from "./pages/legal/TermsPage";
+import CookiesPage from "./pages/legal/CookiesPage";
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
           <Route path='contact' element={<ContactPage />} />
           <Route path='about-us' element={<AboutUsPage />} />
           <Route path='servicios/:serviceId' element={<ServiciosPage />} />
+          <Route path='privacy' element={<PrivacyPage />} />
+          <Route path='terms' element={<TermsPage />} />
+          <Route path='cookies' element={<CookiesPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

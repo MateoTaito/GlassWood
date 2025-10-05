@@ -35,7 +35,7 @@ const footerSections: FooterSection[] = [
     id: "company",
     title: "Empresa",
     links: [
-      { id: "about", label: "Sobre Nosotros", href: "/#about" },
+      { id: "about", label: "Sobre Nosotros", href: "/about-us" },
       { id: "team", label: "Nuestro Equipo", href: "/team" },
       { id: "careers", label: "Trabaja con Nosotros", href: "#careers" },
       { id: "blog", label: "Blog", href: "#blog" },
@@ -45,9 +45,21 @@ const footerSections: FooterSection[] = [
     id: "services",
     title: "Servicios",
     links: [
-      { id: "web-dev", label: "Desarrollo Web", href: "#web-development" },
-      { id: "courses", label: "Plataformas de Cursos", href: "#courses" },
-      { id: "consulting", label: "Consultoría Digital", href: "#consulting" },
+      {
+        id: "web-dev",
+        label: "Desarrollo Web",
+        href: "/servicios/desarrollo-web",
+      },
+      {
+        id: "courses",
+        label: "Plataformas de Cursos",
+        href: "/servicios/plataformas-cursos",
+      },
+      {
+        id: "consulting",
+        label: "Consultoría Digital",
+        href: "/servicios/consultoria-digital",
+      },
       { id: "maintenance", label: "Mantenimiento", href: "#maintenance" },
     ],
   },
@@ -58,7 +70,6 @@ const footerSections: FooterSection[] = [
       { id: "privacy", label: "Política de Privacidad", href: "/privacy" },
       { id: "terms", label: "Términos de Servicio", href: "/terms" },
       { id: "cookies", label: "Política de Cookies", href: "/cookies" },
-      { id: "security", label: "Seguridad", href: "/security" },
     ],
   },
 ];
@@ -200,9 +211,7 @@ const Footer: React.FC<FooterProps> = ({
                 <ul className='space-y-3'>
                   {section.links.map(link => (
                     <li key={link.id}>
-                      {link.href.startsWith("/") &&
-                      !link.href.includes("#") &&
-                      !link.external ? (
+                      {link.href.startsWith("/") && !link.external ? (
                         <Link
                           to={link.href}
                           onClick={() => handleLinkClick(link.id, link.href)}
