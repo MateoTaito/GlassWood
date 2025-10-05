@@ -1,5 +1,5 @@
 import React from "react";
-import { MapPin, Phone, Mail, ArrowRight, ExternalLink } from "lucide-react";
+import { MapPin, Phone, Mail, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, Twitter } from "./Icons";
 
@@ -49,16 +49,6 @@ const footerSections: FooterSection[] = [
       { id: "courses", label: "Plataformas de Cursos", href: "#courses" },
       { id: "consulting", label: "Consultoría Digital", href: "#consulting" },
       { id: "maintenance", label: "Mantenimiento", href: "#maintenance" },
-    ],
-  },
-  {
-    id: "resources",
-    title: "Recursos",
-    links: [
-      { id: "documentation", label: "Documentación", href: "#docs" },
-      { id: "case-studies", label: "Casos de Éxito", href: "#case-studies" },
-      { id: "support", label: "Centro de Ayuda", href: "#support" },
-      { id: "faq", label: "Preguntas Frecuentes", href: "#faq" },
     ],
   },
   {
@@ -129,26 +119,9 @@ const contactInfo = [
 ];
 
 const Footer: React.FC<FooterProps> = ({
-  onNewsletterSubmit = () => {},
   onLinkClick = () => {},
   className = "",
 }) => {
-  const [email, setEmail] = React.useState<string>("");
-  const [isSubscribing, setIsSubscribing] = React.useState<boolean>(false);
-
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.trim()) return;
-
-    setIsSubscribing(true);
-    try {
-      onNewsletterSubmit(email);
-      setEmail("");
-    } finally {
-      setIsSubscribing(false);
-    }
-  };
-
   const handleLinkClick = (linkId: string, href: string) => {
     onLinkClick(linkId);
     if (href.startsWith("http")) {
@@ -171,7 +144,7 @@ const Footer: React.FC<FooterProps> = ({
                 onClick={() => handleLinkClick("home", "/")}
               >
                 <img
-                  src='logo_negro.webp'
+                  src='/logo_negro.webp'
                   alt='Cloud and Digital Logo'
                   className='h-16 w-auto group-hover:scale-105 transition-transform duration-300'
                 />
@@ -217,52 +190,10 @@ const Footer: React.FC<FooterProps> = ({
                 ))}
               </div>
             </div>
-
-            {/* Newsletter signup */}
-            <div className='bg-white/50 backdrop-blur-sm p-6 rounded-xl border border-white/80'>
-              <h3 className='font-bold text-blue mb-3'>
-                Mantente al día con nuestras novedades
-              </h3>
-              <p className='text-gray-600 text-sm mb-4'>
-                Recibe tips, casos de éxito y las últimas tendencias en
-                tecnología.
-              </p>
-
-              <form onSubmit={handleNewsletterSubmit} className='space-y-3'>
-                <div className='flex gap-2'>
-                  <input
-                    type='email'
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    placeholder='tu@email.com'
-                    required
-                    className='flex-1 px-4 py-3 border border-gray-200 rounded-lg
-                             focus:outline-none focus:ring-2 focus:ring-blue/20 focus:border-blue
-                             transition-colors duration-300'
-                  />
-                  <button
-                    type='submit'
-                    disabled={isSubscribing}
-                    className='bg-blue hover:bg-positivegreen text-white px-6 py-3 rounded-lg
-                             font-medium transition-colors duration-300 flex items-center gap-2
-                             disabled:opacity-50 disabled:cursor-not-allowed'
-                  >
-                    {isSubscribing ? (
-                      <div className='w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin' />
-                    ) : (
-                      <ArrowRight className='w-4 h-4' />
-                    )}
-                  </button>
-                </div>
-                <p className='text-xs text-gray-500'>
-                  Al suscribirte, aceptas nuestra política de privacidad.
-                </p>
-              </form>
-            </div>
           </div>
 
           {/* Navigation links */}
-          <div className='lg:col-span-3 grid sm:grid-cols-2 lg:grid-cols-4 gap-8'>
+          <div className='lg:col-span-3 grid sm:grid-cols-2 lg:grid-cols-3 gap-8'>
             {footerSections.map(section => (
               <div key={section.id} className='space-y-4'>
                 <h3 className='font-bold text-blue text-lg'>{section.title}</h3>

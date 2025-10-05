@@ -1,15 +1,12 @@
 import React from "react";
 import { ArrowRight, Play } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface HeaderProps {
-  onContactClick?: () => void;
   onVideoClick?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({
-  onContactClick = () => {},
-  onVideoClick = () => {},
-}) => {
+const Header: React.FC<HeaderProps> = ({ onVideoClick = () => {} }) => {
   return (
     <header className='relative min-h-screen flex items-center justify-center overflow-hidden'>
       {/* Background gradient */}
@@ -67,8 +64,8 @@ const Header: React.FC<HeaderProps> = ({
 
           {/* Call to action buttons */}
           <div className='flex flex-col sm:flex-row gap-4 justify-center items-center mt-12'>
-            <button
-              onClick={onContactClick}
+            <Link
+              to='/contact'
               className='group bg-skyblue hover:bg-positivegreen text-blue hover:text-white
                        font-semibold text-lg px-8 py-4 rounded-xl border-2 border-skyblue
                        hover:border-positivegreen transition-all duration-300 transform
@@ -77,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({
             >
               Conversemos tu proyecto
               <ArrowRight className='w-5 h-5 group-hover:translate-x-1 transition-transform duration-300' />
-            </button>
+            </Link>
 
             <button
               onClick={onVideoClick}
