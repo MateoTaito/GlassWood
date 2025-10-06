@@ -1,6 +1,7 @@
 import React from "react";
 import { Linkedin, Github, Twitter, Bluesky } from "./Icons";
 import { teamMembers } from "./team";
+import { Link } from "react-router-dom";
 
 interface TeamProps {
   className?: string;
@@ -149,22 +150,28 @@ const Team: React.FC<TeamProps> = ({ className = "" }) => {
               innovación. Si te interesa formar parte de nuestro equipo, nos
               encantaría conocerte.
             </p>
-            <button className='group bg-blue hover:bg-positivegreen text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue/25 flex items-center gap-2 mx-auto'>
-              Ver Oportunidades
-              <svg
-                className='w-5 h-5 group-hover:translate-x-1 transition-transform duration-300'
-                fill='none'
-                stroke='currentColor'
-                viewBox='0 0 24 24'
+
+            <div className='flex justify-center justify-items-center'>
+              <Link
+                to='/work-with-us'
+                className='group bg-blue hover:bg-positivegreen text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue/25 flex items-center gap-2 mx-auto'
               >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth={2}
-                  d='M13 7l5 5m0 0l-5 5m5-5H6'
-                />
-              </svg>
-            </button>
+                Ver Oportunidades
+                <svg
+                  className='w-5 h-5 group-hover:translate-x-1 transition-transform duration-300'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M13 7l5 5m0 0l-5 5m5-5H6'
+                  />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
