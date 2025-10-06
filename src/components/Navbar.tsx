@@ -142,7 +142,7 @@ const Navbar: React.FC<NavbarProps> = ({
             >
               <img
                 src={
-                  isScrolled || location.pathname !== "/"
+                  isScrolled || location.pathname !== "/" || isOpen
                     ? "/nube_negra.webp"
                     : "/nube_blanca.webp"
                 }
@@ -247,7 +247,7 @@ const Navbar: React.FC<NavbarProps> = ({
             onClick={() => setIsOpen(!isOpen)}
             className={`lg:hidden relative p-2 rounded-lg transition-all duration-200 z-50
               ${
-                isScrolled || isOpen
+                isScrolled || isOpen || location.pathname !== "/"
                   ? "text-gray-900 hover:bg-gray-100"
                   : "text-white hover:bg-white/10"
               }`}
