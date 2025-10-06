@@ -53,6 +53,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 50);
@@ -82,6 +83,18 @@ const Navbar: React.FC<NavbarProps> = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [activeDropdown]);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
 
   const handleNavClick = useCallback(
     (item: NavItem) => {
@@ -119,9 +132,9 @@ const Navbar: React.FC<NavbarProps> = ({
       aria-label='Main navigation'
     >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='flex justify-between items-center py-4'>
+        <div className='flex justify-between items-center py-3 sm:py-4'>
           {/* Logo */}
-          <div className='flex items-center space-x-2 z-50'>
+          <div className='flex items-center space-x-2 z-50 relative'>
             <Link
               to='/'
               className='flex items-center space-x-2 group'
@@ -133,7 +146,7 @@ const Navbar: React.FC<NavbarProps> = ({
                     ? "/nube_negra.webp"
                     : "/nube_blanca.webp"
                 }
-                className='h-12 sm:h-16 w-auto transition-transform duration-300 group-hover:scale-105'
+                className='h-10 sm:h-12 lg:h-16 w-auto transition-transform duration-300 group-hover:scale-105'
                 alt='Cloud and Digital Logo'
               />
             </Link>
@@ -229,36 +242,85 @@ const Navbar: React.FC<NavbarProps> = ({
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Improved */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors duration-200
-              ${isScrolled ? "text-gray-900 hover:bg-gray-100" : "text-white hover:bg-white/10"}`}
+            className={`lg:hidden relative p-2 rounded-lg transition-all duration-200 z-50
+              ${
+                isScrolled || isOpen
+                  ? "text-gray-900 hover:bg-gray-100"
+                  : "text-white hover:bg-white/10"
+              }`}
             aria-expanded={isOpen}
             aria-controls='mobile-menu'
             aria-label='Toggle mobile menu'
           >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
+            <div className='relative w-6 h-6'>
+              <Menu
+                size={24}
+                className={`absolute inset-0 transform transition-all duration-300 ${
+                  isOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100"
+                }`}
+              />
+              <X
+                size={24}
+                className={`absolute inset-0 transform transition-all duration-300 ${
+                  isOpen ? "rotate-0 opacity-100" : "-rotate-90 opacity-0"
+                }`}
+              />
+            </div>
           </button>
         </div>
 
-        {/* Mobile Menu */}
-        {isOpen && (
+        {/* Mobile Menu - Improved with better animations and layout */}
+        <div
+          id='mobile-menu'
+          ref={mobileMenuRef}
+          className={`lg:hidden fixed top-0 left-0 right-0 bottom-0 z-40 transform transition-all duration-300 ${
+            isOpen
+              ? "translate-y-0 opacity-100"
+              : "-translate-y-full opacity-0 pointer-events-none"
+          }`}
+        >
+          {/* Backdrop */}
           <div
-            id='mobile-menu'
-            className='lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md
-                     shadow-xl border-t border-gray-100 animate-in slide-in-from-top-4 duration-300'
+            className='absolute inset-0 bg-black/20 backdrop-blur-sm'
+            onClick={closeMenu}
+            aria-hidden='true'
+          />
+
+          {/* Menu Content */}
+          <div
+            className={`relative bg-white/95 backdrop-blur-md shadow-xl border-b border-gray-100
+                       transform transition-all duration-300 ${
+                         isOpen ? "translate-y-0" : "-translate-y-4"
+                       }`}
+            style={{
+              paddingTop: "calc(3rem + env(safe-area-inset-top))",
+              minHeight: "100vh",
+            }}
           >
-            <div className='px-4 py-6 space-y-2'>
-              {defaultNavItems.map(item => (
-                <div key={item.id}>
+            <div className='px-4 sm:px-6 py-6 space-y-1 max-h-screen overflow-y-auto'>
+              {defaultNavItems.map((item, index) => (
+                <div
+                  key={item.id}
+                  className={`transform transition-all duration-300 ${
+                    isOpen
+                      ? "translate-x-0 opacity-100"
+                      : "translate-x-4 opacity-0"
+                  }`}
+                  style={{
+                    transitionDelay: isOpen ? `${index * 50}ms` : "0ms",
+                  }}
+                >
                   {item.href && !item.subItems && item.href.startsWith("/") ? (
                     <Link
                       to={item.href}
                       onClick={closeMenu}
-                      className='w-full flex items-center justify-between px-4 py-3 text-left
+                      className='w-full flex items-center justify-between px-4 py-4 text-left
                                text-gray-700 hover:text-blue hover:bg-skyblue/20 rounded-lg
-                               transition-colors duration-200 font-medium'
+                               transition-all duration-200 font-medium text-lg
+                               border border-transparent hover:border-blue/20'
                     >
                       {item.label}
                     </Link>
@@ -269,14 +331,15 @@ const Navbar: React.FC<NavbarProps> = ({
                           ? toggleDropdown(item.id)
                           : handleNavClick(item)
                       }
-                      className='w-full flex items-center justify-between px-4 py-3 text-left
+                      className='w-full flex items-center justify-between px-4 py-4 text-left
                                text-gray-700 hover:text-blue hover:bg-skyblue/20 rounded-lg
-                               transition-colors duration-200 font-medium'
+                               transition-all duration-200 font-medium text-lg
+                               border border-transparent hover:border-blue/20'
                     >
                       {item.label}
                       {item.subItems && (
                         <ChevronDown
-                          className={`w-4 h-4 transition-transform duration-200 ${
+                          className={`w-5 h-5 transition-transform duration-200 ${
                             activeDropdown === item.id ? "rotate-180" : ""
                           }`}
                         />
@@ -284,49 +347,91 @@ const Navbar: React.FC<NavbarProps> = ({
                     </button>
                   )}
 
-                  {/* Mobile Dropdown */}
-                  {item.subItems && activeDropdown === item.id && (
-                    <div className='pl-4 space-y-1 animate-in slide-in-from-top-2 duration-200'>
-                      {item.subItems.map(subItem => (
-                        <Link
-                          key={subItem.id}
-                          to={subItem.href || "#"}
-                          onClick={closeMenu}
-                          className='block w-full text-left px-4 py-2 text-gray-600 hover:text-blue
-                                   hover:bg-skyblue/10 rounded-lg transition-colors duration-200'
-                        >
-                          {subItem.label}
-                        </Link>
-                      ))}
+                  {/* Mobile Dropdown - Improved */}
+                  {item.subItems && (
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ${
+                        activeDropdown === item.id
+                          ? "max-h-96 opacity-100"
+                          : "max-h-0 opacity-0"
+                      }`}
+                    >
+                      <div className='pl-4 pr-2 space-y-1 mt-2'>
+                        {item.subItems.map((subItem, subIndex) => (
+                          <Link
+                            key={subItem.id}
+                            to={subItem.href || "#"}
+                            onClick={closeMenu}
+                            className={`block w-full text-left px-4 py-3 text-gray-600 hover:text-blue
+                                     hover:bg-skyblue/10 rounded-lg transition-all duration-200
+                                     border-l-2 border-transparent hover:border-blue/30
+                                     transform ${
+                                       activeDropdown === item.id
+                                         ? "translate-x-0 opacity-100"
+                                         : "translate-x-2 opacity-0"
+                                     }`}
+                            style={{
+                              transitionDelay:
+                                activeDropdown === item.id
+                                  ? `${subIndex * 30}ms`
+                                  : "0ms",
+                            }}
+                          >
+                            {subItem.label}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
               ))}
 
-              {/* Mobile CTA */}
-              <div className='pt-4 border-t border-gray-200'>
+              {/* Mobile CTA - Improved */}
+              <div
+                className={`pt-6 border-t border-gray-200 transform transition-all duration-300 ${
+                  isOpen
+                    ? "translate-x-0 opacity-100"
+                    : "translate-x-4 opacity-0"
+                }`}
+                style={{
+                  transitionDelay: isOpen
+                    ? `${defaultNavItems.length * 50}ms`
+                    : "0ms",
+                }}
+              >
                 <Link
                   to='/contact'
                   onClick={closeMenu}
                   className='w-full bg-blue hover:bg-positivegreen text-white font-semibold
-                           py-3 px-4 rounded-lg transition-colors duration-300 block text-center'
+                           py-4 px-6 rounded-lg transition-all duration-300 block text-center
+                           text-lg shadow-lg hover:shadow-xl transform hover:scale-105
+                           active:scale-95'
                 >
                   Comenzar Proyecto
                 </Link>
               </div>
+
+              {/* Mobile menu footer */}
+              <div
+                className={`pt-6 text-center transform transition-all duration-300 ${
+                  isOpen
+                    ? "translate-x-0 opacity-100"
+                    : "translate-x-4 opacity-0"
+                }`}
+                style={{
+                  transitionDelay: isOpen
+                    ? `${(defaultNavItems.length + 1) * 50}ms`
+                    : "0ms",
+                }}
+              >
+                <p className='text-gray-500 text-sm'>
+                  Cloud and Digital - Soluciones en la nube
+                </p>
+              </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
-
-      {/* Click outside to close */}
-      {isOpen && (
-        <div
-          className='fixed inset-0 bg-black/20 lg:hidden -z-10'
-          onClick={closeMenu}
-          aria-hidden='true'
-        />
-      )}
     </nav>
   );
 };
