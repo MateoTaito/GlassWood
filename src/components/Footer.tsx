@@ -37,7 +37,7 @@ const footerSections: FooterSection[] = [
     links: [
       { id: "about", label: "Sobre Nosotros", href: "/about-us" },
       { id: "team", label: "Nuestro Equipo", href: "/team" },
-      { id: "careers", label: "Trabaja con Nosotros", href: "#careers" },
+      { id: "careers", label: "Trabaja con Nosotros", href: "/work-with-us" },
       { id: "blog", label: "Blog", href: "#blog" },
     ],
   },
@@ -60,7 +60,11 @@ const footerSections: FooterSection[] = [
         label: "Consultoría Digital",
         href: "/servicios/consultoria-digital",
       },
-      { id: "maintenance", label: "Mantenimiento", href: "#maintenance" },
+      {
+        id: "maintenance",
+        label: "Mantenimiento",
+        href: "/servicios/mantenimiento",
+      },
     ],
   },
   {

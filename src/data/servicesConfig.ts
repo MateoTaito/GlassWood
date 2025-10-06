@@ -180,4 +180,59 @@ export const servicesData: Record<string, ServiceConfig> = {
     ctaText: "Agendar Consulta",
     ctaSubtext: "Primera consulta gratuita de 30 minutos",
   },
+  mantenimiento: {
+    id: "mantenimiento",
+    title: "Mantenimiento",
+    subtitle: "Mantén tu sitio web siempre actualizado",
+    description:
+      "Ofrecemos servicios de mantenimiento integral para sitios web y aplicaciones, asegurando su funcionamiento óptimo, seguridad y actualización constante.",
+    heroImage:
+      "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2426&q=80",
+    features: [
+      {
+        title: "Actualizaciones Regulares",
+        description:
+          "Mantenemos tu sitio web actualizado con las últimas versiones y parches de seguridad.",
+        icon: "🔄",
+      },
+      {
+        title: "Monitoreo 24/7",
+        description:
+          "Supervisión continua del rendimiento y disponibilidad de tu sitio web.",
+        icon: "👁️",
+      },
+      {
+        title: "Backups Automáticos",
+        description:
+          "Copias de seguridad programadas para proteger tu contenido y datos.",
+        icon: "💾",
+      },
+      {
+        title: "Soporte Técnico",
+        description:
+          "Asistencia técnica rápida para resolver cualquier inconveniente.",
+        icon: "🛠️",
+      },
+    ],
+    benefits: [
+      {
+        title: "Tranquilidad Total",
+        description:
+          "Concéntrate en tu negocio mientras nosotros cuidamos tu presencia digital.",
+      },
+      {
+        title: "Prevención de Problemas",
+        description:
+          "Identificamos y solucionamos problemas antes de que afecten a tus usuarios.",
+      },
+      {
+        title: "Mejor Rendimiento",
+        description:
+          "Optimización continua para mantener tu sitio rápido y eficiente.",
+      },
+    ],
+    ctaText: "Contratar Mantenimiento",
+    ctaSubtext:
+      "Protege tu inversión digital con nuestro plan de mantenimiento",
+  },
 };
