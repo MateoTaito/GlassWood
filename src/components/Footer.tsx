@@ -230,7 +230,7 @@ const Footer: React.FC<FooterProps> = ({
                           onClick={() => handleLinkClick(link.id, link.href)}
                           className='text-gray-600 hover:text-blue transition-colors duration-300
                                    flex items-center gap-1 group text-sm sm:text-base
-                                   py-1 hover:translate-x-1 transform'
+                                   py-1 transform'
                         >
                           {link.label}
                         </Link>
@@ -240,7 +240,7 @@ const Footer: React.FC<FooterProps> = ({
                           onClick={() => handleLinkClick(link.id, link.href)}
                           className='text-gray-600 hover:text-blue transition-colors duration-300
                                    flex items-center gap-1 group text-sm sm:text-base
-                                   py-1 hover:translate-x-1 transform'
+                                   py-1 transform'
                           target={link.external ? "_blank" : undefined}
                           rel={
                             link.external ? "noopener noreferrer" : undefined
