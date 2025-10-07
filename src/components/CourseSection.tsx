@@ -71,8 +71,8 @@ const stats = [
 ];
 
 const CourseSection: React.FC<CourseSectionProps> = ({
-  onGetStarted = () => { },
-  onDemo = () => { },
+  onGetStarted: _onGetStarted = () => {},
+  onDemo: _onDemo = () => {},
   className = "",
 }) => {
   const [activeFeature, setActiveFeature] = useState<string>("multimedia");
@@ -116,28 +116,31 @@ const CourseSection: React.FC<CourseSectionProps> = ({
               {features.map(feature => (
                 <div
                   key={feature.id}
-                  className={`group p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 ${activeFeature === feature.id
+                  className={`group p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
+                    activeFeature === feature.id
                       ? "border-blue bg-blue/5 shadow-lg"
                       : "border-gray-200 hover:border-blue/50 hover:bg-blue/5"
-                    }`}
+                  }`}
                   onClick={() => setActiveFeature(feature.id)}
                 >
                   <div className='flex items-start gap-4'>
                     <div
-                      className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center transition-colors duration-300 ${activeFeature === feature.id
+                      className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center transition-colors duration-300 ${
+                        activeFeature === feature.id
                           ? "bg-blue text-white"
                           : "bg-skyblue text-blue group-hover:bg-blue group-hover:text-white"
-                        }`}
+                      }`}
                     >
                       {feature.icon}
                     </div>
 
                     <div className='flex-1'>
                       <h4
-                        className={`font-semibold text-lg mb-2 transition-colors duration-300 ${activeFeature === feature.id
+                        className={`font-semibold text-lg mb-2 transition-colors duration-300 ${
+                          activeFeature === feature.id
                             ? "text-blue"
                             : "text-gray-800"
-                          }`}
+                        }`}
                       >
                         {feature.title}
                       </h4>
@@ -147,10 +150,11 @@ const CourseSection: React.FC<CourseSectionProps> = ({
                     </div>
 
                     <CheckCircle
-                      className={`w-6 h-6 transition-all duration-300 ${activeFeature === feature.id
+                      className={`w-6 h-6 transition-all duration-300 ${
+                        activeFeature === feature.id
                           ? "text-positivegreen opacity-100 scale-100"
                           : "text-gray-300 opacity-0 scale-75"
-                        }`}
+                      }`}
                     />
                   </div>
                 </div>
@@ -160,23 +164,19 @@ const CourseSection: React.FC<CourseSectionProps> = ({
             {/* Action buttons */}
             <div className='flex flex-col sm:flex-row gap-4 pt-6'>
               <button
-                onClick={onGetStarted}
-                className='group bg-blue hover:bg-positivegreen text-white font-semibold
-                         px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105
-                         hover:shadow-lg hover:shadow-blue/25 flex items-center justify-center gap-2'
+                aria-disabled='true'
+                className='bg-gray-200 text-gray-500 font-semibold px-8 py-4 rounded-xl border-2 border-red-500 cursor-not-allowed flex items-center justify-center gap-2'
               >
                 Quiero mi plataforma de cursos
-                <ArrowRight className='w-5 h-5 group-hover:translate-x-1 transition-transform duration-300' />
+                <ArrowRight className='w-5 h-5' />
               </button>
 
               <button
-                onClick={onDemo}
-                className='group bg-transparent hover:bg-blue/10 text-blue border-2 border-blue
-                         font-semibold px-8 py-4 rounded-xl transition-all duration-300
-                         flex items-center justify-center gap-2'
+                aria-disabled='true'
+                className='bg-gray-200 text-gray-500 font-semibold px-8 py-4 rounded-xl border-2 border-red-500 cursor-not-allowed flex items-center justify-center gap-2'
               >
                 <Play className='w-5 h-5' />
-                Ver demo en vivo
+                Ver demo en vivo (inactivo)
               </button>
             </div>
           </div>
@@ -213,7 +213,10 @@ const CourseSection: React.FC<CourseSectionProps> = ({
 
             {/* Feature highlight */}
             <div className='relative overflow-hidden bg-gradient-to-r from-blue to-blue-700 p-8 rounded-2xl text-white'>
-              <div aria-hidden='true' className='absolute inset-0 pointer-events-none select-none'>
+              <div
+                aria-hidden='true'
+                className='absolute inset-0 pointer-events-none select-none'
+              >
                 <svg
                   className='w-full h-full'
                   viewBox='0 0 1440 600'
@@ -280,18 +283,16 @@ const CourseSection: React.FC<CourseSectionProps> = ({
           </p>
           <div className='flex flex-col sm:flex-row gap-4 justify-center'>
             <button
-              onClick={onGetStarted}
-              className='bg-positivegreen hover:bg-blue text-white font-semibold
-                       px-8 py-3 rounded-lg transition-colors duration-300'
+              aria-disabled='true'
+              className='bg-gray-200 text-gray-500 font-semibold px-8 py-3 rounded-lg border-2 border-red-500 cursor-not-allowed'
             >
-              Comenzar mi proyecto
+              Comenzar mi proyecto (inactivo)
             </button>
             <button
-              onClick={onDemo}
-              className='bg-transparent hover:bg-skyblue/20 text-blue border border-blue
-                       font-semibold px-8 py-3 rounded-lg transition-colors duration-300'
+              aria-disabled='true'
+              className='bg-gray-200 text-gray-500 font-semibold px-8 py-3 rounded-lg border-2 border-red-500 cursor-not-allowed'
             >
-              Agendar consultoría gratuita
+              Agendar consultoría gratuita (inactivo)
             </button>
           </div>
         </div>

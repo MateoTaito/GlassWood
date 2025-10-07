@@ -111,8 +111,8 @@ const clientProjects: ClientProject[] = [
 ];
 
 const ClientsSection: React.FC<ClientsSectionProps> = ({
-  onViewProject = () => { },
-  onContactUs = () => { },
+  onViewProject: _onViewProject = () => {},
+  onContactUs: _onContactUs = () => {},
   className = "",
 }) => {
   const swiperRef = useRef<{
@@ -137,8 +137,9 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
     return Array.from({ length: 5 }, (_, index) => (
       <Star
         key={index}
-        className={`w-4 h-4 ${index < rating ? "text-yellow-400 fill-current" : "text-gray-300"
-          }`}
+        className={`w-4 h-4 ${
+          index < rating ? "text-yellow-400 fill-current" : "text-gray-300"
+        }`}
       />
     ));
   };
@@ -200,7 +201,7 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
             onSwiper={swiper => {
               swiperRef.current = swiper;
             }}
-            onSlideChange={() => { }}
+            onSlideChange={() => {}}
             autoplay={{
               delay: 8000,
               disableOnInteraction: false,
@@ -355,13 +356,11 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
                           {/* Action buttons */}
                           <div className='flex flex-col sm:flex-row gap-4'>
                             <button
-                              onClick={() => onViewProject(project.id)}
-                              className='group bg-blue hover:bg-positivegreen text-white font-semibold
-                                     px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105
-                                     flex items-center justify-center gap-2'
+                              aria-disabled='true'
+                              className='bg-gray-200 text-gray-500 font-semibold px-6 py-3 rounded-xl border-2 border-red-500 cursor-not-allowed flex items-center justify-center gap-2'
                             >
-                              Ver proyecto completo
-                              <ExternalLink className='w-4 h-4 group-hover:translate-x-1 transition-transform duration-300' />
+                              Ver proyecto completo (inactivo)
+                              <ExternalLink className='w-4 h-4' />
                             </button>
 
                             {project.websiteUrl && (
@@ -426,13 +425,11 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
             con nuestras soluciones personalizadas.
           </p>
           <button
-            onClick={onContactUs}
-            className='group bg-positivegreen hover:bg-blue text-white font-semibold
-                     px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105
-                     hover:shadow-lg flex items-center gap-2 mx-auto'
+            aria-disabled='true'
+            className='bg-gray-200 text-gray-500 font-semibold px-8 py-4 rounded-xl border-2 border-red-500 cursor-not-allowed flex items-center gap-2 mx-auto'
           >
-            Comenzar mi proyecto
-            <ChevronRight className='w-5 h-5 group-hover:translate-x-1 transition-transform duration-300' />
+            Comenzar mi proyecto (inactivo)
+            <ChevronRight className='w-5 h-5' />
           </button>
         </div>
       </div>

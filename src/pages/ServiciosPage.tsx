@@ -1,6 +1,20 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { servicesData } from "../data/servicesConfig";
+import {
+  MonitorSmartphone,
+  Rocket,
+  Zap,
+  Shield,
+  BookOpen,
+  Video,
+  BarChart,
+  Award,
+  Search,
+  Target,
+  Wrench,
+  TrendingUp,
+} from "lucide-react";
 
 const ServiciosPage: React.FC = () => {
   const { serviceId } = useParams<{ serviceId: string }>();
@@ -65,8 +79,52 @@ const ServiciosPage: React.FC = () => {
           <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-8'>
             {service.features.map((feature, index) => (
               <div key={index} className='text-center group'>
-                <div className='text-4xl mb-4 group-hover:scale-110 transition-transform duration-300'>
-                  {feature.icon}
+                <div className='text-4xl mb-4 group-hover:scale-110 transition-transform duration-300 flex items-center justify-center'>
+                  {(() => {
+                    if (service.id === "desarrollo-web") {
+                      return (
+                        [
+                          <MonitorSmartphone
+                            key='dw-0'
+                            className='w-10 h-10 text-blue'
+                          />,
+                          <Rocket key='dw-1' className='w-10 h-10 text-blue' />,
+                          <Zap key='dw-2' className='w-10 h-10 text-blue' />,
+                          <Shield key='dw-3' className='w-10 h-10 text-blue' />,
+                        ][index] || null
+                      );
+                    }
+                    if (service.id === "plataformas-cursos") {
+                      return (
+                        [
+                          <BookOpen
+                            key='pc-0'
+                            className='w-10 h-10 text-blue'
+                          />,
+                          <Video key='pc-1' className='w-10 h-10 text-blue' />,
+                          <BarChart
+                            key='pc-2'
+                            className='w-10 h-10 text-blue'
+                          />,
+                          <Award key='pc-3' className='w-10 h-10 text-blue' />,
+                        ][index] || null
+                      );
+                    }
+                    if (service.id === "consultoria-digital") {
+                      return (
+                        [
+                          <Search key='cd-0' className='w-10 h-10 text-blue' />,
+                          <Target key='cd-1' className='w-10 h-10 text-blue' />,
+                          <Wrench key='cd-2' className='w-10 h-10 text-blue' />,
+                          <TrendingUp
+                            key='cd-3'
+                            className='w-10 h-10 text-blue'
+                          />,
+                        ][index] || null
+                      );
+                    }
+                    return feature.icon;
+                  })()}
                 </div>
                 <h3 className='text-xl font-semibold text-gray-900 mb-3'>
                   {feature.title}
@@ -119,8 +177,11 @@ const ServiciosPage: React.FC = () => {
             {service.ctaSubtext ||
               "Contacta con nosotros y hagamos realidad tu proyecto"}
           </p>
-          <button className='bg-white text-blue hover:bg-skyblue hover:text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg'>
-            {service.ctaText}
+          <button
+            aria-disabled='true'
+            className='bg-gray-200 text-gray-500 px-8 py-4 rounded-lg font-semibold text-lg border-2 border-red-500 cursor-not-allowed'
+          >
+            {service.ctaText} (inactivo)
           </button>
         </div>
       </section>

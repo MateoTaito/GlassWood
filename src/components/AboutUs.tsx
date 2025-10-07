@@ -68,8 +68,7 @@ const coreValues: readonly CoreValue[] = [
   },
   {
     title: "Transparencia Total",
-    description:
-      "Comunicación clara y honesta en cada etapa del proyecto.",
+    description: "Comunicación clara y honesta en cada etapa del proyecto.",
     Icon: Handshake,
   },
 ];
@@ -164,9 +163,13 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
 
             {/* CTA Button */}
             <div className='pt-4'>
-              <button className='group bg-blue hover:bg-positivegreen text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue/25 flex items-center gap-2'>
+              {/* Marcado como inactivo temporalmente hasta definir flujo */}
+              <button
+                aria-disabled='true'
+                className='bg-gray-200 text-gray-500 font-semibold px-8 py-4 rounded-xl border-2 border-red-500 cursor-not-allowed flex items-center gap-2'
+              >
                 Conoce Nuestro Proceso
-                <CheckCircle className='w-5 h-5 group-hover:rotate-12 transition-transform duration-300' />
+                <CheckCircle className='w-5 h-5' />
               </button>
             </div>
           </div>
@@ -200,7 +203,10 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
 
             {/* Feature highlight box */}
             <div className='relative overflow-hidden rounded-2xl text-white p-8 bg-gradient-to-r from-blue-700 to-blue-900'>
-              <div aria-hidden='true' className='absolute inset-0 pointer-events-none select-none'>
+              <div
+                aria-hidden='true'
+                className='absolute inset-0 pointer-events-none select-none'
+              >
                 <svg
                   className='w-full h-full'
                   viewBox='0 0 1440 600'

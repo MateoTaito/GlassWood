@@ -30,7 +30,9 @@ const FEATURE_HIGHLIGHTS: readonly FeatureHighlight[] = [
   },
 ];
 
-const Header: React.FC<HeaderProps> = ({ onVideoClick = () => { } }) => {
+const Header: React.FC<HeaderProps> = ({
+  onVideoClick: _onVideoClick = () => {},
+}) => {
   return (
     <header className='relative min-h-screen flex items-center justify-center overflow-hidden'>
       {/* Background gradient */}
@@ -85,14 +87,21 @@ const Header: React.FC<HeaderProps> = ({ onVideoClick = () => { } }) => {
 
           <ul className='grid grid-cols-2 md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto'>
             {FEATURE_HIGHLIGHTS.map(({ id, label, Icon, fullRowOnMobile }) => {
-              const spanClass = fullRowOnMobile ? "col-span-2 md:col-span-1" : "";
+              const spanClass = fullRowOnMobile
+                ? "col-span-2 md:col-span-1"
+                : "";
               return (
                 <li
                   key={id}
                   className={`bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 md:hover:bg-white/20 transition-all duration-300 transform md:hover:scale-105 flex flex-col items-center text-center ${spanClass}`}
                 >
-                  <Icon className='w-7 h-7 text-skyblue mb-3' aria-hidden='true' />
-                  <p className='text-white text-sm sm:text-base font-medium tracking-wide'>{label}</p>
+                  <Icon
+                    className='w-7 h-7 text-skyblue mb-3'
+                    aria-hidden='true'
+                  />
+                  <p className='text-white text-sm sm:text-base font-medium tracking-wide'>
+                    {label}
+                  </p>
                 </li>
               );
             })}
@@ -113,18 +122,13 @@ const Header: React.FC<HeaderProps> = ({ onVideoClick = () => { } }) => {
             </Link>
 
             <button
-              onClick={onVideoClick}
-              className='group bg-transparent hover:bg-white/10 text-white font-medium
-                       text-lg px-8 py-4 rounded-xl border-2 border-white/30 hover:border-white/60
-                       transition-all duration-300 flex items-center gap-3'
+              aria-disabled='true'
+              className='bg-gray-200 text-gray-500 font-medium text-lg px-8 py-4 rounded-xl border-2 border-red-500 cursor-not-allowed flex items-center gap-3'
             >
-              <div
-                className='w-10 h-10 bg-white/20 rounded-full flex items-center justify-center
-                            group-hover:bg-white/30 transition-colors duration-300'
-              >
-                <Play className='w-4 h-4 fill-current' />
+              <div className='w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center'>
+                <Play className='w-4 h-4' />
               </div>
-              Ver demo
+              Ver demo (inactivo)
             </button>
           </div>
 
