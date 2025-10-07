@@ -58,7 +58,7 @@ const clientProjects: ClientProject[] = [
     testimonial: {
       quote:
         "El nuevo sitio web ha mejorado significativamente nuestra presencia digital. Los clientes encuentran fácilmente la información que necesitan y hemos visto un aumento notable en las consultas.",
-      author: "María Urbina",
+      author: "Carla Urbina",
       position: "Directora General",
       rating: 5,
     },
@@ -90,7 +90,7 @@ const clientProjects: ClientProject[] = [
     testimonial: {
       quote:
         "La plataforma superó nuestras expectativas. El sistema de certificaciones automático y la interfaz intuitiva han revolucionado nuestra forma de enseñar online.",
-      author: "Carlos Mendoza",
+      author: "Eduardo Crespo",
       position: "Fundador & CEO",
       rating: 5,
     },
@@ -111,8 +111,8 @@ const clientProjects: ClientProject[] = [
 ];
 
 const ClientsSection: React.FC<ClientsSectionProps> = ({
-  onViewProject: _onViewProject = () => {},
-  onContactUs: _onContactUs = () => {},
+  onViewProject: _onViewProject = () => { },
+  onContactUs: _onContactUs = () => { },
   className = "",
 }) => {
   const swiperRef = useRef<{
@@ -137,9 +137,8 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
     return Array.from({ length: 5 }, (_, index) => (
       <Star
         key={index}
-        className={`w-4 h-4 ${
-          index < rating ? "text-yellow-400 fill-current" : "text-gray-300"
-        }`}
+        className={`w-4 h-4 ${index < rating ? "text-yellow-400 fill-current" : "text-gray-300"
+          }`}
       />
     ));
   };
@@ -201,7 +200,7 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
             onSwiper={swiper => {
               swiperRef.current = swiper;
             }}
-            onSlideChange={() => {}}
+            onSlideChange={() => { }}
             autoplay={{
               delay: 8000,
               disableOnInteraction: false,
