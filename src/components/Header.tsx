@@ -1,28 +1,67 @@
 import React from "react";
-import { ArrowRight, Play } from "lucide-react";
+import {
+  ArrowRight,
+  Play,
+  Rocket,
+  Shield,
+  MonitorSmartphone,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface HeaderProps {
   onVideoClick?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ onVideoClick = () => {} }) => {
+interface FeatureHighlight {
+  id: string;
+  label: string;
+  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  fullRowOnMobile?: boolean;
+}
+
+const FEATURE_HIGHLIGHTS: readonly FeatureHighlight[] = [
+  { id: "agile-dev", label: "Desarrollo ágil", Icon: Rocket },
+  { id: "security", label: "Seguridad integrada", Icon: Shield },
+  {
+    id: "responsive",
+    label: "Responsive design",
+    Icon: MonitorSmartphone,
+    fullRowOnMobile: true,
+  },
+];
+
+const Header: React.FC<HeaderProps> = ({ onVideoClick = () => { } }) => {
   return (
     <header className='relative min-h-screen flex items-center justify-center overflow-hidden'>
       {/* Background gradient */}
-      <div className='absolute inset-0 bg-gradient-to-br from-blue via-blue-700 to-blue-900' />
+      <div className='absolute inset-0 bg-gradient-to-br from-blue-800 via-blue-900 to-blue-950' />
+
+      {/* Darker diagonal segmented overlay (top-right to bottom-left) */}
+      <div
+        aria-hidden='true'
+        className='absolute inset-0 pointer-events-none select-none'
+      >
+        <svg
+          className='w-full h-full'
+          viewBox='0 0 1440 900'
+          preserveAspectRatio='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            d='M1440 0
+               C1200 140 1100 250 900 400
+               C700 550 500 700 0 900
+               L1440 900 Z'
+            fill='rgba(0,49,130,0.95)'
+          />
+        </svg>
+      </div>
 
       {/* Animated background elements */}
       <div className='absolute inset-0 opacity-10'>
-        <div className='absolute top-20 left-10 w-32 h-32 bg-skyblue rounded-full animate-pulse' />
-        <div
-          className='absolute bottom-32 right-16 w-24 h-24 bg-positivegreen rounded-full animate-bounce'
-          style={{ animationDelay: "1s" }}
-        />
-        <div
-          className='absolute top-1/2 left-1/4 w-16 h-16 bg-skyblue rounded-full animate-ping'
-          style={{ animationDelay: "2s" }}
-        />
+        <div className='absolute top-20 left-10 w-32 h-32 bg-skyblue rounded-full md:animate-pulse md:[animation-duration:7s]' />
+        <div className='absolute bottom-32 right-16 w-24 h-24 bg-positivegreen rounded-full md:animate-bounce md:[animation-delay:1.5s] md:[animation-duration:6s]' />
+        <div className='absolute top-1/2 left-1/4 w-16 h-16 bg-skyblue rounded-full md:animate-ping md:[animation-delay:3s] md:[animation-duration:8s]' />
       </div>
 
       <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20'>
@@ -44,23 +83,20 @@ const Header: React.FC<HeaderProps> = ({ onVideoClick = () => {} }) => {
             </h2>
           </div>
 
-          {/* Features highlights */}
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto'>
-            {[
-              { icon: "🚀", text: "Desarrollo ágil" },
-              { icon: "🔒", text: "Seguridad integrada" },
-              { icon: "📱", text: "Responsive design" },
-            ].map((feature, index) => (
-              <div
-                key={index}
-                className='bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20
-                         hover:bg-white/20 transition-all duration-300 transform hover:scale-105'
-              >
-                <div className='text-2xl mb-2'>{feature.icon}</div>
-                <p className='text-white text-sm font-medium'>{feature.text}</p>
-              </div>
-            ))}
-          </div>
+          <ul className='grid grid-cols-2 md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto'>
+            {FEATURE_HIGHLIGHTS.map(({ id, label, Icon, fullRowOnMobile }) => {
+              const spanClass = fullRowOnMobile ? "col-span-2 md:col-span-1" : "";
+              return (
+                <li
+                  key={id}
+                  className={`bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 md:hover:bg-white/20 transition-all duration-300 transform md:hover:scale-105 flex flex-col items-center text-center ${spanClass}`}
+                >
+                  <Icon className='w-7 h-7 text-skyblue mb-3' aria-hidden='true' />
+                  <p className='text-white text-sm sm:text-base font-medium tracking-wide'>{label}</p>
+                </li>
+              );
+            })}
+          </ul>
 
           {/* Call to action buttons */}
           <div className='flex flex-col sm:flex-row gap-4 justify-center items-center mt-12'>

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation } from "swiper/modules";
 import {
@@ -111,11 +111,10 @@ const clientProjects: ClientProject[] = [
 ];
 
 const ClientsSection: React.FC<ClientsSectionProps> = ({
-  onViewProject = () => {},
-  onContactUs = () => {},
+  onViewProject = () => { },
+  onContactUs = () => { },
   className = "",
 }) => {
-  const [activeSlide, setActiveSlide] = useState<number>(0);
   const swiperRef = useRef<{
     slidePrev: () => void;
     slideNext: () => void;
@@ -138,9 +137,8 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
     return Array.from({ length: 5 }, (_, index) => (
       <Star
         key={index}
-        className={`w-4 h-4 ${
-          index < rating ? "text-yellow-400 fill-current" : "text-gray-300"
-        }`}
+        className={`w-4 h-4 ${index < rating ? "text-yellow-400 fill-current" : "text-gray-300"
+          }`}
       />
     ));
   };
@@ -179,60 +177,30 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
           </p>
         </div>
 
-        {/* Custom Navigation */}
-        <div className='flex justify-center items-center gap-4 mb-8'>
-          <button
-            onClick={handlePrevSlide}
-            className='w-12 h-12 bg-white hover:bg-blue text-blue hover:text-white rounded-full
-                     flex items-center justify-center shadow-md hover:shadow-lg
-                     transition-all duration-300 transform hover:scale-110 focus:outline-none
-                     focus:ring-2 focus:ring-blue focus:ring-offset-2 focus:ring-offset-white'
-            aria-label='Proyecto anterior'
-          >
-            <ChevronLeft className='w-6 h-6' />
-          </button>
-
-          <div className='flex gap-2'>
-            {clientProjects.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setActiveSlide(index);
-                  if (swiperRef.current) {
-                    swiperRef.current.slideTo(index);
-                  }
-                }}
-                className={`h-3 rounded-full transition-all duration-300 focus:outline-none
-                          focus:ring-2 focus:ring-blue focus:ring-offset-1 ${
-                            activeSlide === index
-                              ? "bg-blue w-8"
-                              : "bg-gray-300 hover:bg-blue/50 w-3"
-                          }`}
-                aria-label={`Ir al proyecto ${index + 1}`}
-              />
-            ))}
-          </div>
-
-          <button
-            onClick={handleNextSlide}
-            className='w-12 h-12 bg-white hover:bg-blue text-blue hover:text-white rounded-full
-                     flex items-center justify-center shadow-md hover:shadow-lg
-                     transition-all duration-300 transform hover:scale-110 focus:outline-none
-                     focus:ring-2 focus:ring-blue focus:ring-offset-2 focus:ring-offset-white'
-            aria-label='Siguiente proyecto'
-          >
-            <ChevronRight className='w-6 h-6' />
-          </button>
-        </div>
+        {/* Navigation moved to sides of carousel */}
 
         {/* Projects Swiper */}
         <div className='relative'>
+          <button
+            onClick={handlePrevSlide}
+            className='hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-30 w-12 h-12 bg-white hover:bg-blue text-blue hover:text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue focus:ring-offset-2 focus:ring-offset-white items-center justify-center'
+            aria-label='Proyecto anterior'
+          >
+            <ChevronLeft className='w-6 h-6 block' />
+          </button>
+          <button
+            onClick={handleNextSlide}
+            className='hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-30 w-12 h-12 bg-white hover:bg-blue text-blue hover:text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue focus:ring-offset-2 focus:ring-offset-white items-center justify-center'
+            aria-label='Siguiente proyecto'
+          >
+            <ChevronRight className='w-6 h-6 block' />
+          </button>
           <Swiper
             modules={[Autoplay, EffectFade, Navigation]}
             onSwiper={swiper => {
               swiperRef.current = swiper;
             }}
-            onSlideChange={swiper => setActiveSlide(swiper.activeIndex)}
+            onSlideChange={() => { }}
             autoplay={{
               delay: 8000,
               disableOnInteraction: false,
@@ -266,6 +234,23 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({
                                 before:from-blue/5 before:via-transparent before:to-positivegreen/5
                                 before:z-10'
                   >
+                    {/* Curved overlay motif */}
+                    <div
+                      aria-hidden='true'
+                      className='absolute inset-0 pointer-events-none select-none z-10'
+                    >
+                      <svg
+                        className='w-full h-full'
+                        viewBox='0 0 1440 600'
+                        preserveAspectRatio='none'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <path
+                          d='M1440 0 C1220 90 1080 200 900 320 C660 480 420 560 0 600 L1440 600 Z'
+                          fill='rgba(0,49,130,0.08)'
+                        />
+                      </svg>
+                    </div>
                     <div className='relative z-20 pt-16 p-8 lg:p-12'>
                       <div className='grid lg:grid-cols-2 gap-12 items-center'>
                         {/* Content */}

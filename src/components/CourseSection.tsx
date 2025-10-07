@@ -71,8 +71,8 @@ const stats = [
 ];
 
 const CourseSection: React.FC<CourseSectionProps> = ({
-  onGetStarted = () => {},
-  onDemo = () => {},
+  onGetStarted = () => { },
+  onDemo = () => { },
   className = "",
 }) => {
   const [activeFeature, setActiveFeature] = useState<string>("multimedia");
@@ -116,31 +116,28 @@ const CourseSection: React.FC<CourseSectionProps> = ({
               {features.map(feature => (
                 <div
                   key={feature.id}
-                  className={`group p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
-                    activeFeature === feature.id
+                  className={`group p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 ${activeFeature === feature.id
                       ? "border-blue bg-blue/5 shadow-lg"
                       : "border-gray-200 hover:border-blue/50 hover:bg-blue/5"
-                  }`}
+                    }`}
                   onClick={() => setActiveFeature(feature.id)}
                 >
                   <div className='flex items-start gap-4'>
                     <div
-                      className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center transition-colors duration-300 ${
-                        activeFeature === feature.id
+                      className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center transition-colors duration-300 ${activeFeature === feature.id
                           ? "bg-blue text-white"
                           : "bg-skyblue text-blue group-hover:bg-blue group-hover:text-white"
-                      }`}
+                        }`}
                     >
                       {feature.icon}
                     </div>
 
                     <div className='flex-1'>
                       <h4
-                        className={`font-semibold text-lg mb-2 transition-colors duration-300 ${
-                          activeFeature === feature.id
+                        className={`font-semibold text-lg mb-2 transition-colors duration-300 ${activeFeature === feature.id
                             ? "text-blue"
                             : "text-gray-800"
-                        }`}
+                          }`}
                       >
                         {feature.title}
                       </h4>
@@ -150,11 +147,10 @@ const CourseSection: React.FC<CourseSectionProps> = ({
                     </div>
 
                     <CheckCircle
-                      className={`w-6 h-6 transition-all duration-300 ${
-                        activeFeature === feature.id
+                      className={`w-6 h-6 transition-all duration-300 ${activeFeature === feature.id
                           ? "text-positivegreen opacity-100 scale-100"
                           : "text-gray-300 opacity-0 scale-75"
-                      }`}
+                        }`}
                     />
                   </div>
                 </div>
@@ -216,18 +212,33 @@ const CourseSection: React.FC<CourseSectionProps> = ({
             </div>
 
             {/* Feature highlight */}
-            <div className='bg-gradient-to-r from-blue to-blue-700 p-8 rounded-2xl text-white'>
-              <h4 className='text-xl font-bold mb-4'>
-                🎓 Certificación Automática
-              </h4>
-              <p className='text-skyblue leading-relaxed mb-6'>
-                Los estudiantes reciben automáticamente sus certificados al
-                completar los cursos. Diseño profesional con códigos de
-                verificación únicos.
-              </p>
-              <div className='flex items-center gap-2 text-sm'>
-                <Award className='w-4 h-4' />
-                <span>Certificados con validación blockchain disponible</span>
+            <div className='relative overflow-hidden bg-gradient-to-r from-blue to-blue-700 p-8 rounded-2xl text-white'>
+              <div aria-hidden='true' className='absolute inset-0 pointer-events-none select-none'>
+                <svg
+                  className='w-full h-full'
+                  viewBox='0 0 1440 600'
+                  preserveAspectRatio='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M1440 0 C1220 90 1080 200 900 320 C660 480 420 560 0 600 L1440 600 Z'
+                    fill='rgba(0,49,130,0.78)'
+                  />
+                </svg>
+              </div>
+              <div className='relative z-10'>
+                <h4 className='text-xl font-bold mb-4'>
+                  🎓 Certificación Automática
+                </h4>
+                <p className='text-skyblue leading-relaxed mb-6'>
+                  Los estudiantes reciben automáticamente sus certificados al
+                  completar los cursos. Diseño profesional con códigos de
+                  verificación únicos.
+                </p>
+                <div className='flex items-center gap-2 text-sm'>
+                  <Award className='w-4 h-4' />
+                  <span>Certificados con validación blockchain disponible</span>
+                </div>
               </div>
             </div>
 

@@ -134,7 +134,7 @@ const contactInfo = [
 ];
 
 const Footer: React.FC<FooterProps> = ({
-  onLinkClick = () => {},
+  onLinkClick = () => { },
   className = "",
 }) => {
   const handleLinkClick = (linkId: string, href: string) => {
@@ -147,8 +147,8 @@ const Footer: React.FC<FooterProps> = ({
   return (
     <footer className={`bg-skyblue border-t border-blue/10 ${className}`}>
       {/* Main footer content */}
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16'>
-        <div className='grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12'>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-12 lg:py-16'>
+        <div className='grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-12'>
           {/* Company info - Mobile first, then desktop layout */}
           <div className='lg:col-span-2 space-y-6 lg:space-y-8'>
             {/* Logo and description */}
@@ -174,7 +174,7 @@ const Footer: React.FC<FooterProps> = ({
             </div>
 
             {/* Contact info - Better mobile layout */}
-            <div className='space-y-3 sm:space-y-4'>
+            <div className='mt-4 space-y-4 sm:space-y-4'>
               {contactInfo.map(info => (
                 <a
                   key={info.id}
@@ -263,10 +263,10 @@ const Footer: React.FC<FooterProps> = ({
 
       {/* Bottom bar - Improved mobile layout */}
       <div className='border-t border-blue/20 bg-blue/5'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6'>
-          <div className='flex flex-col space-y-4 md:flex-row md:justify-between md:items-center md:space-y-0'>
+        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-6'>
+          <div className='flex flex-col space-y-6 md:flex-row md:justify-between md:items-center md:space-y-0'>
             {/* Copyright - Better mobile text */}
-            <div className='text-gray-600 text-center md:text-left order-2 md:order-1'>
+            <div className='text-gray-600 text-center md:text-left order-2 md:order-1 mt-4 md:mt-0'>
               <p className='text-xs sm:text-sm'>
                 © {new Date().getFullYear()} Cloud and Digital SpA. Todos los
                 derechos reservados.
@@ -288,7 +288,7 @@ const Footer: React.FC<FooterProps> = ({
                     href={social.href}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className={`w-9 h-9 sm:w-10 sm:h-10 bg-white/80 hover:bg-white rounded-lg flex items-center
+                    className={`w-8 h-8 sm:w-10 sm:h-10 bg-white/80 hover:bg-white rounded-lg flex items-center
                               justify-center text-gray-600 ${social.color} transition-all duration-300
                               hover:scale-110 hover:shadow-md active:scale-95`}
                     aria-label={`Síguenos en ${social.platform}`}
@@ -304,7 +304,7 @@ const Footer: React.FC<FooterProps> = ({
 
       {/* Trust indicators - Better mobile layout */}
       <div className='bg-blue/5 border-t border-blue/10'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4'>
+        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-4'>
           <div className='grid grid-cols-2 sm:flex sm:flex-wrap sm:justify-center items-center gap-3 sm:gap-6 lg:gap-8 text-xs text-gray-500'>
             <div className='flex items-center gap-2 justify-center'>
               <div className='w-2 h-2 bg-positivegreen rounded-full flex-shrink-0'></div>

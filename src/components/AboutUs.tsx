@@ -1,5 +1,13 @@
 import React from "react";
-import { CheckCircle, Users, Target, Award } from "lucide-react";
+import {
+  CheckCircle,
+  Users,
+  Target,
+  Award,
+  Rocket,
+  Star,
+  Handshake,
+} from "lucide-react";
 
 interface Stat {
   id: string;
@@ -36,6 +44,62 @@ const stats: Stat[] = [
     value: "100%",
     label: "Satisfacción",
     icon: <Award className='w-8 h-8' />,
+  },
+];
+
+interface CoreValue {
+  title: string;
+  description: string;
+  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+}
+
+const coreValues: readonly CoreValue[] = [
+  {
+    title: "Innovación Constante",
+    description:
+      "Aplicamos las últimas tecnologías para crear soluciones vanguardistas.",
+    Icon: Rocket,
+  },
+  {
+    title: "Calidad Sin Compromiso",
+    description:
+      "Cada línea de código es revisada y optimizada para máximo rendimiento.",
+    Icon: Star,
+  },
+  {
+    title: "Transparencia Total",
+    description:
+      "Comunicación clara y honesta en cada etapa del proyecto.",
+    Icon: Handshake,
+  },
+];
+
+interface CommitmentAvatar {
+  id: string;
+  src: string;
+  alt: string;
+}
+
+const commitmentAvatars: readonly CommitmentAvatar[] = [
+  {
+    id: "cristobal",
+    src: "https://github.com/Cristobal-Quijanes.png",
+    alt: "Cristóbal Quijanes",
+  },
+  {
+    id: "hans",
+    src: "https://github.com/hansbarnert.png",
+    alt: "Hans Barnert",
+  },
+  {
+    id: "alvaro",
+    src: "https://github.com/AlvaroParker.png",
+    alt: "Alvaro Parker",
+  },
+  {
+    id: "mateo",
+    src: "https://github.com/MateoTaito.png",
+    alt: "Mateo Taito",
   },
 ];
 
@@ -135,29 +199,50 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
             </div>
 
             {/* Feature highlight box */}
-            <div className='bg-gradient-to-r from-blue to-blue-700 p-8 rounded-2xl text-white'>
-              <h3 className='text-xl font-bold mb-4'>
-                Nuestro Compromiso Contigo
-              </h3>
-              <p className='text-skyblue leading-relaxed mb-6'>
-                No solo desarrollamos software, construimos relaciones
-                duraderas. Cada proyecto es una oportunidad de crear algo
-                extraordinario juntos.
-              </p>
-              <div className='flex items-center gap-3'>
-                <div className='flex -space-x-2'>
-                  {[1, 2, 3].map(i => (
-                    <div
-                      key={i}
-                      className='w-8 h-8 bg-skyblue rounded-full border-2 border-white flex items-center justify-center text-blue text-xs font-bold'
-                    >
-                      {i}
-                    </div>
-                  ))}
+            <div className='relative overflow-hidden rounded-2xl text-white p-8 bg-gradient-to-r from-blue-700 to-blue-900'>
+              <div aria-hidden='true' className='absolute inset-0 pointer-events-none select-none'>
+                <svg
+                  className='w-full h-full'
+                  viewBox='0 0 1440 600'
+                  preserveAspectRatio='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M1440 0 C1220 100 1080 200 900 320 C660 480 420 560 0 600 L1440 600 Z'
+                    fill='rgba(0,49,130,0.85)'
+                  />
+                </svg>
+              </div>
+              <div className='relative z-10'>
+                <h3 className='text-xl font-bold mb-4'>
+                  Nuestro Compromiso Contigo
+                </h3>
+                <p className='text-skyblue leading-relaxed mb-6'>
+                  No solo desarrollamos software, construimos relaciones
+                  duraderas. Cada proyecto es una oportunidad de crear algo
+                  extraordinario juntos.
+                </p>
+                <div className='flex items-center gap-3'>
+                  <div className='flex -space-x-2'>
+                    {commitmentAvatars.map(avatar => (
+                      <div
+                        key={avatar.id}
+                        className='w-9 h-9 rounded-full border-2 border-white bg-skyblue overflow-hidden flex items-center justify-center'
+                      >
+                        <img
+                          src={avatar.src}
+                          alt={avatar.alt}
+                          className='w-full h-full object-cover'
+                          loading='lazy'
+                          decoding='async'
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <span className='text-sm text-skyblue'>
+                    Equipo dedicado a tu éxito
+                  </span>
                 </div>
-                <span className='text-sm text-skyblue'>
-                  Equipo dedicado a tu éxito
-                </span>
               </div>
             </div>
           </div>
@@ -171,38 +256,19 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
             </h3>
 
             <div className='grid md:grid-cols-3 gap-8'>
-              {[
-                {
-                  title: "Innovación Constante",
-                  description:
-                    "Aplicamos las últimas tecnologías para crear soluciones vanguardistas.",
-                  icon: "🚀",
-                },
-                {
-                  title: "Calidad Sin Compromiso",
-                  description:
-                    "Cada línea de código es revisada y optimizada para máximo rendimiento.",
-                  icon: "⭐",
-                },
-                {
-                  title: "Transparencia Total",
-                  description:
-                    "Comunicación clara y honesta en cada etapa del proyecto.",
-                  icon: "🤝",
-                },
-              ].map((value, index) => (
+              {coreValues.map(v => (
                 <div
-                  key={index}
-                  className='group p-6 rounded-xl hover:bg-skyblue/10 transition-colors duration-300'
+                  key={v.title}
+                  className='group p-6 rounded-xl transition-colors duration-300 text-center flex flex-col items-center'
                 >
-                  <div className='text-4xl mb-4 group-hover:scale-110 transition-transform duration-300'>
-                    {value.icon}
+                  <div className='mb-4 group-hover:scale-125 transition-transform duration-300 ease-out text-blue'>
+                    <v.Icon className='w-10 h-10' aria-hidden='true' />
                   </div>
                   <h4 className='text-lg font-semibold text-blue mb-2'>
-                    {value.title}
+                    {v.title}
                   </h4>
                   <p className='text-gray-600 leading-relaxed'>
-                    {value.description}
+                    {v.description}
                   </p>
                 </div>
               ))}
