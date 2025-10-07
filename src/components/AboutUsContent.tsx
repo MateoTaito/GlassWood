@@ -153,18 +153,35 @@ const AboutUsContent: React.FC<AboutUsContentProps> = ({ className = "" }) => {
 
           {/* Timeline */}
           <div className='relative'>
-            <div className='absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue to-positivegreen'></div>
-
-            <div className='space-y-12'>
-              {aboutUsContent.story.milestones.map((milestone, index) => (
-                <div
-                  key={milestone.id}
-                  className={`flex items-center ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}
-                >
+            {/* Mobile Zigzag Timeline */}
+            <div className='md:hidden space-y-12'>
+              {aboutUsContent.story.milestones.map((milestone, index) => {
+                const isEven = index % 2 === 0;
+                return (
                   <div
-                    className={`w-1/2 ${index % 2 === 0 ? "pr-8 text-right" : "pl-8 text-left"}`}
+                    key={milestone.id}
+                    className={`relative flex ${isEven ? "pl-12" : "pr-12"}`}
                   >
-                    <div className='bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300'>
+                    {/* Vertical segment */}
+                    <div
+                      className={`absolute top-0 bottom-0 ${
+                        isEven ? "left-5" : "right-5"
+                      } w-[3px] bg-gradient-to-b from-blue to-positivegreen`}
+                    />
+                    {/* Dot */}
+                    <div
+                      className={`absolute ${
+                        isEven
+                          ? "left-5 -translate-x-1/2"
+                          : "right-5 translate-x-1/2"
+                      } top-1/2 -translate-y-1/2 w-5 h-5 bg-blue rounded-full border-2 border-white shadow-lg`}
+                    />
+                    {/* Card */}
+                    <div
+                      className={`w-full ${
+                        isEven ? "ml-4" : "mr-4"
+                      } bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300`}
+                    >
                       <div className='text-2xl font-bold text-blue mb-2'>
                         {milestone.year}
                       </div>
@@ -174,12 +191,43 @@ const AboutUsContent: React.FC<AboutUsContentProps> = ({ className = "" }) => {
                       <p className='text-gray-600'>{milestone.description}</p>
                     </div>
                   </div>
+                );
+              })}
+            </div>
 
-                  <div className='w-6 h-6 bg-blue rounded-full border-4 border-white shadow-lg z-10 flex-shrink-0'></div>
+            {/* Desktop Original Timeline */}
+            <div className='hidden md:block'>
+              <div className='absolute left-1/2 top-0 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue to-positivegreen'></div>
+              <div className='space-y-12'>
+                {aboutUsContent.story.milestones.map((milestone, index) => (
+                  <div
+                    key={milestone.id}
+                    className={`flex items-center ${
+                      index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                    }`}
+                  >
+                    <div
+                      className={`w-1/2 ${
+                        index % 2 === 0 ? "pr-8 text-right" : "pl-8 text-left"
+                      }`}
+                    >
+                      <div className='bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300'>
+                        <div className='text-2xl font-bold text-blue mb-2'>
+                          {milestone.year}
+                        </div>
+                        <h3 className='text-xl font-semibold text-gray-900 mb-2'>
+                          {milestone.title}
+                        </h3>
+                        <p className='text-gray-600'>{milestone.description}</p>
+                      </div>
+                    </div>
 
-                  <div className='w-1/2'></div>
-                </div>
-              ))}
+                    <div className='w-6 h-6 bg-blue rounded-full border-4 border-white shadow-lg z-10 flex-shrink-0'></div>
+
+                    <div className='w-1/2'></div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
