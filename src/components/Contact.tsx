@@ -69,7 +69,7 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
     setSubmitStatus("idle");
 
     try {
-      const mailtoLink = `mailto:contacto@cloudanddigital.com?subject=${encodeURIComponent(
+      const mailtoLink = `mailto:info@cloudanddigital.cl?subject=${encodeURIComponent(
         `Contacto desde web: ${formData.subject}`
       )}&body=${encodeURIComponent(
         `Nombre: ${formData.name}\nEmail: ${formData.email}\n\nMensaje:\n${formData.message}`
@@ -134,10 +134,10 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
                   <div>
                     <h4 className='font-semibold text-gray-900 mb-1'>Email</h4>
                     <a
-                      href='mailto:contacto@cloudanddigital.com'
+                      href='mailto:info@cloudanddigital.cl'
                       className='text-gray-600 hover:text-blue transition-colors'
                     >
-                      contacto@cloudanddigital.com
+                      info@cloudanddigital.cl
                     </a>
                   </div>
                 </div>
@@ -154,7 +154,7 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
                       href='tel:+56912345678'
                       className='text-gray-600 hover:text-blue transition-colors break-all'
                     >
-                      +56 9 1234 5678
+                      +56 9 5690 3556
                     </a>
                   </div>
                 </div>
@@ -167,7 +167,7 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
                     <h4 className='font-semibold text-gray-900 mb-1'>
                       Ubicación
                     </h4>
-                    <p className='text-gray-600'>Santiago, Chile</p>
+                    <p className='text-gray-600'>San Felipe, Chile</p>
                   </div>
                 </div>
               </div>
@@ -194,13 +194,14 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
                       </p>
                       <a
                         href={`mailto:${member.email}`}
-                        className='text-sm text-blue hover:text-positivegreen transition-colors break-all'
+                        title={member.email}
+                        className='text-sm text-blue hover:text-positivegreen transition-colors whitespace-nowrap'
                       >
                         {member.email}
                       </a>
                     </div>
 
-                    <div className='flex gap-2 sm:ml-4 flex-wrap'>
+                    <div className='flex gap-2 flex-nowrap sm:ml-4 sm:flex-col'>
                       {member.socials.map(social => (
                         <a
                           key={social.platform}
@@ -352,10 +353,10 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
               <p className='text-sm text-gray-600 text-center'>
                 También puedes escribirnos directamente a{" "}
                 <a
-                  href='mailto:contacto@cloudanddigital.com'
+                  href='mailto:info@cloudanddigital.cl'
                   className='text-blue hover:text-positivegreen transition-colors font-medium'
                 >
-                  contacto@cloudanddigital.com
+                  info@cloudanddigital.cl
                 </a>
               </p>
             </div>
@@ -373,7 +374,7 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
               Hagamos algo increíble juntos.
             </p>
             <a
-              href='mailto:contacto@cloudanddigital.com?subject=Consulta%20de%20Proyecto'
+              href='mailto:info@cloudanddigital.cl?subject=Consulta%20de%20Proyecto'
               className='group bg-blue hover:bg-positivegreen text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue/25 inline-flex items-center gap-2'
             >
               Comenzar Conversación
