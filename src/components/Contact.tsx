@@ -96,13 +96,13 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
         <div className='absolute bottom-20 left-10 w-48 h-48 bg-positivegreen rounded-full blur-3xl' />
       </div>
 
-      <div className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6'>
+      <div className='relative max-w-md md:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6'>
         <div className='text-center space-y-6 mb-16'>
           <div className='inline-flex items-center px-4 py-2 bg-blue/10 text-blue rounded-full text-sm font-medium'>
             Contacto
           </div>
 
-          <h2 className='text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight'>
+          <h2 className='text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight'>
             <span className='text-blue-300'>Conecta con</span>
             <br />
             <span className='bg-gradient-to-r from-blue to-positivegreen bg-clip-text text-transparent'>
@@ -117,11 +117,11 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
           </p>
         </div>
 
-        <div className='grid lg:grid-cols-2 gap-12 lg:gap-16'>
+        <div className='grid lg:grid-cols-2 gap-8 lg:gap-16 max-w-md md:max-w-none mx-auto'>
           {/* Contact Information */}
           <div className='space-y-8'>
             {/* Company Info */}
-            <div className='bg-white rounded-2xl p-8 shadow-sm border border-gray-100'>
+            <div className='bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100 max-w-md w-full mx-auto'>
               <h3 className='text-2xl font-bold text-blue mb-6'>
                 Información de Contacto
               </h3>
@@ -152,7 +152,7 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
                     </h4>
                     <a
                       href='tel:+56912345678'
-                      className='text-gray-600 hover:text-blue transition-colors'
+                      className='text-gray-600 hover:text-blue transition-colors break-all'
                     >
                       +56 9 1234 5678
                     </a>
@@ -174,7 +174,7 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
             </div>
 
             {/* Team Members */}
-            <div className='bg-white rounded-2xl p-8 shadow-sm border border-gray-100'>
+            <div className='bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100 max-w-md w-full mx-auto'>
               <h3 className='text-2xl font-bold text-blue mb-6'>
                 Contacta Directamente
               </h3>
@@ -183,7 +183,7 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
                 {teamMembers.map(member => (
                   <div
                     key={member.id}
-                    className='flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors'
+                    className='flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-between gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors'
                   >
                     <div className='flex-1'>
                       <h4 className='font-semibold text-gray-900'>
@@ -194,13 +194,13 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
                       </p>
                       <a
                         href={`mailto:${member.email}`}
-                        className='text-sm text-blue hover:text-positivegreen transition-colors'
+                        className='text-sm text-blue hover:text-positivegreen transition-colors break-all'
                       >
                         {member.email}
                       </a>
                     </div>
 
-                    <div className='flex gap-2 ml-4'>
+                    <div className='flex gap-2 sm:ml-4 flex-wrap'>
                       {member.socials.map(social => (
                         <a
                           key={social.platform}
@@ -223,13 +223,13 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
           </div>
 
           {/* Contact Form */}
-          <div className='bg-white rounded-2xl p-8 shadow-sm border border-gray-100'>
+          <div className='bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100 max-w-md w-full mx-auto'>
             <h3 className='text-2xl font-bold text-blue mb-6'>
               Envíanos un Mensaje
             </h3>
 
             <form onSubmit={handleSubmit} className='space-y-6'>
-              <div className='grid sm:grid-cols-2 gap-6'>
+              <div className='flex flex-col sm:grid sm:grid-cols-2 gap-6'>
                 <div>
                   <label
                     htmlFor='name'
@@ -364,7 +364,7 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
 
         {/* Call to Action */}
         <div className='mt-16 text-center'>
-          <div className='inline-block bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-sm border border-gray-100'>
+          <div className='inline-block bg-white/80 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 max-w-md sm:max-w-2xl w-full mx-auto'>
             <h3 className='text-2xl font-bold text-blue mb-4'>
               ¿Listo para comenzar tu proyecto?
             </h3>
