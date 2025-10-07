@@ -22,7 +22,10 @@ export const teamMembers: TeamMember[] = [
     image: "https://github.com/Cristobal-Quijanes.png",
     email: "cristobal.quijanes@cloudanddigital.cl",
     socials: [
-      { platform: "linkedin", url: "https://www.linkedin.com/in/cristobal-quijanes-urbina/" },
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/cristobal-quijanes-urbina/",
+      },
       { platform: "github", url: "https://github.com/Cristobal-Quijanes" },
     ],
   },
@@ -34,7 +37,10 @@ export const teamMembers: TeamMember[] = [
     image: "https://github.com/hansbarnert.png",
     email: "hans.barnert@cloudanddigital.cl",
     socials: [
-      { platform: "linkedin", url: "https://www.linkedin.com/in/hans-barnert-guarda/" },
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/hans-barnert-guarda/",
+      },
       { platform: "github", url: "https://github.com/hansbarnert" },
     ],
   },
@@ -59,7 +65,10 @@ export const teamMembers: TeamMember[] = [
     image: "https://github.com/MateoTaito.png",
     email: "mateo.taito@cloudanddigital.cl",
     socials: [
-      { platform: "linkedin", url: "https://www.linkedin.com/in/mateo-taito-stambuk-048650292/" },
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/mateo-taito-stambuk-048650292/",
+      },
       { platform: "github", url: "https://github.com/MateoTaito" },
     ],
   },
