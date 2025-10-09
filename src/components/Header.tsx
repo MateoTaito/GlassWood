@@ -121,14 +121,11 @@ const Header: React.FC<HeaderProps> = ({
               <ArrowRight className='w-5 h-5 group-hover:translate-x-1 transition-transform duration-300' />
             </Link>
 
-            <button
-              aria-disabled='true'
-              className='bg-gray-200 text-gray-500 font-medium text-lg px-8 py-4 rounded-xl border-2 border-red-500 cursor-not-allowed flex items-center gap-3'
-            >
-              <div className='w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center'>
+            <button className='bg-white/10 text-white font-medium text-lg px-8 py-4 rounded-xl border-2 border-white/20 flex items-center gap-3 hover:bg-white/20 transition-colors'>
+              <div className='w-10 h-10 bg-white/15 rounded-full flex items-center justify-center'>
                 <Play className='w-4 h-4' />
               </div>
-              Ver demo (inactivo)
+              Ver demo
             </button>
           </div>
 

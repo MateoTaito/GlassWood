@@ -222,58 +222,38 @@ const Footer: React.FC<FooterProps> = ({
                   {section.title}
                 </h3>
                 <ul className='space-y-2 lg:space-y-3'>
-                  {section.links.map(link => {
-                    // Se consideran inactivos: anchors (#) y servicios no priorizados aún
-                    // Mantener activos: desarrollo web, plataformas de cursos, consultoría digital
-                    const activeServiceIds = [
-                      "web-dev",
-                      "courses",
-                      "consulting",
-                    ];
-                    const inactive =
-                      link.href.startsWith("#") ||
-                      (link.href.startsWith("/servicios/") &&
-                        !activeServiceIds.includes(link.id));
-                    return (
-                      <li key={link.id}>
-                        {inactive ? (
-                          <span
-                            aria-disabled='true'
-                            className='inline-flex items-center text-sm sm:text-base py-1 px-2 rounded border-2 border-red-500 bg-gray-200/70 text-gray-500 cursor-not-allowed'
-                          >
-                            {link.label} (inactivo)
-                          </span>
-                        ) : link.href.startsWith("/") && !link.external ? (
-                          <Link
-                            to={link.href}
-                            onClick={() => handleLinkClick(link.id, link.href)}
-                            className='text-gray-600 hover:text-blue transition-colors duration-300
-                                     flex items-center gap-1 group text-sm sm:text-base
-                                     py-1 transform'
-                          >
-                            {link.label}
-                          </Link>
-                        ) : (
-                          <a
-                            href={link.href}
-                            onClick={() => handleLinkClick(link.id, link.href)}
-                            className='text-gray-600 hover:text-blue transition-colors duration-300
-                                     flex items-center gap-1 group text-sm sm:text-base
-                                     py-1 transform'
-                            target={link.external ? "_blank" : undefined}
-                            rel={
-                              link.external ? "noopener noreferrer" : undefined
-                            }
-                          >
-                            {link.label}
-                            {link.external && (
-                              <ExternalLink className='w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
-                            )}
-                          </a>
-                        )}
-                      </li>
-                    );
-                  })}
+                  {section.links.map(link => (
+                    <li key={link.id}>
+                      {link.href.startsWith("/") && !link.external ? (
+                        <Link
+                          to={link.href}
+                          onClick={() => handleLinkClick(link.id, link.href)}
+                          className='text-gray-600 hover:text-blue transition-colors duration-300
+                                   flex items-center gap-1 group text-sm sm:text-base
+                                   py-1 transform'
+                        >
+                          {link.label}
+                        </Link>
+                      ) : (
+                        <a
+                          href={link.href}
+                          onClick={() => handleLinkClick(link.id, link.href)}
+                          className='text-gray-600 hover:text-blue transition-colors duration-300
+                                   flex items-center gap-1 group text-sm sm:text-base
+                                   py-1 transform'
+                          target={link.external ? "_blank" : undefined}
+                          rel={
+                            link.external ? "noopener noreferrer" : undefined
+                          }
+                        >
+                          {link.label}
+                          {link.external && (
+                            <ExternalLink className='w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
+                          )}
+                        </a>
+                      )}
+                    </li>
+                  ))}
                 </ul>
               </div>
             ))}
@@ -310,7 +290,7 @@ const Footer: React.FC<FooterProps> = ({
                     rel='noopener noreferrer'
                     className={`w-8 h-8 sm:w-10 sm:h-10 bg-white/80 hover:bg-white rounded-lg flex items-center
                               justify-center text-gray-600 ${social.color} transition-all duration-300
-                              hover:scale-110 hover:shadow-md active:scale-95 border-2 border-red-500`}
+                              hover:scale-110 hover:shadow-md active:scale-95`}
                     aria-label={`Síguenos en ${social.platform}`}
                   >
                     {social.icon}

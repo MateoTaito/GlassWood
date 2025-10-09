@@ -8,6 +8,7 @@ import {
   Star,
   Handshake,
 } from "lucide-react";
+import { teamMembers } from "./team";
 
 interface Stat {
   id: string;
@@ -73,35 +74,6 @@ const coreValues: readonly CoreValue[] = [
   },
 ];
 
-interface CommitmentAvatar {
-  id: string;
-  src: string;
-  alt: string;
-}
-
-const commitmentAvatars: readonly CommitmentAvatar[] = [
-  {
-    id: "cristobal",
-    src: "https://github.com/Cristobal-Quijanes.png",
-    alt: "Cristóbal Quijanes",
-  },
-  {
-    id: "hans",
-    src: "https://github.com/hansbarnert.png",
-    alt: "Hans Barnert",
-  },
-  {
-    id: "alvaro",
-    src: "https://github.com/AlvaroParker.png",
-    alt: "Alvaro Parker",
-  },
-  {
-    id: "mateo",
-    src: "https://github.com/MateoTaito.png",
-    alt: "Mateo Taito",
-  },
-];
-
 const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
   return (
     <section
@@ -163,13 +135,9 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
 
             {/* CTA Button */}
             <div className='pt-4'>
-              {/* Marcado como inactivo temporalmente hasta definir flujo */}
-              <button
-                aria-disabled='true'
-                className='bg-gray-200 text-gray-500 font-semibold px-8 py-4 rounded-xl border-2 border-red-500 cursor-not-allowed flex items-center gap-2'
-              >
+              <button className='group bg-blue hover:bg-positivegreen text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 flex items-center gap-2'>
                 Conoce Nuestro Proceso
-                <CheckCircle className='w-5 h-5' />
+                <CheckCircle className='w-5 h-5 group-hover:scale-110 transition-transform' />
               </button>
             </div>
           </div>
@@ -178,13 +146,10 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
           <div className='space-y-8'>
             {/* Stats grid */}
             <div className='grid grid-cols-2 gap-6'>
-              {stats.map((stat, index) => (
+              {stats.map(stat => (
                 <div
                   key={stat.id}
                   className='group bg-gradient-to-br from-white to-skyblue/20 p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-gray-100'
-                  style={{
-                    animationDelay: `${index * 0.1}s`,
-                  }}
                 >
                   <div className='flex flex-col items-center text-center space-y-3'>
                     <div className='text-blue group-hover:text-positivegreen transition-colors duration-300'>
@@ -230,14 +195,14 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
                 </p>
                 <div className='flex items-center gap-3'>
                   <div className='flex -space-x-2'>
-                    {commitmentAvatars.map(avatar => (
+                    {teamMembers.map(avatar => (
                       <div
                         key={avatar.id}
                         className='w-9 h-9 rounded-full border-2 border-white bg-skyblue overflow-hidden flex items-center justify-center'
                       >
                         <img
-                          src={avatar.src}
-                          alt={avatar.alt}
+                          src={avatar.image}
+                          alt={avatar.name}
                           className='w-full h-full object-cover'
                           loading='lazy'
                           decoding='async'

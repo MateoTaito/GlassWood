@@ -177,11 +177,8 @@ const ServiciosPage: React.FC = () => {
             {service.ctaSubtext ||
               "Contacta con nosotros y hagamos realidad tu proyecto"}
           </p>
-          <button
-            aria-disabled='true'
-            className='bg-gray-200 text-gray-500 px-8 py-4 rounded-lg font-semibold text-lg border-2 border-red-500 cursor-not-allowed'
-          >
-            {service.ctaText} (inactivo)
+          <button className='bg-blue hover:bg-positivegreen text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors'>
+            {service.ctaText}
           </button>
         </div>
       </section>

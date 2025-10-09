@@ -210,7 +210,7 @@ const Contact: React.FC<ContactProps> = ({ className = "" }) => {
                           rel='noopener noreferrer'
                           className={`w-8 h-8 rounded-lg bg-white flex items-center justify-center
                                    text-gray-600 transition-all duration-300 transform hover:scale-110
-                                   ${getSocialColor(social.platform)} shadow-sm`}
+                                   ${getSocialColor(social.platform)} shadow-sm border border-blue/20 hover:border-blue focus:outline-none focus:ring-2 focus:ring-blue/30`}
                           aria-label={`${member.name} en ${social.platform}`}
                         >
                           {getSocialIcon(social.platform)}

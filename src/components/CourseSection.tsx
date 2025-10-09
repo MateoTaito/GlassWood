@@ -163,20 +163,14 @@ const CourseSection: React.FC<CourseSectionProps> = ({
 
             {/* Action buttons */}
             <div className='flex flex-col sm:flex-row gap-4 pt-6'>
-              <button
-                aria-disabled='true'
-                className='bg-gray-200 text-gray-500 font-semibold px-8 py-4 rounded-xl border-2 border-red-500 cursor-not-allowed flex items-center justify-center gap-2'
-              >
+              <button className='group bg-blue hover:bg-positivegreen text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2'>
                 Quiero mi plataforma de cursos
-                <ArrowRight className='w-5 h-5' />
+                <ArrowRight className='w-5 h-5 group-hover:translate-x-1 transition-transform' />
               </button>
 
-              <button
-                aria-disabled='true'
-                className='bg-gray-200 text-gray-500 font-semibold px-8 py-4 rounded-xl border-2 border-red-500 cursor-not-allowed flex items-center justify-center gap-2'
-              >
+              <button className='bg-transparent hover:bg-blue/10 text-blue border border-blue font-semibold px-8 py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2'>
                 <Play className='w-5 h-5' />
-                Ver demo en vivo (inactivo)
+                Ver demo en vivo
               </button>
             </div>
           </div>
@@ -282,17 +276,11 @@ const CourseSection: React.FC<CourseSectionProps> = ({
             online con nuestra plataforma de cursos certificados.
           </p>
           <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-            <button
-              aria-disabled='true'
-              className='bg-gray-200 text-gray-500 font-semibold px-8 py-3 rounded-lg border-2 border-red-500 cursor-not-allowed'
-            >
-              Comenzar mi proyecto (inactivo)
+            <button className='bg-blue hover:bg-positivegreen text-white font-semibold px-8 py-3 rounded-lg transition-colors'>
+              Comenzar mi proyecto
             </button>
-            <button
-              aria-disabled='true'
-              className='bg-gray-200 text-gray-500 font-semibold px-8 py-3 rounded-lg border-2 border-red-500 cursor-not-allowed'
-            >
-              Agendar consultoría gratuita (inactivo)
+            <button className='bg-transparent hover:bg-blue/10 text-blue border border-blue font-semibold px-8 py-3 rounded-lg transition-colors'>
+              Agendar consultoría gratuita
             </button>
           </div>
         </div>
