@@ -4,9 +4,9 @@ import {
   Users,
   Target,
   Award,
-  Rocket,
-  Star,
-  Handshake,
+  Leaf,
+  Sprout,
+  Recycle,
 } from "lucide-react";
 import { teamMembers } from "./team";
 
@@ -25,25 +25,25 @@ const stats: Stat[] = [
   {
     id: "projects",
     value: "50+",
-    label: "Proyectos Exitosos",
+    label: "Lorem ipsum",
     icon: <CheckCircle className='w-8 h-8' />,
   },
   {
     id: "clients",
     value: "30+",
-    label: "Clientes Satisfechos",
+    label: "Dolor sit amet",
     icon: <Users className='w-8 h-8' />,
   },
   {
     id: "experience",
     value: "5+",
-    label: "Años de Experiencia",
+    label: "Consectetur",
     icon: <Target className='w-8 h-8' />,
   },
   {
     id: "satisfaction",
     value: "100%",
-    label: "Satisfacción",
+    label: "Adipiscing elit",
     icon: <Award className='w-8 h-8' />,
   },
 ];
@@ -56,21 +56,19 @@ interface CoreValue {
 
 const coreValues: readonly CoreValue[] = [
   {
-    title: "Innovación Constante",
-    description:
-      "Aplicamos las últimas tecnologías para crear soluciones vanguardistas.",
-    Icon: Rocket,
+    title: "Lorem ipsum",
+    description: "Dolor sit amet, consectetur adipiscing elit.",
+    Icon: Leaf,
   },
   {
-    title: "Calidad Sin Compromiso",
-    description:
-      "Cada línea de código es revisada y optimizada para máximo rendimiento.",
-    Icon: Star,
+    title: "Consectetur",
+    description: "Sed do eiusmod tempor incididunt ut labore et dolore.",
+    Icon: Recycle,
   },
   {
-    title: "Transparencia Total",
-    description: "Comunicación clara y honesta en cada etapa del proyecto.",
-    Icon: Handshake,
+    title: "Adipiscing elit",
+    description: "Ut enim ad minim veniam, quis nostrud exercitation.",
+    Icon: Sprout,
   },
 ];
 
@@ -78,11 +76,11 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
   return (
     <section
       id='about'
-      className={`relative py-20 bg-white overflow-hidden ${className}`}
+      className={`relative py-20 bg-sand overflow-hidden ${className}`}
     >
       {/* Background decorative elements */}
       <div className='absolute inset-0 opacity-5'>
-        <div className='absolute top-20 left-10 w-64 h-64 bg-blue rounded-full blur-3xl' />
+        <div className='absolute top-20 left-10 w-64 h-64 bg-brand rounded-full blur-3xl' />
         <div className='absolute bottom-20 right-10 w-48 h-48 bg-positivegreen rounded-full blur-3xl' />
       </div>
 
@@ -92,37 +90,39 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
           {/* Left column - Text content */}
           <div className='space-y-8'>
             {/* Section badge */}
-            <div className='inline-flex items-center px-4 py-2 bg-skyblue/20 text-blue rounded-full text-sm font-medium'>
-              Sobre Nosotros
+            <div className='inline-flex items-center px-4 py-2 bg-sand/50 text-brand rounded-full text-sm font-medium'>
+              Lorem ipsum
             </div>
 
             {/* Main heading */}
             <div className='space-y-6'>
               <h2 className='text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight'>
-                <span className='text-blue-300'>Más que código</span>
+                <span className='text-brand/70'>Lorem ipsum</span>
                 <br />
-                <span className='text-blue'>somos aliados</span>
+                <span className='text-brand'>dolor sit amet</span>
                 <br />
-                <span className='bg-gradient-to-r from-blue to-positivegreen bg-clip-text text-transparent'>
-                  en tu transformación digital
+                <span className='bg-gradient-to-r from-brand to-positivegreen bg-clip-text text-transparent'>
+                  consectetur adipiscing elit
                 </span>
               </h2>
 
               <p className='text-lg lg:text-xl text-gray-700 leading-relaxed'>
-                Creamos plataformas digitales que resuelven necesidades reales.
-                Desde academias virtuales hasta sistemas logísticos, te
-                entregamos soluciones pensadas para tu negocio, no para el
-                promedio.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident.
               </p>
             </div>
 
             {/* Key points */}
             <div className='space-y-4'>
               {[
-                "Desarrollo personalizado según tus necesidades específicas",
-                "Tecnologías modernas y escalables para crecer contigo",
-                "Soporte continuo y mantenimiento proactivo",
-                "Seguridad integrada desde el primer día",
+                "Lorem ipsum dolor sit amet",
+                "Consectetur adipiscing elit",
+                "Sed do eiusmod tempor",
+                "Incididunt ut labore et dolore",
               ].map((point, index) => (
                 <div key={index} className='flex items-start gap-3'>
                   <div className='flex-shrink-0 w-6 h-6 bg-positivegreen rounded-full flex items-center justify-center mt-0.5'>
@@ -135,8 +135,8 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
 
             {/* CTA Button */}
             <div className='pt-4'>
-              <button className='group bg-blue hover:bg-positivegreen text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 flex items-center gap-2'>
-                Conoce Nuestro Proceso
+              <button className='group bg-brand hover:bg-positivegreen text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 flex items-center gap-2'>
+                Lorem ipsum
                 <CheckCircle className='w-5 h-5 group-hover:scale-110 transition-transform' />
               </button>
             </div>
@@ -149,13 +149,13 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
               {stats.map(stat => (
                 <div
                   key={stat.id}
-                  className='group bg-gradient-to-br from-white to-skyblue/20 p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-gray-100'
+                  className='group bg-gradient-to-br from-white to-sand/40 p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-gray-100'
                 >
                   <div className='flex flex-col items-center text-center space-y-3'>
-                    <div className='text-blue group-hover:text-positivegreen transition-colors duration-300'>
+                    <div className='text-brand group-hover:text-positivegreen transition-colors duration-300'>
                       {stat.icon}
                     </div>
-                    <div className='text-3xl font-bold text-blue'>
+                    <div className='text-3xl font-bold text-brand'>
                       {stat.value}
                     </div>
                     <div className='text-sm text-gray-600 font-medium'>
@@ -167,7 +167,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
             </div>
 
             {/* Feature highlight box */}
-            <div className='relative overflow-hidden rounded-2xl text-white p-8 bg-gradient-to-r from-blue-700 to-blue-900'>
+            <div className='relative overflow-hidden rounded-2xl text-white p-8 bg-gradient-to-r from-brand to-brand'>
               <div
                 aria-hidden='true'
                 className='absolute inset-0 pointer-events-none select-none'
@@ -180,25 +180,28 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
                 >
                   <path
                     d='M1440 0 C1220 100 1080 200 900 320 C660 480 420 560 0 600 L1440 600 Z'
-                    fill='rgba(0,49,130,0.85)'
+                    fill='rgba(85,65,54,0.85)'
                   />
                 </svg>
               </div>
               <div className='relative z-10'>
                 <h3 className='text-xl font-bold mb-4'>
-                  Nuestro Compromiso Contigo
+                  Lorem ipsum dolor sit amet
                 </h3>
-                <p className='text-skyblue leading-relaxed mb-6'>
-                  No solo desarrollamos software, construimos relaciones
-                  duraderas. Cada proyecto es una oportunidad de crear algo
-                  extraordinario juntos.
+                <p className='text-sand leading-relaxed mb-6'>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur.
                 </p>
                 <div className='flex items-center gap-3'>
                   <div className='flex -space-x-2'>
                     {teamMembers.map(avatar => (
                       <div
                         key={avatar.id}
-                        className='w-9 h-9 rounded-full border-2 border-white bg-skyblue overflow-hidden flex items-center justify-center'
+                        className='w-9 h-9 rounded-full border-2 border-white bg-sand overflow-hidden flex items-center justify-center'
                       >
                         <img
                           src={avatar.image}
@@ -210,9 +213,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
                       </div>
                     ))}
                   </div>
-                  <span className='text-sm text-skyblue'>
-                    Equipo dedicado a tu éxito
-                  </span>
+                  <span className='text-sm text-sand'>Lorem ipsum dolor</span>
                 </div>
               </div>
             </div>
@@ -222,8 +223,8 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
         {/* Bottom section - Company values */}
         <div className='mt-20 pt-16 border-t border-gray-200'>
           <div className='text-center space-y-12'>
-            <h3 className='text-2xl lg:text-3xl font-bold text-blue'>
-              Nuestros Valores Fundamentales
+            <h3 className='text-2xl lg:text-3xl font-bold text-brand'>
+              Lorem ipsum dolor sit amet
             </h3>
 
             <div className='grid md:grid-cols-3 gap-8'>
@@ -232,10 +233,10 @@ const AboutUs: React.FC<AboutUsProps> = ({ className = "" }) => {
                   key={v.title}
                   className='group p-6 rounded-xl transition-colors duration-300 text-center flex flex-col items-center'
                 >
-                  <div className='mb-4 group-hover:scale-125 transition-transform duration-300 ease-out text-blue'>
+                  <div className='mb-4 group-hover:scale-125 transition-transform duration-300 ease-out text-brand'>
                     <v.Icon className='w-10 h-10' aria-hidden='true' />
                   </div>
-                  <h4 className='text-lg font-semibold text-blue mb-2'>
+                  <h4 className='text-lg font-semibold text-brand mb-2'>
                     {v.title}
                   </h4>
                   <p className='text-gray-600 leading-relaxed'>

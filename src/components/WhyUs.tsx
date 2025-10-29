@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import {
-  Shield,
-  Handshake,
-  Cog,
-  Zap,
+  Leaf,
+  Recycle,
+  Sprout,
+  Globe,
   CheckCircle,
   ArrowRight,
 } from "lucide-react";
@@ -28,39 +28,39 @@ interface WhyUsProps {
 const commitmentItems: CommitmentItem[] = [
   {
     id: 1,
-    title: "Seguridad integrada desde el diseño",
+    title: "Lorem ipsum dolor",
     description:
-      "Implementamos las mejores prácticas de seguridad desde la primera línea de código, protegiendo tus datos y los de tus usuarios.",
-    icon: <Shield className='w-8 h-8' />,
-    color: "text-blue-600",
-    bgColor: "bg-blue-50",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.",
+    icon: <Leaf className='w-8 h-8' />,
+    color: "text-positivegreen",
+    bgColor: "bg-sand",
   },
   {
     id: 2,
-    title: "Acompañamiento claro y cercano",
+    title: "Consectetur adipiscing",
     description:
-      "Te guiamos en cada paso del proceso con comunicación transparente y soporte técnico especializado.",
-    icon: <Handshake className='w-8 h-8' />,
-    color: "text-positivegreen",
-    bgColor: "bg-green-50",
+      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.",
+    icon: <Recycle className='w-8 h-8' />,
+    color: "text-brand",
+    bgColor: "bg-sand",
   },
   {
     id: 3,
-    title: "Automatización y eficiencia",
+    title: "Sed do eiusmod",
     description:
-      "Optimizamos tus procesos con soluciones automatizadas que ahorran tiempo y reducen errores operativos.",
-    icon: <Cog className='w-8 h-8' />,
-    color: "text-orange",
-    bgColor: "bg-orange-50",
+      "Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    icon: <Sprout className='w-8 h-8' />,
+    color: "text-positivegreen",
+    bgColor: "bg-sand",
   },
   {
     id: 4,
-    title: "Agilidad y adaptabilidad",
+    title: "Incididunt ut labore",
     description:
-      "Desarrollamos con metodologías ágiles que nos permiten adaptarnos rápidamente a tus necesidades cambiantes.",
-    icon: <Zap className='w-8 h-8' />,
-    color: "text-coral",
-    bgColor: "bg-red-50",
+      "Dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate.",
+    icon: <Globe className='w-8 h-8' />,
+    color: "text-brand",
+    bgColor: "bg-sand",
   },
 ];
 
@@ -93,17 +93,17 @@ const WhyUs: React.FC<WhyUsProps> = ({ className = "" }) => {
   return (
     <section
       id='why-us-section'
-      className={`relative py-20 bg-gradient-to-br from-skyblue via-skyblue to-blue-100 overflow-hidden ${className}`}
+      className={`relative py-20 bg-gradient-to-br from-sand via-white to-sand overflow-hidden ${className}`}
     >
       {/* Background decorative elements */}
       <div className='absolute inset-0 opacity-20'>
-        <div className='absolute top-10 left-10 w-32 h-32 bg-blue rounded-full blur-2xl animate-pulse' />
+        <div className='absolute top-10 left-10 w-32 h-32 bg-brand rounded-full blur-2xl animate-pulse' />
         <div
           className='absolute bottom-20 right-20 w-24 h-24 bg-positivegreen rounded-full blur-xl animate-bounce'
           style={{ animationDelay: "1s" }}
         />
         <div
-          className='absolute top-1/2 left-1/4 w-16 h-16 bg-orange rounded-full blur-lg animate-ping'
+          className='absolute top-1/2 left-1/4 w-16 h-16 bg-sand rounded-full blur-lg animate-ping'
           style={{ animationDelay: "2s" }}
         />
       </div>
@@ -111,24 +111,24 @@ const WhyUs: React.FC<WhyUsProps> = ({ className = "" }) => {
       <div className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Header */}
         <div className='text-center space-y-6 mb-16'>
-          <div className='inline-flex items-center px-4 py-2 bg-blue/20 text-blue rounded-full text-sm font-medium'>
+          <div className='inline-flex items-center px-4 py-2 bg-brand/10 text-brand rounded-full text-sm font-medium'>
             <CheckCircle className='w-4 h-4 mr-2' />
-            Nuestros Valores
+            Lorem ipsum
           </div>
 
-          <h2 className='text-3xl sm:text-4xl lg:text-5xl font-bold text-blue leading-tight'>
-            Nuestro
-            <span className='bg-gradient-to-r from-blue to-positivegreen bg-clip-text text-transparent'>
+          <h2 className='text-3xl sm:text-4xl lg:text-5xl font-bold text-brand leading-tight'>
+            Lorem ipsum
+            <span className='bg-gradient-to-r from-brand to-positivegreen bg-clip-text text-transparent'>
               {" "}
-              compromiso
+              dolor sit amet
             </span>
             <br />
-            contigo
+            consectetur
           </h2>
 
-          <p className='text-lg text-blue-700 max-w-3xl mx-auto leading-relaxed'>
-            Trabajamos con valores sólidos que nos permiten crear soluciones
-            digitales excepcionales y duraderas.
+          <p className='text-lg text-brand/80 max-w-3xl mx-auto leading-relaxed'>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
 
@@ -139,7 +139,7 @@ const WhyUs: React.FC<WhyUsProps> = ({ className = "" }) => {
               key={item.id}
               className={`group p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl
                         transition-all duration-500 transform hover:scale-105
-                        border border-gray-100 hover:border-blue/20
+                        border border-gray-100 hover:border-brand/20
                         ${isVisible ? "animate-in slide-in-from-bottom-4" : "opacity-0"}
                       `}
               style={{
@@ -167,7 +167,7 @@ const WhyUs: React.FC<WhyUsProps> = ({ className = "" }) => {
 
                 {/* Content */}
                 <div className='flex-1 space-y-4'>
-                  <h3 className='text-xl font-bold text-blue group-hover:text-positivegreen transition-colors duration-300'>
+                  <h3 className='text-xl font-bold text-brand group-hover:text-positivegreen transition-colors duration-300'>
                     {item.title}
                   </h3>
                   <p className='text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300'>
@@ -175,8 +175,8 @@ const WhyUs: React.FC<WhyUsProps> = ({ className = "" }) => {
                   </p>
 
                   {/* Action indicator */}
-                  <div className='flex items-center gap-2 text-blue opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0'>
-                    <span className='text-sm font-medium'>Saber más</span>
+                  <div className='flex items-center gap-2 text-brand opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0'>
+                    <span className='text-sm font-medium'>Lorem ipsum</span>
                     <ArrowRight className='w-4 h-4' />
                   </div>
                 </div>
@@ -200,9 +200,9 @@ const WhyUs: React.FC<WhyUsProps> = ({ className = "" }) => {
             modules={[Pagination, Autoplay]}
             pagination={{
               clickable: true,
-              bulletClass: "swiper-pagination-bullet !bg-blue !opacity-50",
+              bulletClass: "swiper-pagination-bullet !bg-brand !opacity-50",
               bulletActiveClass:
-                "swiper-pagination-bullet-active !bg-blue !opacity-100",
+                "swiper-pagination-bullet-active !bg-brand !opacity-100",
             }}
             autoplay={{
               delay: 4000,
@@ -231,7 +231,7 @@ const WhyUs: React.FC<WhyUsProps> = ({ className = "" }) => {
 
                   {/* Content */}
                   <div className='text-center space-y-4'>
-                    <h3 className='text-xl font-bold text-blue'>
+                    <h3 className='text-xl font-bold text-brand'>
                       {item.title}
                     </h3>
                     <p className='text-gray-600 leading-relaxed'>
@@ -241,7 +241,7 @@ const WhyUs: React.FC<WhyUsProps> = ({ className = "" }) => {
 
                   {/* Decorative element */}
                   <div className='mt-6 flex justify-center'>
-                    <div className='w-12 h-1 bg-gradient-to-r from-blue to-positivegreen rounded-full' />
+                    <div className='w-12 h-1 bg-gradient-to-r from-brand to-positivegreen rounded-full' />
                   </div>
                 </div>
               </SwiperSlide>
@@ -252,19 +252,19 @@ const WhyUs: React.FC<WhyUsProps> = ({ className = "" }) => {
         {/* Bottom CTA */}
         <div className='mt-16 text-center'>
           <div className='bg-white/80 backdrop-blur-sm rounded-2xl p-8 max-w-3xl mx-auto border border-white/50'>
-            <h3 className='text-2xl font-bold text-blue mb-4'>
-              ¿Listo para comenzar tu proyecto?
+            <h3 className='text-2xl font-bold text-brand mb-4'>
+              Lorem ipsum dolor sit amet?
             </h3>
             <p className='text-gray-600 mb-6'>
-              Conversemos sobre cómo podemos ayudarte a digitalizar y hacer
-              crecer tu negocio con nuestras soluciones personalizadas.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
             <div className='flex justify-center justify-items-center'>
               <Link
-                className='group bg-blue hover:bg-positivegreen text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center gap-2 w-auto'
+                className='group bg-brand hover:bg-positivegreen text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center gap-2 w-auto'
                 to='/contact'
               >
-                Comenzar conversación
+                Lorem ipsum
                 <ArrowRight className='w-5 h-5 group-hover:translate-x-1 transition-transform duration-300' />
               </Link>
             </div>

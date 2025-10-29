@@ -16,31 +16,8 @@ interface NavbarProps {
 }
 
 const defaultNavItems: NavItem[] = [
-  { id: "home", label: "Inicio", href: "/" },
-  {
-    id: "services",
-    label: "Servicios",
-    href: "#services",
-    subItems: [
-      {
-        id: "web-dev",
-        label: "Desarrollo Web",
-        href: "/servicios/desarrollo-web",
-      },
-      {
-        id: "courses",
-        label: "Plataformas de Cursos",
-        href: "/servicios/plataformas-cursos",
-      },
-      {
-        id: "consulting",
-        label: "Consultoría Digital",
-        href: "/servicios/consultoria-digital",
-      },
-    ],
-  },
-  { id: "about-us", label: "Nosotros", href: "/about-us" },
-  { id: "team", label: "Equipo", href: "/team" },
+  { id: "home", label: "Bienvenida", href: "/" },
+  { id: "catalog", label: "Catálogo", href: "#" },
   { id: "contact", label: "Contacto", href: "/contact" },
 ];
 
@@ -132,7 +109,7 @@ const Navbar: React.FC<NavbarProps> = ({
       aria-label='Main navigation'
     >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='flex justify-between items-center py-3 sm:py-4'>
+        <div className='grid grid-cols-3 items-center py-3 sm:py-4'>
           {/* Logo */}
           <div className='flex items-center space-x-2 z-50 relative'>
             <Link
@@ -141,19 +118,15 @@ const Navbar: React.FC<NavbarProps> = ({
               onClick={closeMenu}
             >
               <img
-                src={
-                  isScrolled || location.pathname !== "/" || isOpen
-                    ? "/nube_negra.webp"
-                    : "/nube_blanca.webp"
-                }
+                src='/GlassWood_logo.jpeg'
                 className='h-10 sm:h-12 lg:h-16 w-auto transition-transform duration-300 group-hover:scale-105'
-                alt='Cloud and Digital Logo'
+                alt='GlassWood Logo'
               />
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className='hidden lg:flex items-center space-x-1'>
+          <nav className='flex items-center justify-center space-x-4'>
             {defaultNavItems.map(item => (
               <div
                 key={item.id}
@@ -167,8 +140,8 @@ const Navbar: React.FC<NavbarProps> = ({
                       transition-all duration-200 hover:bg-white/10 hover:backdrop-blur-sm
                       ${
                         isScrolled || location.pathname !== "/"
-                          ? "text-gray-700 hover:text-blue hover:bg-skyblue/20"
-                          : "text-white hover:text-skyblue"
+                          ? "text-brand hover:text-positivegreen hover:bg-sand/50"
+                          : "text-brand hover:text-positivegreen"
                       }`}
                   >
                     {item.label}
@@ -184,8 +157,8 @@ const Navbar: React.FC<NavbarProps> = ({
                       transition-all duration-200 hover:bg-white/10 hover:backdrop-blur-sm
                       ${
                         isScrolled || location.pathname !== "/"
-                          ? "text-gray-700 hover:text-blue hover:bg-skyblue/20"
-                          : "text-white hover:text-skyblue"
+                          ? "text-brand hover:text-positivegreen hover:bg-sand/50"
+                          : "text-brand hover:text-positivegreen"
                       }`}
                     aria-expanded={
                       item.subItems ? activeDropdown === item.id : undefined
@@ -214,8 +187,8 @@ const Navbar: React.FC<NavbarProps> = ({
                         key={subItem.id}
                         to={subItem.href || "#"}
                         onClick={closeMenu}
-                        className='block w-full text-left px-4 py-3 text-gray-700 hover:text-blue
-                                 hover:bg-skyblue/20 transition-colors duration-200'
+                        className='block w-full text-left px-4 py-3 text-brand hover:text-positivegreen
+                                 hover:bg-sand/40 transition-colors duration-200'
                       >
                         {subItem.label}
                       </Link>
@@ -227,18 +200,18 @@ const Navbar: React.FC<NavbarProps> = ({
           </nav>
 
           {/* CTA Button - Desktop */}
-          <div className='hidden lg:block'>
+          <div className='hidden'>
             <Link
               to='/contact'
               className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300
                 transform hover:scale-105 hover:shadow-lg inline-block
                 ${
                   isScrolled
-                    ? "bg-blue hover:bg-positivegreen text-white hover:shadow-blue/25"
-                    : "bg-skyblue hover:bg-positivegreen text-blue hover:text-white"
+                    ? "bg-brand hover:bg-positivegreen text-white hover:shadow-brand/25"
+                    : "bg-sand hover:bg-positivegreen text-brand hover:text-white"
                 }`}
             >
-              Comenzar Proyecto
+              Lorem ipsum
             </Link>
           </div>
 
@@ -249,7 +222,7 @@ const Navbar: React.FC<NavbarProps> = ({
               ${
                 isScrolled || isOpen || location.pathname !== "/"
                   ? "text-gray-900 hover:bg-gray-100"
-                  : "text-white hover:bg-white/10"
+                  : "text-brand hover:bg-white/10"
               }`}
             aria-expanded={isOpen}
             aria-controls='mobile-menu'
@@ -300,7 +273,7 @@ const Navbar: React.FC<NavbarProps> = ({
               minHeight: "100vh",
             }}
           >
-            <div className='px-4 sm:px-6 py-6 space-y-1 max-h-screen overflow-y-auto'>
+            <div className='px-4 sm:px-6 py-6 space-y-4 max-h-screen overflow-y-auto flex flex-col items-center text-center'>
               {defaultNavItems.map((item, index) => (
                 <div
                   key={item.id}
@@ -318,9 +291,9 @@ const Navbar: React.FC<NavbarProps> = ({
                       to={item.href}
                       onClick={closeMenu}
                       className='w-full flex items-center justify-between px-4 py-4 text-left
-                               text-gray-700 hover:text-blue hover:bg-skyblue/20 rounded-lg
+                               text-brand hover:text-positivegreen hover:bg-sand/40 rounded-lg
                                transition-all duration-200 font-medium text-lg
-                               border border-transparent hover:border-blue/20'
+                               border border-transparent hover:border-brand/20'
                     >
                       {item.label}
                     </Link>
@@ -332,9 +305,9 @@ const Navbar: React.FC<NavbarProps> = ({
                           : handleNavClick(item)
                       }
                       className='w-full flex items-center justify-between px-4 py-4 text-left
-                               text-gray-700 hover:text-blue hover:bg-skyblue/20 rounded-lg
+                               text-brand hover:text-positivegreen hover:bg-sand/40 rounded-lg
                                transition-all duration-200 font-medium text-lg
-                               border border-transparent hover:border-blue/20'
+                               border border-transparent hover:border-brand/20'
                     >
                       {item.label}
                       {item.subItems && (
@@ -362,9 +335,9 @@ const Navbar: React.FC<NavbarProps> = ({
                             key={subItem.id}
                             to={subItem.href || "#"}
                             onClick={closeMenu}
-                            className={`block w-full text-left px-4 py-3 text-gray-600 hover:text-blue
-                                     hover:bg-skyblue/10 rounded-lg transition-all duration-200
-                                     border-l-2 border-transparent hover:border-blue/30
+                            className={`block w-full text-left px-4 py-3 text-gray-600 hover:text-positivegreen
+                                     hover:bg-sand/30 rounded-lg transition-all duration-200
+                                     border-l-2 border-transparent hover:border-brand/30
                                      transform ${
                                        activeDropdown === item.id
                                          ? "translate-x-0 opacity-100"
@@ -385,49 +358,6 @@ const Navbar: React.FC<NavbarProps> = ({
                   )}
                 </div>
               ))}
-
-              {/* Mobile CTA - Improved */}
-              <div
-                className={`pt-6 border-t border-gray-200 transform transition-all duration-300 ${
-                  isOpen
-                    ? "translate-x-0 opacity-100"
-                    : "translate-x-4 opacity-0"
-                }`}
-                style={{
-                  transitionDelay: isOpen
-                    ? `${defaultNavItems.length * 50}ms`
-                    : "0ms",
-                }}
-              >
-                <Link
-                  to='/contact'
-                  onClick={closeMenu}
-                  className='w-full bg-blue hover:bg-positivegreen text-white font-semibold
-                           py-4 px-6 rounded-lg transition-all duration-300 block text-center
-                           text-lg shadow-lg hover:shadow-xl transform hover:scale-105
-                           active:scale-95'
-                >
-                  Comenzar Proyecto
-                </Link>
-              </div>
-
-              {/* Mobile menu footer */}
-              <div
-                className={`pt-6 text-center transform transition-all duration-300 ${
-                  isOpen
-                    ? "translate-x-0 opacity-100"
-                    : "translate-x-4 opacity-0"
-                }`}
-                style={{
-                  transitionDelay: isOpen
-                    ? `${(defaultNavItems.length + 1) * 50}ms`
-                    : "0ms",
-                }}
-              >
-                <p className='text-gray-500 text-sm'>
-                  Cloud and Digital - Soluciones en la nube
-                </p>
-              </div>
             </div>
           </div>
         </div>

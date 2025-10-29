@@ -33,47 +33,47 @@ interface FooterProps {
 const footerSections: FooterSection[] = [
   {
     id: "company",
-    title: "Empresa",
+    title: "Lorem",
     links: [
-      { id: "about", label: "Sobre Nosotros", href: "/about-us" },
-      { id: "team", label: "Nuestro Equipo", href: "/team" },
-      { id: "careers", label: "Trabaja con Nosotros", href: "/work-with-us" },
-      { id: "blog", label: "Blog", href: "#blog" },
+      { id: "about", label: "Lorem ipsum", href: "/about-us" },
+      { id: "team", label: "Dolor sit", href: "/team" },
+      { id: "careers", label: "Amet", href: "/work-with-us" },
+      { id: "blog", label: "Consectetur", href: "#blog" },
     ],
   },
   {
     id: "services",
-    title: "Servicios",
+    title: "Ipsum",
     links: [
       {
         id: "web-dev",
-        label: "Desarrollo Web",
+        label: "Adipiscing",
         href: "/servicios/desarrollo-web",
       },
       {
         id: "courses",
-        label: "Plataformas de Cursos",
+        label: "Elit sed",
         href: "/servicios/plataformas-cursos",
       },
       {
         id: "consulting",
-        label: "Consultoría Digital",
+        label: "Do eiusmod",
         href: "/servicios/consultoria-digital",
       },
       {
         id: "maintenance",
-        label: "Mantenimiento",
+        label: "Tempor",
         href: "/servicios/mantenimiento",
       },
     ],
   },
   {
     id: "legal",
-    title: "Legal",
+    title: "Dolor",
     links: [
-      { id: "privacy", label: "Política de Privacidad", href: "/privacy" },
-      { id: "terms", label: "Términos de Servicio", href: "/terms" },
-      { id: "cookies", label: "Política de Cookies", href: "/cookies" },
+      { id: "privacy", label: "Incididunt", href: "/privacy" },
+      { id: "terms", label: "Ut labore", href: "/terms" },
+      { id: "cookies", label: "Et dolore", href: "/cookies" },
     ],
   },
 ];
@@ -82,28 +82,28 @@ const socialLinks: SocialLink[] = [
   {
     id: "linkedin",
     platform: "LinkedIn",
-    href: "https://linkedin.com/company/cloudanddigital",
+    href: "#",
     icon: <Linkedin className='w-5 h-5' />,
     color: "hover:text-blue-600",
   },
   {
     id: "instagram",
     platform: "Instagram",
-    href: "https://instagram.com/cloudanddigital",
+    href: "#",
     icon: <Instagram className='w-5 h-5' />,
     color: "hover:text-pink-600",
   },
   {
     id: "facebook",
     platform: "Facebook",
-    href: "https://facebook.com/cloudanddigital",
+    href: "#",
     icon: <Facebook className='w-5 h-5' />,
     color: "hover:text-blue-700",
   },
   {
     id: "twitter",
     platform: "Twitter",
-    href: "https://twitter.com/cloudanddigital",
+    href: "#",
     icon: <Twitter className='w-5 h-5' />,
     color: "hover:text-blue-400",
   },
@@ -113,23 +113,23 @@ const contactInfo = [
   {
     id: "phone",
     icon: <Phone className='w-4 h-4 sm:w-5 sm:h-5' />,
-    label: "Teléfono",
-    value: "+56 9 5690 3556",
-    href: "tel:+56956903556",
+    label: "Lorem",
+    value: "Lorem ipsum",
+    href: "#",
   },
   {
     id: "email",
     icon: <Mail className='w-4 h-4 sm:w-5 sm:h-5' />,
-    label: "Email",
-    value: "info@cloudanddigital.cl",
-    href: "mailto:info@cloudanddigital.cl",
+    label: "Ipsum",
+    value: "lorem@ipsum.com",
+    href: "mailto:lorem@ipsum.com",
   },
   {
     id: "address",
     icon: <MapPin className='w-4 h-4 sm:w-5 sm:h-5' />,
-    label: "Ubicación",
-    value: "Toromazote 135, San Felipe",
-    href: "https://maps.google.com/?q=Toromazote+135+San+Felipe",
+    label: "Dolor",
+    value: "Sit amet",
+    href: "#",
   },
 ];
 
@@ -145,7 +145,7 @@ const Footer: React.FC<FooterProps> = ({
   };
 
   return (
-    <footer className={`bg-skyblue border-t border-blue/10 ${className}`}>
+    <footer className={`bg-sand border-t border-brand/10 ${className}`}>
       {/* Main footer content */}
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-12 lg:py-16'>
         <div className='grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-12'>
@@ -160,16 +160,16 @@ const Footer: React.FC<FooterProps> = ({
               >
                 <img
                   src='/logo_negro.webp'
-                  alt='Cloud and Digital Logo'
+                  alt='GlassWood Logo'
                   className='h-12 sm:h-14 lg:h-16 w-auto group-hover:scale-105 transition-transform duration-300 mx-auto sm:mx-0'
                 />
               </Link>
 
               <p className='text-gray-700 leading-relaxed text-sm sm:text-base max-w-md mx-auto sm:mx-0'>
-                Somos tu aliado en la nube, desarrollando soluciones
-                personalizadas para que alcances tus objetivos con tecnología
-                eficiente y segura. Nos enfocamos en entender tus necesidades y
-                superar tus expectativas.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                Nisi ut aliquip ex ea commodo consequat.
               </p>
             </div>
 
@@ -179,8 +179,8 @@ const Footer: React.FC<FooterProps> = ({
                 <a
                   key={info.id}
                   href={info.href}
-                  className='flex items-center gap-3 text-gray-700 hover:text-blue
-                           transition-colors duration-300 group p-2 sm:p-0 rounded-lg hover:bg-blue/5'
+                  className='flex items-center gap-3 text-gray-700 hover:text-brand
+                           transition-colors duration-300 group p-2 sm:p-0 rounded-lg hover:bg-sand/40'
                   target={info.href.startsWith("http") ? "_blank" : undefined}
                   rel={
                     info.href.startsWith("http")
@@ -189,8 +189,8 @@ const Footer: React.FC<FooterProps> = ({
                   }
                 >
                   <div
-                    className='w-8 h-8 sm:w-10 sm:h-10 bg-blue/10 rounded-lg flex items-center justify-center
-                                text-blue group-hover:bg-blue group-hover:text-white
+                    className='w-8 h-8 sm:w-10 sm:h-10 bg-brand/10 rounded-lg flex items-center justify-center
+                                text-brand group-hover:bg-brand group-hover:text-white
                                 transition-colors duration-300 flex-shrink-0'
                   >
                     {info.icon}
@@ -218,7 +218,7 @@ const Footer: React.FC<FooterProps> = ({
                 key={section.id}
                 className='space-y-3 lg:space-y-4 md:p-0 p-4'
               >
-                <h3 className='font-bold text-blue text-base sm:text-lg'>
+                <h3 className='font-bold text-brand text-base sm:text-lg'>
                   {section.title}
                 </h3>
                 <ul className='space-y-2 lg:space-y-3'>
@@ -228,7 +228,7 @@ const Footer: React.FC<FooterProps> = ({
                         <Link
                           to={link.href}
                           onClick={() => handleLinkClick(link.id, link.href)}
-                          className='text-gray-600 hover:text-blue transition-colors duration-300
+                          className='text-gray-600 hover:text-brand transition-colors duration-300
                                    flex items-center gap-1 group text-sm sm:text-base
                                    py-1 transform'
                         >
@@ -238,7 +238,7 @@ const Footer: React.FC<FooterProps> = ({
                         <a
                           href={link.href}
                           onClick={() => handleLinkClick(link.id, link.href)}
-                          className='text-gray-600 hover:text-blue transition-colors duration-300
+                          className='text-gray-600 hover:text-brand transition-colors duration-300
                                    flex items-center gap-1 group text-sm sm:text-base
                                    py-1 transform'
                           target={link.external ? "_blank" : undefined}
@@ -262,25 +262,23 @@ const Footer: React.FC<FooterProps> = ({
       </div>
 
       {/* Bottom bar - Improved mobile layout */}
-      <div className='border-t border-blue/20 bg-blue/5'>
+      <div className='border-t border-brand/20 bg-sand'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-6'>
           <div className='flex flex-col space-y-6 md:flex-row md:justify-between md:items-center md:space-y-0'>
             {/* Copyright - Better mobile text */}
             <div className='text-gray-600 text-center md:text-left order-2 md:order-1 mt-4 md:mt-0'>
               <p className='text-xs sm:text-sm'>
-                © {new Date().getFullYear()} Cloud and Digital SpA. Todos los
-                derechos reservados.
+                © {new Date().getFullYear()} GlassWood. Todos los derechos
+                reservados.
               </p>
               <p className='text-xs mt-1 opacity-75'>
-                Desarrollado con ❤️ en San Felipe, Chile
+                Lorem ipsum dolor sit amet
               </p>
             </div>
 
             {/* Social links - Better mobile layout */}
             <div className='flex flex-col sm:flex-row items-center gap-3 sm:gap-4 order-1 md:order-2'>
-              <span className='text-gray-500 text-xs sm:text-sm'>
-                Síguenos:
-              </span>
+              <span className='text-gray-500 text-xs sm:text-sm'>Lorem:</span>
               <div className='flex gap-2 sm:gap-3'>
                 {socialLinks.map(social => (
                   <a
@@ -303,24 +301,24 @@ const Footer: React.FC<FooterProps> = ({
       </div>
 
       {/* Trust indicators - Better mobile layout */}
-      <div className='bg-blue/5 border-t border-blue/10'>
+      <div className='bg-sand border-t border-brand/10'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-4'>
           <div className='grid grid-cols-2 sm:flex sm:flex-wrap sm:justify-center items-center gap-3 sm:gap-6 lg:gap-8 text-xs text-gray-500'>
             <div className='flex items-center gap-2 justify-center'>
               <div className='w-2 h-2 bg-positivegreen rounded-full flex-shrink-0'></div>
-              <span className='whitespace-nowrap'>SSL Seguro</span>
+              <span className='whitespace-nowrap'>Lorem</span>
             </div>
             <div className='flex items-center gap-2 justify-center'>
               <div className='w-2 h-2 bg-positivegreen rounded-full flex-shrink-0'></div>
-              <span className='whitespace-nowrap'>Datos Protegidos</span>
+              <span className='whitespace-nowrap'>Ipsum</span>
             </div>
             <div className='flex items-center gap-2 justify-center'>
               <div className='w-2 h-2 bg-positivegreen rounded-full flex-shrink-0'></div>
-              <span className='whitespace-nowrap'>Soporte 24/7</span>
+              <span className='whitespace-nowrap'>Dolor</span>
             </div>
             <div className='flex items-center gap-2 justify-center'>
               <div className='w-2 h-2 bg-positivegreen rounded-full flex-shrink-0'></div>
-              <span className='whitespace-nowrap'>Tecnología Chilena</span>
+              <span className='whitespace-nowrap'>Sit amet</span>
             </div>
           </div>
         </div>
