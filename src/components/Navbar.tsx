@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ShoppingCart } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 interface NavItem {
   id: string;
@@ -17,12 +18,12 @@ interface NavbarProps {
 
 const defaultNavItems: NavItem[] = [
   { id: "home", label: "Bienvenida", href: "/" },
-  { id: "catalog", label: "Catálogo", href: "#" },
+  { id: "catalog", label: "Catálogo", href: "/catalogo" },
   { id: "contact", label: "Contacto", href: "/contact" },
 ];
 
 const Navbar: React.FC<NavbarProps> = ({
-  onNavigate = () => {},
+  onNavigate = () => { },
   className = "",
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -31,6 +32,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const location = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const { totalItems } = useCart();
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 50);
@@ -98,13 +100,14 @@ const Navbar: React.FC<NavbarProps> = ({
     setActiveDropdown(null);
   }, []);
 
+  // Cart badge (lazy import to avoid circulars not needed) via URL path only
+
   return (
     <nav
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100"
-          : "bg-transparent"
-      } ${className}`}
+      className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled
+        ? "bg-sand/95 backdrop-blur-md shadow-lg border-b border-brand/10"
+        : "bg-sand/80"
+        } ${className}`}
       role='navigation'
       aria-label='Main navigation'
     >
@@ -137,11 +140,10 @@ const Navbar: React.FC<NavbarProps> = ({
                   <Link
                     to={item.href}
                     className={`flex items-center gap-1 px-4 py-2 rounded-lg text-lg font-medium
-                      transition-all duration-200 hover:bg-white/10 hover:backdrop-blur-sm
-                      ${
-                        isScrolled || location.pathname !== "/"
-                          ? "text-brand hover:text-positivegreen hover:bg-sand/50"
-                          : "text-brand hover:text-positivegreen"
+                      transition-all duration-200 hover:bg-sand/40
+                      ${isScrolled || location.pathname !== "/"
+                        ? "text-brand hover:text-positivegreen"
+                        : "text-brand hover:text-positivegreen"
                       }`}
                   >
                     {item.label}
@@ -154,11 +156,10 @@ const Navbar: React.FC<NavbarProps> = ({
                         : handleNavClick(item)
                     }
                     className={`flex items-center gap-1 px-4 py-2 rounded-lg text-lg font-medium
-                      transition-all duration-200 hover:bg-white/10 hover:backdrop-blur-sm
-                      ${
-                        isScrolled || location.pathname !== "/"
-                          ? "text-brand hover:text-positivegreen hover:bg-sand/50"
-                          : "text-brand hover:text-positivegreen"
+                      transition-all duration-200 hover:bg-sand/40
+                      ${isScrolled || location.pathname !== "/"
+                        ? "text-brand hover:text-positivegreen"
+                        : "text-brand hover:text-positivegreen"
                       }`}
                     aria-expanded={
                       item.subItems ? activeDropdown === item.id : undefined
@@ -168,9 +169,8 @@ const Navbar: React.FC<NavbarProps> = ({
                     {item.label}
                     {item.subItems && (
                       <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          activeDropdown === item.id ? "rotate-180" : ""
-                        }`}
+                        className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === item.id ? "rotate-180" : ""
+                          }`}
                       />
                     )}
                   </button>
@@ -179,8 +179,8 @@ const Navbar: React.FC<NavbarProps> = ({
                 {/* Dropdown Menu */}
                 {item.subItems && activeDropdown === item.id && (
                   <div
-                    className='absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-xl
-                                border border-gray-100 py-2 animate-in slide-in-from-top-2 duration-200'
+                    className='absolute top-full left-0 mt-2 w-64 bg-sand rounded-xl shadow-xl
+                                border border-brand/10 py-2 animate-in slide-in-from-top-2 duration-200'
                   >
                     {item.subItems.map(subItem => (
                       <Link
@@ -199,61 +199,63 @@ const Navbar: React.FC<NavbarProps> = ({
             ))}
           </nav>
 
-          {/* CTA Button - Desktop */}
-          <div className='hidden'>
+          {/* Right actions: Cart + Mobile menu */}
+          <div className='flex items-center justify-end gap-2'>
+            {/* Cart Button */}
             <Link
-              to='/contact'
-              className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300
-                transform hover:scale-105 hover:shadow-lg inline-block
-                ${
-                  isScrolled
-                    ? "bg-brand hover:bg-positivegreen text-white hover:shadow-brand/25"
-                    : "bg-sand hover:bg-positivegreen text-brand hover:text-white"
-                }`}
+              to='/carrito'
+              aria-label='Ver carrito'
+              className={`relative p-2 rounded-lg transition-all duration-200
+                ${isScrolled || isOpen || location.pathname !== "/" ? "text-brand hover:bg-sand/40" : "text-brand hover:bg-sand/40"}
+              `}
             >
-              Lorem ipsum
+              <ShoppingCart size={24} />
+              {totalItems > 0 && (
+                <span
+                  className='absolute -top-1 -right-1 min-w-[1.25rem] h-5 px-1 rounded-full bg-brand text-white text-xs flex items-center justify-center'
+                  aria-label={`${totalItems} artículos en el carrito`}
+                >
+                  {totalItems}
+                </span>
+              )}
             </Link>
-          </div>
 
-          {/* Mobile Menu Button - Improved */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className={`lg:hidden relative p-2 rounded-lg transition-all duration-200 z-50
-              ${
-                isScrolled || isOpen || location.pathname !== "/"
-                  ? "text-gray-900 hover:bg-gray-100"
-                  : "text-brand hover:bg-white/10"
-              }`}
-            aria-expanded={isOpen}
-            aria-controls='mobile-menu'
-            aria-label='Toggle mobile menu'
-          >
-            <div className='relative w-6 h-6'>
-              <Menu
-                size={24}
-                className={`absolute inset-0 transform transition-all duration-300 ${
-                  isOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100"
+            {/* Mobile Menu Button - Improved */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={`lg:hidden relative p-2 rounded-lg transition-all duration-200 z-50
+                ${isScrolled || isOpen || location.pathname !== "/"
+                  ? "text-brand hover:bg-sand/40"
+                  : "text-brand hover:bg-sand/40"
                 }`}
-              />
-              <X
-                size={24}
-                className={`absolute inset-0 transform transition-all duration-300 ${
-                  isOpen ? "rotate-0 opacity-100" : "-rotate-90 opacity-0"
-                }`}
-              />
-            </div>
-          </button>
+              aria-expanded={isOpen}
+              aria-controls='mobile-menu'
+              aria-label='Toggle mobile menu'
+            >
+              <div className='relative w-6 h-6'>
+                <Menu
+                  size={24}
+                  className={`absolute inset-0 transform transition-all duration-300 ${isOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100"
+                    }`}
+                />
+                <X
+                  size={24}
+                  className={`absolute inset-0 transform transition-all duration-300 ${isOpen ? "rotate-0 opacity-100" : "-rotate-90 opacity-0"
+                    }`}
+                />
+              </div>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu - Improved with better animations and layout */}
         <div
           id='mobile-menu'
           ref={mobileMenuRef}
-          className={`lg:hidden fixed top-0 left-0 right-0 bottom-0 z-40 transform transition-all duration-300 ${
-            isOpen
-              ? "translate-y-0 opacity-100"
-              : "-translate-y-full opacity-0 pointer-events-none"
-          }`}
+          className={`lg:hidden fixed top-0 left-0 right-0 bottom-0 z-40 transform transition-all duration-300 ${isOpen
+            ? "translate-y-0 opacity-100"
+            : "-translate-y-full opacity-0 pointer-events-none"
+            }`}
         >
           {/* Backdrop */}
           <div
@@ -264,10 +266,9 @@ const Navbar: React.FC<NavbarProps> = ({
 
           {/* Menu Content */}
           <div
-            className={`relative bg-white/95 backdrop-blur-md shadow-xl border-b border-gray-100
-                       transform transition-all duration-300 ${
-                         isOpen ? "translate-y-0" : "-translate-y-4"
-                       }`}
+            className={`relative bg-sand/95 backdrop-blur-md shadow-xl border-b border-brand/10
+                       transform transition-all duration-300 ${isOpen ? "translate-y-0" : "-translate-y-4"
+              }`}
             style={{
               paddingTop: "calc(3rem + env(safe-area-inset-top))",
               minHeight: "100vh",
@@ -277,11 +278,10 @@ const Navbar: React.FC<NavbarProps> = ({
               {defaultNavItems.map((item, index) => (
                 <div
                   key={item.id}
-                  className={`transform transition-all duration-300 ${
-                    isOpen
-                      ? "translate-x-0 opacity-100"
-                      : "translate-x-4 opacity-0"
-                  }`}
+                  className={`transform transition-all duration-300 ${isOpen
+                    ? "translate-x-0 opacity-100"
+                    : "translate-x-4 opacity-0"
+                    }`}
                   style={{
                     transitionDelay: isOpen ? `${index * 50}ms` : "0ms",
                   }}
@@ -312,9 +312,8 @@ const Navbar: React.FC<NavbarProps> = ({
                       {item.label}
                       {item.subItems && (
                         <ChevronDown
-                          className={`w-5 h-5 transition-transform duration-200 ${
-                            activeDropdown === item.id ? "rotate-180" : ""
-                          }`}
+                          className={`w-5 h-5 transition-transform duration-200 ${activeDropdown === item.id ? "rotate-180" : ""
+                            }`}
                         />
                       )}
                     </button>
@@ -323,11 +322,10 @@ const Navbar: React.FC<NavbarProps> = ({
                   {/* Mobile Dropdown - Improved */}
                   {item.subItems && (
                     <div
-                      className={`overflow-hidden transition-all duration-300 ${
-                        activeDropdown === item.id
-                          ? "max-h-96 opacity-100"
-                          : "max-h-0 opacity-0"
-                      }`}
+                      className={`overflow-hidden transition-all duration-300 ${activeDropdown === item.id
+                        ? "max-h-96 opacity-100"
+                        : "max-h-0 opacity-0"
+                        }`}
                     >
                       <div className='pl-4 pr-2 space-y-1 mt-2'>
                         {item.subItems.map((subItem, subIndex) => (
@@ -338,11 +336,10 @@ const Navbar: React.FC<NavbarProps> = ({
                             className={`block w-full text-left px-4 py-3 text-gray-600 hover:text-positivegreen
                                      hover:bg-sand/30 rounded-lg transition-all duration-200
                                      border-l-2 border-transparent hover:border-brand/30
-                                     transform ${
-                                       activeDropdown === item.id
-                                         ? "translate-x-0 opacity-100"
-                                         : "translate-x-2 opacity-0"
-                                     }`}
+                                     transform ${activeDropdown === item.id
+                                ? "translate-x-0 opacity-100"
+                                : "translate-x-2 opacity-0"
+                              }`}
                             style={{
                               transitionDelay:
                                 activeDropdown === item.id
@@ -358,6 +355,26 @@ const Navbar: React.FC<NavbarProps> = ({
                   )}
                 </div>
               ))}
+
+              {/* Extra: Cart link in mobile menu */}
+              <div
+                className={`transform transition-all duration-300 ${isOpen
+                  ? "translate-x-0 opacity-100"
+                  : "translate-x-4 opacity-0"
+                  }`}
+                style={{ transitionDelay: isOpen ? `${defaultNavItems.length * 50}ms` : "0ms" }}
+              >
+                <Link
+                  to='/carrito'
+                  onClick={closeMenu}
+                  className='w-full flex items-center justify-between px-4 py-4 text-left
+                           text-brand hover:text-positivegreen hover:bg-sand/40 rounded-lg
+                           transition-all duration-200 font-medium text-lg
+                           border border-transparent hover:border-brand/20'
+                >
+                  Carrito
+                </Link>
+              </div>
             </div>
           </div>
         </div>

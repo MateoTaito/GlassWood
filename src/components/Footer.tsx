@@ -113,28 +113,28 @@ const contactInfo = [
   {
     id: "phone",
     icon: <Phone className='w-4 h-4 sm:w-5 sm:h-5' />,
-    label: "Lorem",
-    value: "Lorem ipsum",
+    label: "Lorem ipsum",
+    value: "+00 0000 0000",
     href: "#",
   },
   {
     id: "email",
     icon: <Mail className='w-4 h-4 sm:w-5 sm:h-5' />,
-    label: "Ipsum",
-    value: "lorem@ipsum.com",
-    href: "mailto:lorem@ipsum.com",
+    label: "Lorem ipsum",
+    value: "lorem.ipsum@example.com",
+    href: "mailto:lorem.ipsum@example.com",
   },
   {
     id: "address",
     icon: <MapPin className='w-4 h-4 sm:w-5 sm:h-5' />,
-    label: "Dolor",
-    value: "Sit amet",
+    label: "Lorem ipsum",
+    value: "Lorem ipsum dolor sit amet",
     href: "#",
   },
 ];
 
 const Footer: React.FC<FooterProps> = ({
-  onLinkClick = () => {},
+  onLinkClick = () => { },
   className = "",
 }) => {
   const handleLinkClick = (linkId: string, href: string) => {
@@ -159,7 +159,7 @@ const Footer: React.FC<FooterProps> = ({
                 onClick={() => handleLinkClick("home", "/")}
               >
                 <img
-                  src='/logo_negro.webp'
+                  src='/GlassWood_logo.jpeg'
                   alt='GlassWood Logo'
                   className='h-12 sm:h-14 lg:h-16 w-auto group-hover:scale-105 transition-transform duration-300 mx-auto sm:mx-0'
                 />
@@ -179,8 +179,7 @@ const Footer: React.FC<FooterProps> = ({
                 <a
                   key={info.id}
                   href={info.href}
-                  className='flex items-center gap-3 text-gray-700 hover:text-brand
-                           transition-colors duration-300 group p-2 sm:p-0 rounded-lg hover:bg-sand/40'
+                  className='flex items-center gap-3 text-gray-700 hover:text-brand transition-colors duration-300 group p-3 rounded-md hover:bg-white/60'
                   target={info.href.startsWith("http") ? "_blank" : undefined}
                   rel={
                     info.href.startsWith("http")
@@ -189,9 +188,8 @@ const Footer: React.FC<FooterProps> = ({
                   }
                 >
                   <div
-                    className='w-8 h-8 sm:w-10 sm:h-10 bg-brand/10 rounded-lg flex items-center justify-center
-                                text-brand group-hover:bg-brand group-hover:text-white
-                                transition-colors duration-300 flex-shrink-0'
+                    className='w-10 h-10 sm:w-12 sm:h-12 bg-brand/6 rounded-md flex items-center justify-center
+                                text-brand transition-colors duration-300 flex-shrink-0 shadow-sm'
                   >
                     {info.icon}
                   </div>
@@ -199,7 +197,7 @@ const Footer: React.FC<FooterProps> = ({
                     <div className='text-xs sm:text-sm text-gray-500'>
                       {info.label}
                     </div>
-                    <div className='font-medium text-sm sm:text-base break-words'>
+                    <div className='font-medium text-sm sm:text-base break-words text-gray-700'>
                       {info.value}
                     </div>
                   </div>

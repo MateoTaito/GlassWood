@@ -25,40 +25,53 @@ const FEATURE_HIGHLIGHTS: readonly FeatureHighlight[] = [
 ];
 
 const Header: React.FC<HeaderProps> = ({
-  onVideoClick: _onVideoClick = () => {},
+  onVideoClick: _onVideoClick = () => { },
 }) => {
   return (
     <header className='relative min-h-screen flex items-center justify-center overflow-hidden'>
       {/* Background gradient */}
       <div className='absolute inset-0 bg-sand' />
 
-      {/* Darker diagonal segmented overlay (top-right to bottom-left) */}
-      <div
-        aria-hidden='true'
-        className='absolute inset-0 pointer-events-none select-none'
-      >
+      {/* Curved hill background with tree silhouette (keeps brand palette) */}
+      <div aria-hidden='true' className='absolute inset-0 pointer-events-none select-none'>
         <svg
           className='w-full h-full'
           viewBox='0 0 1440 900'
-          preserveAspectRatio='none'
+          preserveAspectRatio='xMidYMax slice'
           xmlns='http://www.w3.org/2000/svg'
         >
+          <defs>
+            <linearGradient id='hillShade' x1='0' y1='0' x2='0' y2='1'>
+              <stop offset='0' stopColor='rgba(85,65,54,0.98)' />
+              <stop offset='1' stopColor='rgba(85,65,54,0.92)' />
+            </linearGradient>
+          </defs>
+
+          {/* Terrain: valley on the left, hill on the right */}
           <path
-            d='M1440 0
-               C1200 140 1100 250 900 400
-               C700 550 500 700 0 900
-               L1440 900 Z'
-            fill='rgba(85,65,54,0.85)'
+            d='M0 780
+               C 140 860, 300 860, 480 800
+               C 720 720, 1020 640, 1260 620
+               C 1350 630, 1410 660, 1440 700
+               L1440 900 L0 900 Z'
+            fill='url(#hillShade)'
           />
+
+          {/* Single leaf on the right crest (solid dark brown, moved up a bit and longer stem) */}
+          <g transform='translate(1260 600) scale(1)'>
+            <path
+              d='M0 0
+                 C -36 -12, -60 -56, -18 -108
+                 C 22 -56, 16 -18, 0 0 Z'
+              fill='#584539'
+              stroke='none'
+            />
+            {/* longer, slightly curved stem moved up */}
+            <path d='M-2 -10 C -6 10, 25 30, -1 68' stroke='#584539' strokeWidth='3' strokeLinecap='round' fill='none' />
+          </g>
         </svg>
       </div>
 
-      {/* Animated background elements */}
-      <div className='absolute inset-0 opacity-10'>
-        <div className='absolute top-20 left-10 w-32 h-32 bg-brand/20 rounded-full md:animate-pulse md:[animation-duration:7s]' />
-        <div className='absolute bottom-32 right-16 w-24 h-24 bg-positivegreen/30 rounded-full md:animate-bounce md:[animation-delay:1.5s] md:[animation-duration:6s]' />
-        <div className='absolute top-1/2 left-1/4 w-16 h-16 bg-sand/60 rounded-full md:animate-ping md:[animation-delay:3s] md:[animation-duration:8s]' />
-      </div>
 
       <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20'>
         <div className='text-center space-y-8'>
@@ -105,8 +118,8 @@ const Header: React.FC<HeaderProps> = ({
           <div className='flex flex-col sm:flex-row gap-4 justify-center items-center mt-12'>
             <Link
               to='/contact'
-              className='group bg-brand hover:bg-positivegreen text-sand hover:text-white
-                       font-semibold text-lg px-8 py-4 rounded-xl border-2 border-brand
+              className='group bg-green-800 hover:bg-positivegreen text-sand hover:text-white
+                       font-semibold text-lg px-8 py-4 rounded-xl border-2 border-green-800
                        hover:border-positivegreen transition-all duration-300 transform
                        hover:scale-105 hover:shadow-lg hover:shadow-positivegreen/25
                        flex items-center gap-2 min-w-[280px] justify-center'
@@ -114,27 +127,6 @@ const Header: React.FC<HeaderProps> = ({
               Lorem ipsum
               <ArrowRight className='w-5 h-5 group-hover:translate-x-1 transition-transform duration-300' />
             </Link>
-
-            <button className='bg-white/70 text-brand font-medium text-lg px-8 py-4 rounded-xl border-2 border-brand/20 flex items-center gap-3 hover:bg-white/90 transition-colors'>
-              <div className='w-10 h-10 bg-brand/10 rounded-full flex items-center justify-center'>
-                <Play className='w-4 h-4' />
-              </div>
-              Dolor sit amet
-            </button>
-          </div>
-
-          {/* Trust indicators */}
-          <div className='mt-16 pt-8 border-t border-brand/20'>
-            <p className='text-brand/70 text-sm mb-4'>
-              Lorem ipsum dolor sit amet
-            </p>
-            <div className='flex justify-center items-center gap-8 opacity-80'>
-              <div className='text-brand text-sm'>Consectetur</div>
-              <div className='w-px h-4 bg-brand/30' />
-              <div className='text-brand text-sm'>Adipiscing</div>
-              <div className='w-px h-4 bg-brand/30' />
-              <div className='text-brand text-sm'>Elit</div>
-            </div>
           </div>
         </div>
       </div>
